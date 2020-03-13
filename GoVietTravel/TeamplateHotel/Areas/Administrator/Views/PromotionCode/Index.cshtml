@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Mã giảm giá cho Tour";
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+}
+<style>
+    .az {
+        float: left;
+        margin: 5px 10px;
+    }
+</style>
+
+<div id="jtable-main-container"></div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#jtable-main-container').jtable({
+            title: '@ViewBag.Title',
+            paging: true, //Enable paging
+            pageSize: 30, //Set page size (default: 10)
+            sorting: true, //Enable sorting
+            defaultSorting: 'Name ASC', //Set default sorting
+            selecting: true, //Enable selecting
+            multiselect: true, //Allow multiple selecting
+            selectingCheckboxes: true, //Show checkboxes on first column
+            columnResizable: true, //Actually, no need to set true since it's default
+            columnSelectable: true, //Actually, no need to set true since it's default
+            saveUserPreferences: true, //Actually, no need to set true since it's default
+            toolbar: {
+                items: [{
+                    icon: '/Areas/Administrator/Content/img/add.png',
+                    text: 'Add new',
+                    click: function () {
+                        window.location = '@Url.Action("Create", "PromotionCode")';
+                    }
+                }]
+            },
+
+            actions: {
+                listAction: '@Url.Action("List", "PromotionCode")',
+                deleteAction: '@Url.Action("Delete", "PromotionCode")'
+
+            },
+            fields: {
+                ID: {
+                    key: true,
+                    create: false,
+                    edit: false,
+                    list: false
+                },
+                Code: {
+                    title: 'Code',
+                    width: '5%',
+                    display: function (data) {
+                        return '<a href="/admin/PromotionCode/Update/' + data.record.ID + '">' + data.record.Code + '</a>';
+                    }
+                },
+                StartDay: {
+                    title: 'Start date',
+                    width: '5%',
+                    type: 'date',
+                    displayFormat: 'mm/dd/yy',
+                    create: false,
+                    edit: false
+                },
+                EndDay: {
+                    title: 'End date',
+                    width: '5%',
+                    type: 'date',
+                    displayFormat: 'dd/mm/yy',
+                    create: true,
+                    edit: true
+
+                },
+                Total: {
+                    title: 'Number',
+                    width: '5%',
+                },
+                Used: {
+                    title: 'Used',
+                    width: '5%',
+                },
+                Title: {
+                    title: 'Tour',
+                    width: '15%',
+                },
+                Status: {
+                    title: 'Status',
+                    width: '3%',
+                },
+                '':
+                    {
+                        title: '',
+                        width: '1%',
+                        sorting: false,
+                        display: function (data) {
+                            return '<button title="Edit" type="button" class="jtable-command-button jtable-edit-command-button" onclick="editRecord(' + data.record.ID + ')"><span>Edit</span></button>';
+                        }
+                    }
+            }
+        });
+        $('#jtable-main-container').jtable('load');
+    });
+    function editRecord(Id) {
+        window.location = '@Url.Action("Update", "PromotionCode")' + '/' + Id;
+    }
+</script>

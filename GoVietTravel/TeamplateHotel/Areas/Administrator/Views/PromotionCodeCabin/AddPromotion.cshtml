@@ -1,0 +1,186 @@
+﻿@model TeamplateHotel.Areas.Administrator.EntityModel.EPromotioncodeCabin
+@using ProjectLibrary.Config
+@{
+    ViewBag.Title = "AddPromotion";
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+}
+}
+@if ((string)Session["TrungMa"] == "TrungMa")
+{
+    <script>alert("Trùng mã!")</script>
+}
+
+<style>
+    .fileContainer {
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+    }
+
+        .fileContainer [type=file] {
+            cursor: inherit;
+            display: block;
+            font-size: 999px;
+            filter: alpha(opacity=0);
+            min-height: 100%;
+            min-width: 100%;
+            opacity: 0;
+            position: absolute;
+            right: 0;
+            text-align: right;
+            top: 0;
+        }
+
+    .cabinstyle {
+        width: 200px;
+        border: 1px solid #c9c2ff;
+        margin: 10px 10px 10px 0px;
+        padding: 5px;
+        border-radius: 5px;
+        float: left;
+    }
+
+    .gallerystyle {
+        width: 100px;
+        margin: 10px;
+        float: left;
+    }
+
+    #listCruisegallery {
+        width: 100%;
+        float: left;
+    }
+
+    #listcabin {
+        width: 100%;
+        float: left;
+    }
+
+    .img-link button[type="button"] {
+        margin-bottom: 10px;
+    }
+
+    .controls button[type="button"] {
+        margin-bottom: 10px;
+    }
+
+    .imgthumb button[type="button"] {
+        margin-bottom: 10px;
+    }
+
+    .ratefrom {
+        width: 170px;
+        float: left;
+    }
+
+    .control-group {
+        padding: 1px 20px;
+    }
+</style>
+<div class="span12">
+    <div class="widget ">
+        <div class="widget-header">
+            <i class="icon-plus-sign"></i>
+            <h3>@(ViewBag.cmd == "Create" ? "Tạo mã" : "Sửa mã")</h3>
+        </div> <!-- /widget-header -->
+        <form id="cruisefrom" action="../PromotionCodeCabin/Create" method="post">
+            <div class="widget-content">
+                @Html.ValidationSummary(true)
+                <div class="control-group">
+                    <label class="control-label" for="Code">Code<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls" style="float:left">
+                        <input type="text" name="txtCode" id="Code" maxlength="15" autocomplete="off" />
+                    </div>
+                    <div class="controls">
+                        <input type="button" id="autoCreatCode" class="btn btn-success" value="GenerateCode" onclick="generate()" />
+                    </div>
+                    </div>
+                <div class="control-group" style="float:left">
+                    <label class="control-label" for="NgayBatDau">Ngày áp dụng<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls">
+                        <div class="form-group">
+                            <div class='input-group date'>
+                                <input type='text' class="form-control" id="NgayBatDau" name="txtNgayBatDau" value="@String.Format("{0:MM/dd/yyyy}",DateTime.Now)" autocomplete="off" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="NgayKetThuc">Ngày hết hạn<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls">
+                        <div class="form-group">
+                            <div class='input-group date'>
+                                <input type='text' class="form-control" id="NgayKetThuc" name="txtNgayKetThuc" value="@String.Format("{0:MM/dd/yyyy}",DateTime.Now)" autocomplete="off" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*CHon tau*@
+                <div class="control-group">
+                    <label class="control-label" for="Name">Chọn Tàu:<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls">
+                        <select class="selectpicker" onchange="choiseCabin()" name="txtIDCruise" id="IDCruises" style="width: 366px;display: inline;">
+
+                            @{
+                                IEnumerable<SelectListItem> menuID = (IEnumerable<SelectListItem>)ViewBag.ListMenuID;
+                                foreach (SelectListItem i in menuID)
+                                {
+                                    <option value="@i.Value">@string.Format("{0:0000}", int.Parse(i.Value))- @i.Text</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                @*CHon cabin*@
+                <div class="control-group">
+                    <label class="control-label" for="Name">Cabin Áp Dụng<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls">
+                        <select class="selectpicker" name="txtIDCabin" id="IDCabin" style="width: 366px;display: inline;"></select>
+                    </div>
+                </div>
+
+                <div class="control-group" style="float:left">
+                    <label class="control-label" for="SL">Số Lượng<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls">
+                        <input type="number" name="txtSL" id="SL" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Name">Đã Dùng<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls">
+                        <input type="number" name="txtDaDung" id="DaDung" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="TrangThai">Trạng Thái<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls">
+                        <select id="TrangThai" name="txtTrangThai">
+                            <option value="true">sẵn sàng</option>
+                            <option value="false">không sẵn sàng</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="MoTa">Mô Tả</label>
+                    <div class="controls">
+                        <textarea class="span4" cols="20" id="MoTa" name="txtMoTa" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="form-actions" style="width:100%;float:left">
+                    <input value="Create" id="create" class="btn btn-primary" type="submit" />
+                    <a href="@Url.Action("Index", "PromotionCode")" class="btn">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/Areas/Administrator/Content/js/Promotioncode/promotion.js"></script>
+@{Session["TrungMa"] = "";
+}

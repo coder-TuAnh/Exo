@@ -1,0 +1,562 @@
+﻿@using TeamplateHotel.Handler
+@model TeamplateHotel.Models.BookingCruise
+@using TeamplateHotel.Areas.Administrator.EntityModel
+@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@{
+    ViewBag.MetaTitle = "CruiseDetail";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    Hotel detailHotel = CommentController.DetailHotel(Request.Cookies["LanguageID"].Value);
+}
+<link href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<script src="~/Plugins/Validate/jquery-validation-1.13.1/jquery.validate.min.js"></script>
+<link href="~/Plugins/Validate/jquery-validation-1.13.1/jquery-validation.css" rel="stylesheet" />
+<link href="~/Content/css/bookingcruise.css" rel="stylesheet" />
+<style>
+    .bk-info-body table {
+        line-height: 18px;
+        font-size: 14px !important;
+        font-family: Arial,sans-serif;
+    }
+
+    .bk-info-body table p:before {
+            content: "\f00c" !important;
+            color: #ed9419;
+            font-family: FontAwesome;
+            display: inline-block;
+            margin-left: -1.3em; /* same as padding-left set on li */
+            width: 1.3em; /* same as padding-left set on li */
+        }
+
+    .book-width-confident .header {
+        margin: 0px;
+        padding: 6px 12px;
+        background-color: #59be54;
+        font-size: 18px;
+        color: #fff;
+    }
+
+    .book-width-confident .content {
+        padding: 10px;
+        border: 1px solid #dcdcdc;
+        border-top: 0;
+    }
+
+    .icon-like-white {
+        width: 18px;
+        height: 20px;
+        background-position: -2px -1066px;
+        margin-top: -5px;
+    }
+
+    .book-width-confident .glyphicon-ok {
+        color: #59be54;
+        font-size: 13px;
+    }
+
+    #totalservicbot label {
+        margin-top: 10px;
+    }
+</style>
+
+<section class="booking-wrap" style="margin-top:80px;margin-bottom:20px;">
+    <div class="container">
+        <div class="bk-header box-hidden">
+            <h1 class="title24 pull-left">Here are choices for you to complete the trip!</h1>
+            <p class="pull-right">Book online or call</p>
+            @detailHotel.Tel
+        </div>
+
+        <div class="row">
+            <div class="col-md-9">
+                <div class="bk-media media">
+                    <div class="pull-left">
+                        <img src="@Model.Cruise.Image" alt="Glory Legend Cruise">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="inline-block f_hn z_24 text-bold c2a">@Model.Cruise.Name</h2>
+                        <div class="box-review inline-block">
+                            <label class="rate-1">
+                                <span style="width:>@(Model.Cruise.Star * 20)%;"></span>
+                            </label>
+                            <label class="review" style="display:none">
+                                <span class="text-bold inline-block text-center n-rate">9.4</span>
+                                <strong class="inline-block text-uppercase"> Excellent</strong>
+                                <a class="n-review inline-block">@(Model.Cruise.Rate) review</a>
+                            </label>
+                        </div>
+                        <address><i class="fa fa-map-marker c2a"></i> <strong>DESTINATIONS:</strong> @Model.Cruise.Location </address>
+                        <table class="bk-media-table">
+                            <tbody>
+                                <tr>
+                                    <td><i class="fa fa-calendar"></i> Departure Date:</td>
+                                    <td class="change">@Model.Checkin</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-clock-o"></i> Duration:</td>
+                                    <td>@Model.Duration</td>
+                                </tr>
+                                <tr>
+                                    <td> <i class="fa fa-user"></i> Passengers:</td>
+                                    <td>@Model.Adult Adult  & @(!string.IsNullOrEmpty(Model.Child) ? Model.Child : "0") Child</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <div class="caption">
+                            <p><strong>Cabin@(Model.CruiseCabin.Count > 1 ? "(s)" : "") Information:</strong></p>
+                            @for (var i = 0; i < Model.CruiseCabin.Count; i++)
+                            {
+                                var element = Model.CruiseCabin[i];
+                                <p>
+                                    <span style="font-weight:bold">Cabin @(i + 1):</span> @element.Name , Max: @element.MaxAdults Adults , Bed :@element.Bed bed , Selected number: @Model.listcabin.Find(a => a.IDCabin == element.ID).CountRom Cabin
+                                </p>
+                            }
+                           </div>
+                        <div class="caption">
+                            <p><strong>Conditions:</strong></p>
+                            <p class="c2d">
+                                <i class="fa fa-check"></i> <strong>Easy cancellation</strong> <br>
+                                We allow great flexibility when you have to cancel your trip and charge a minimal fee. <br>
+                                View booking conditions. <i class="fa" data-toggle="tooltip" data-html="true" data-placement="top" title="" data-original-title="From 30 to 7 days prior to check-in: 10% of total rates. <br>From 6 to 3 days prior to check in: 50% of total rates. <br>Less than 3 days prior to check-in: 100% of total rates. <br>No-Show: 100% of total rates."></i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bk-price-appendTo"></div>
+
+                <div class="bk-page-title">
+                    <h4>BOOKING INFORMATION</h4>
+                    <p>It takes less than a minute to complete our booking form. You are now just one step away from confirming your booking.</p>
+                </div>
+                <div class="bk-info bk-transfer bk-bus">
+                    <h4>Transfer & Extra Services <span>(optional)</span></h4>
+                    <div class="bk-info-body">
+                        <table style="width:100%">
+                            <tr>
+                                <th>Services</th>
+                                <th>Unit</th>
+                                <th>Price</th>
+                                <th>Select</th>
+                            </tr>
+                            @foreach (var c in Model.listservic)
+                                {
+                                    if (c.CatalogServic == CatalogServic.Services.ToString())
+                                    {
+                                        <tr>
+                                            <td style="width:65%">
+                                                
+                                                <p>@c.Name: <label>@Html.Raw(c.Content)</label></p>
+                                            </td>
+                                            <td style="width:10%">
+                                                @c.Unit
+                                            </td>
+                                            <td style="width:10%">
+
+                                                $@c.Price
+                                            </td>
+                                            <td>
+                                                <input type="text" id="pricesercic-@c.ID" style="display:none" value="@c.Price" />
+                                                <select style="max-width:100px" onchange="selectromchange();" class="form-control form-control-angle-down servicecruise" name="children" id="servicecruise-@c.ID">
+
+                                                    <option value="0" selected="selected">0</option>
+                                                    @for (var i = 1; i <= Model.Adult; i++)
+                                                    {
+                                                        <option value="@(i)">@(i)</option>
+                                                    }
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                        </table>
+                        <div class="bk-info-body">
+                            <ul class="">
+                                    @foreach (var c in Model.listservic)
+                                    {
+                                        if (c.CatalogServic == CatalogServic.Offers.ToString())
+                                        {
+                                            <li>
+                                                <label for="tour">
+                                                    <strong class="label label-success">FREE</strong>
+                                                    <b>@c.Name</b>
+                                                </label>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                        </div>
+                        <div class="row" style="background-color: rgba(167,187,208,0.3);font-size: 16px;padding: 10px 18px;font-weight: bold;">
+                            <div style="float:right">
+                                <table id="totalservicbot">
+                                    <tr>
+                                        <td> <label>Price Services</label></td>
+                                        <td>:USD $<span id="priceservicetotal2" style="color:#ac0606;font-weight:bold">0</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td> <label>Price cabin</label></td>
+                                        <td>:USD $<span style="color:#ac0606;font-weight:bold">@ViewBag.totalrom</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Total </label><br />
+                                            <i style="color:red">(Included 10% VAT and 5% service charge)</i>
+                                        </td>
+                                        <td>:USD $<span id="viewtotalrom2" style="color:#ac0606;font-weight:bold">@ViewBag.totalrom</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bk-info bk-extra" style="display:none">
+                    <h4>Exclusive offers <span>(optional)</span></h4>
+
+                </div>
+                <form class="bk-form-info" id="frmBook" method="post" action="">
+                    <div class="bk-info bk-contact-info">
+                        <h4>Contact Information</h4>
+                        <div class="bk-info-body">
+                            <div class="form-group has-feedback vb-1 w-left">
+                                <label class="control-label">Title (*)</label>
+                                <select class="form-control" name="title" id="title">
+                                    <option value="Mr.">Mr.</option>
+                                    <option value="Mrs.">Mrs.</option>
+                                    <option value="Ms.">Ms.</option>
+                                    <option value="Mss.">Mss.</option>
+                                </select>
+                            </div>
+                            <div class="form-group has-feedback vb-2 w-left">
+                                <label class="control-label">Name (*)</label>
+                                <input type="text" class="form-control" value="" id="name" placeholder="" name="fullname">
+                            </div>
+                            <div class="form-group has-feedback vb-2 vb-2full w-left">
+                                <label class="control-label">Country(*)</label>
+                                <select class="form-control" id="bornin" name="bornin">
+                                    <option value="">Select country</option>
+                                    <option value="Argentina">Argentina</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="Austria">Austria</option>
+                                    <option value="Belgium">Belgium</option>
+                                    <option value="Brazil">Brazil</option>
+                                    <option value="Bulgaria">Bulgaria</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="Chile">Chile</option>
+                                    <option value="China">China</option>
+                                    <option value="Colombia">Colombia</option>
+                                    <option value="Costa Rica">Costa Rica</option>
+                                    <option value="Croatia">Croatia</option>
+                                    <option value="Czech Republic">Czech Republic</option>
+                                    <option value="Denmark">Denmark</option>
+                                    <option value="Ecuador">Ecuador</option>
+                                    <option value="Estonia">Estonia</option>
+                                    <option value="France">France</option>
+                                    <option value="Finland">Finland</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="Greece">Greece</option>
+                                    <option value="Holland">Holland</option>
+                                    <option value="Honduras">Honduras</option>
+                                    <option value="Hong Kong S.A.R.">Hong Kong S.A.R.</option>
+                                    <option value="Hungary">Hungary</option>
+                                    <option value="Iceland">Iceland</option>
+                                    <option value="India">India</option>
+                                    <option value="Ireland">Ireland</option>
+                                    <option value="Indonesia">Indonesia</option>
+                                    <option value="Italy">Italy</option>
+                                    <option value="Japan">Japan</option>
+                                    <option value="Latvia">Latvia</option>
+                                    <option value="Luxembourg">Luxembourg</option>
+                                    <option value="Macau S.A.R.">Macau S.A.R.</option>
+                                    <option value="Malaysia">Malaysia</option>
+                                    <option value="Mexico">Mexico</option>
+                                    <option value="Netherlands">Netherlands</option>
+                                    <option value="New Zealand">New Zealand</option>
+                                    <option value="Norway">Norway</option>
+                                    <option value="Paraguay">Paraguay</option>
+                                    <option value="Peru">Peru</option>
+                                    <option value="Philippines">Philippines</option>
+                                    <option value="Poland">Poland</option>
+                                    <option value="Portugal">Portugal</option>
+                                    <option value="Romania">Romania</option>
+                                    <option value="Spain">Spain</option>
+                                    <option value="Singapore">Singapore</option>
+                                    <option value="Slovakia">Slovakia</option>
+                                    <option value="Slovenia">Slovenia</option>
+                                    <option value="South Africa">South Africa</option>
+                                    <option value="South Korea">South Korea</option>
+                                    <option value="Sweden">Sweden</option>
+                                    <option value="Switzerland">Switzerland</option>
+                                    <option value="Taiwan">Taiwan</option>
+                                    <option value="Thailand">Thailand</option>
+                                    <option value="Ukraine">Ukraine</option>
+                                    <option value="United Kingdom">United Kingdom</option>
+                                    <option value="United States">United States</option>
+                                    <option value="Uruguay">Uruguay</option>
+                                    <option value="Venezuela">Venezuela</option>
+                                    <option value="Viet Nam">Viet Nam</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group has-feedback vb-3 w-block">
+                                <label class="control-label">Email address (*)</label>
+                                <input type="email" class="form-control" value="" placeholder="" name="email" id="email">
+                                <div class="vb-caption active">Your booking confirmation will be sent to this email!</div>
+                            </div>
+                            <div class="form-group has-feedback vb-3 w-block">
+                                <label class="control-label">Phone number(*) <span class="text-normal" style="font-size:inherit">(Mobile number preferred)</span></label>
+                                <input type="text" class="form-control" value="" placeholder="" id="phone" name="phone">
+                                <div class="vb-caption">We will call you in case we cannot contact you by email</div>
+                            </div>
+                            <div class="form-group vb-3 w-block">
+                                <label class="control-label">Address for pick up in Hanoi</label>
+                                <input type="text" class="form-control" value="" placeholder="" name="address" id="address">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bk-info bk-request">
+                        <h4>Special Requests</h4>
+                        <div class="bk-info-body">
+                            <p class="pre">If you have any special requests (special dietary requirements, child car seat, kid meal), please let us know.</p>
+                            <textarea class="form-control" rows="5" name="content" id="content"></textarea>
+                        </div>
+                    </div>
+                    @*<div class="g-recaptcha" data-sitekey="6LfOETsUAAAAAPWOQC0yCCNEsCgaSy2DQlTmUZnz">
+
+                        </div>*@
+
+                    @*ma capcha moi dang ki*@
+                    @*<div class="g-recaptcha" data-sitekey="6LcOjl4UAAAAAOAYXIVY38sw6biWMRTU8_dabheN">
+
+                    </div>*@
+                    <span style="font-weight:bold" id="recaptcharequement"></span>
+                    <div class="bk-btn text-right">
+                        <button type="submit" onclick="cormfrimcruise()" class="btn btn-style-2a z_16 text-bold">Continue <i class="fa fa-angle-right"></i></button>
+                    </div>
+                    <input type="hidden" id="roomNumber" value="1">
+                    <input type="hidden" name="total" value="280">
+                </form>
+            </div>
+
+            <div class="col-md-3">
+                <div class="bk-price">
+                    <div class="bk-price-info">
+                        <div class="no-card z_12">
+                            <strong>No credit card</strong> fees!
+                        </div>
+                        <p class="text-bold c2a z_12">Your booking includes:</p>
+                        <ul class="list-dot z_12">
+                            <li>All board meals</li>
+                            <li>Free WiFi</li>
+                            <li>Easy cancellation</li>
+                        </ul>
+                        <hr>
+                        <table style="display:none">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @ViewBag.CountRoms rooms
+                                    </td>
+                                    <td>US$@ViewBag.totalrom</td>
+                                </tr>
+                                <tr>
+                                    <td class="c2d"><b>10% VAT</b></td>
+                                    <td class="c2d"><b>Included</b></td>
+                                </tr>
+                                <tr>
+                                    <td class="c2d"><b>5% service charge</b></td>
+                                    <td class="c2d"><b>Included</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Extra Services</td>
+                                    <td>US$<span id="priceservicetotal">0</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="bk-price-total" style="display:none">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="block z_18 c07">Price</span> (for all guests)
+                                    </td>
+                                    <td style="color:red;font-size:18px">
+                                        US$<span id="viewtotalrom">@ViewBag.totalrom</span>
+                                        <input id="totalrom" value="@ViewBag.totalrom" style="display:none">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="c6">Rates are quoted in <strong>US dollars.</strong></p>
+                </div>
+                <div class="w-box w-box-check">
+                    <h6><i class="fa fa-check z_18"></i> Best Price Guaranteed</h6>
+                    <p>
+                        <strong>Congratulations!</strong> You're getting the
+                        lowest possible rate. We guarantee it.
+                    </p>
+                </div>
+                <div class="w-box w-box-bell">
+                    <h6><i class="fa fa-bell-o z_18"></i> Special Notes</h6>
+                    <p></p><p>Cruise shuttle bus can only pick you up in Hanoi Old Quarter or West Lake area. Please inform us your hotel address at least 2 days prior to your trip date. Pick up time is between 7:30 and 8:15am.</p><p></p>
+                </div>
+                <div class="book-width-confident w-box bg-default w-book-us">
+                    <div class="header" style="">
+                        <span class="icon icon-like-white margin-right-5"></span>
+                        Book With Confidence		<span class="icon icon-question-sign-lg"></span>
+                    </div>
+                    <div style="padding:10px">
+                        <div class="content-detail margin-bottom-15">
+                            <div class="item">
+                                <span class="glyphicon glyphicon-ok margin-right-5"></span>
+                                <span><b>Best price guarantee</b></span>
+                                <p>We guarantee that the prices we offer are most reasonable, suitable for your wish equivalent to service quality and provided standard. If you see same package with lower price, we are happy to match it for you based on the comparison.</p>
+                            </div>
+                        </div>
+                        <div class="content-detail margin-bottom-15">
+                            <div class="item">
+                                <span class="glyphicon glyphicon-ok margin-right-5"></span>
+                                <span><b>Money back guarantee</b></span>
+                                <p class="text">In case the service isn't qualified enough, except for out-of-control situations such as weather conditions, we receive and appreciate all your comments. With the highest respect, we will investigate your case and will offer the reimbursement once your complain is rational</p>
+                            </div>
+                        </div>
+                        <div class="content-detail">
+                            <div class="item">
+                                <span class="glyphicon glyphicon-ok margin-right-5"></span>
+                                <span class="text"><b>24/7 support on spot</b></span>
+                                <p class="text">We are here to support you at any moment of your needs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="wraploadding">
+    <div id="imgloadding"><img src="/Areas/Administrator/Content/img/ajax-loader.gif" alt="loading"></div>
+</div>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+    $(document).ready(function () {
+        $("#wraploadding").hide();
+    });
+    function cormfrimcruise() {
+        LoadingSendEmail();
+        var listservic = new Array()
+        var form = $("#frmBook").serialize();
+        var cabinbooking = $(".servicecruise");
+        for (let i = 0; i < cabinbooking.length; i++) {
+            var element = cabinbooking[i];
+            if (element.value > 0) {
+                listservic.push({
+                    IDCabin: element.id.replace("servicecruise-", ""),
+                    CountRom: element.value
+                });
+            }
+        }
+        var model = {
+            name: $("#name").val(),
+            email: $("#email").val(),
+            phone: $("#phone").val(),
+            address: $("#address").val(),
+            country: $("#bornin").val(),
+            mrs: $("#title").val(),
+            content: $("#content").val(),
+            listservic: listservic
+        }
+        $.ajax({
+            data: JSON.stringify(model),
+            type: 'POST',
+            url: "/BookingCruise/Cormfirmbookingcruise",
+            cache: false,
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                if (data.success == true) {
+                    alert("Đặt chuyến tàu thành công");
+                    window.location = "/mesage-thank-for-you";
+                } else {
+                    console.log("Lỗi");
+                }
+            },
+        });
+    }
+
+    function LoadingSendEmail() {
+        $("#wraploadding").show();
+        $("#wraploadding").css("width", $(window).width());
+        $("#wraploadding").css("height", $(window).height());
+        $("#imgloadding").css("top", ($(window).height() / 2) - 80);
+    }
+    function selectromchange() {
+        var priceservicetotal = 0
+        var listservic = $(".servicecruise");
+        var total = parseFloat($("#totalrom").val());
+        for (let i = 0; i < listservic.length; i++) {
+            let elenment = listservic[i];
+            if (elenment.value != 0) {
+                var chechpm = $("#pricesercic-" + elenment.id.replace("servicecruise-", "")).val();
+                var priceservic = parseFloat($("#pricesercic-" + elenment.id.replace("servicecruise-", "")).val());
+                total += parseFloat(elenment.value) * priceservic;
+                priceservicetotal += parseFloat(elenment.value) * priceservic;
+            }
+        }
+        $("#priceservicetotal").html(priceservicetotal);
+        $("#priceservicetotal2").html(priceservicetotal);
+        $("#viewtotalrom").html(total);
+        $("#viewtotalrom2").html(total);
+    }
+    //validate
+    jQuery.validator.setDefaults({
+        debug: true,
+        success: "valid"
+    });
+    $("#frmBook").validate({
+        rules: {
+            'title': {
+                required: true,
+            },
+            'fullname': {
+                required: true,
+            },
+            'email': {
+                required: true,
+                email: true
+            },
+            'bornin': {
+                required: true,
+            },
+            'phone': {
+                required: true,
+            },
+            'g-recaptcha-response': {
+                required: true,
+            },
+
+        },
+
+
+
+        messages: {
+            'title': "Please select gender",
+            'name': "Please enter full name",
+            'Email': "Please enter email adress",
+            'bornin': "Please select country",
+            'phone': "Please enter phone",
+            'g-recaptcha-response': "Please enter captra",
+        },
+        submitHandler: function (form) {
+            if ($("#g-recaptcha-response").val() == "") {
+                $("#recaptcharequement").html("Please select captcha");
+            } else {
+                LoadingSendEmail();
+                cormfrimcruise();
+                $("#recaptcharequement").html("");
+            }
+        }
+    });
+
+</script>

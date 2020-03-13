@@ -1,0 +1,679 @@
+﻿@using ProjectLibrary.Config
+@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@{
+//string lan = Request.Cookies["LanguageID"].Value;
+//List<Menu> menus = CommentController.GetMainMenus(lan);
+//string alias = "";
+//List<Language> languages = CommentController.GetLanguages();
+//var language = languages.FirstOrDefault(a => a.ID == lan) ?? new Language();
+}
+
+    <section class="menu-tour">
+        <nav class="navbar navbar-expand-lg navbar-dark head_navbar head-navbar-light" id="navbar">
+            <div class="container">
+                <div class="logo-header clearfix">
+                    <a href="index.html" class="logo_1 logo">
+                        <img src="~/Content/images/logo/logo.png" alt="">
+                    </a>
+                    <a href="index.html" class="logo_2 logo">
+                        <img src="~/Content/images/img-svg/logo-dark2.svg" alt="">
+                    </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars" style="color: #fff;"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a href="destinations.html" class="nav-link">Destinations</a>
+                            <div class="sub-menu destinations clearfix">
+                                <div class="row tab-wrap-img">
+                                    <div class="col-sm-5ths">
+                                        <div class="img-overlay-black tab-img">
+                                            <a href="destinations.html">
+                                                <span>Viet nam</span>
+                                                <img src="~/Content/images/awards.jpg">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5ths">
+                                        <div class="img-overlay-black tab-img">
+                                            <a href="destinations.html">
+                                                <span>Viet nam</span>
+                                                <img src="~/Content/images/careers.jpg">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5ths">
+                                        <div class="img-overlay-black tab-img">
+                                            <a href="destinations.html">
+                                                <span>Viet nam</span>
+                                                <img src="~/Content/images/EXOpeople.jpg">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5ths">
+                                        <div class="img-overlay-black tab-img">
+                                            <a href="destinations.html">
+                                                <span>Viet nam</span>
+                                                <img src="~/Content/images/EXOstory.jpg">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5ths">
+                                        <div class="img-overlay-black tab-img">
+                                            <a href="destinations.html">
+                                                <span>Viet nam</span>
+                                                <img src="~/Content/images/EXOvalues.jpg">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5ths">
+                                        <div class="img-overlay-black tab-img">
+                                            <a href="destinations.html">
+                                                <span>Viet nam</span>
+                                                <img src="~/Content/images/whyEXO.jpg">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="tour-detail.html" class="nav-link">Tour styles</a>
+                            <div class="sub-menu styles-tour clearfix">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <ul>
+                                            <li class="nav-icon nav-icon-classic"><a href="tour.html">Classic Journeys</a></li>
+                                            <li class="nav-icon nav-icon-beach"><a href="tour.html">BEACH</a></li>
+                                            <li class="nav-icon nav-icon-nature"><a href="tour.html">Nature &amp; Wildlife</a></li>
+                                            <li class="nav-icon nav-icon-active"><a href="tour.html">ACTIVE TRAVEL</a></li>
+                                            <li class="nav-icon nav-icon-responsible"><a href="tour.html">RESPONSIBLE TRAVEL</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <ul>
+                                            <li class="nav-icon nav-icon-family"><a href="tour.html">Family</a></li>
+                                            <li class="nav-icon nav-icon-homestay"><a href="tour.html">HOME STAY</a></li>
+                                            <li class="nav-icon nav-icon-honeymoon"><a href="tour.html">Honeymoon</a></li>
+                                            <li class="nav-icon nav-icon-undiscovered"><a href="tour.html">UNDISCOVERED ASIA</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <ul>
+                                            <li class="nav-icon nav-icon-cruise"><a href="tour.html">Cruising</a></li>
+                                            <li class="nav-icon nav-icon-golf"><a href="tour.html">GOLF</a></li>
+                                            <li class="nav-icon nav-icon-shorttrips"><a href="tour.html">SHORT TRIPS</a></li>
+                                            <li class="nav-icon nav-icon-culinary"><a href="tour.html">CULINARY</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="tour-img">
+                                            <a href="#">
+                                                <img src="~/Content/images/logo/logo-adventure.jpg" alt="">
+                                            </a>
+                                            <a href="#">
+                                                <img src="~/Content/images/logo/logo-luxe.jpg" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="tour.html" class="nav-link">About</a>
+                            <div class="sub-menu clearfix">
+                                <div class="row tab-wrap-img">
+                                    <div class="col-sm-5ths">
+                                        <div class="img-overlay-black tab-img">
+                                            <a href="#">
+                                                <span>Viet nam</span>
+                                                <img src="~/Content/images/vietnam.png">
+                                            </a>
+                                        </div>
+                                        <div class="desc-img">
+                                            <div class="mega-dest-link">
+                                                <p><a href="#">All Tours</a></p>
+                                                <p><a href="#">Preferred Hotels</a></p>
+                                                <p><a href="#">Experiences</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5ths">
+                                        <div class="img-overlay-black tab-img">
+                                            <a href="#">
+                                                <span>Viet nam</span>
+                                                <img src="~/Content/images/vietnam.png">
+                                            </a>
+                                        </div>
+                                        <div class="desc-img">
+                                            <div class="mega-dest-link">
+                                                <p><a href="#">All Tours</a></p>
+                                                <p><a href="#">Preferred Hotels</a></p>
+                                                <p><a href="#">Experiences</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5ths">
+                                        <div class="img-overlay-black tab-img">
+                                            <a href="#">
+                                                <span>Viet nam</span>
+                                                <img src="~/Content/images/vietnam.png">
+                                            </a>
+                                        </div>
+                                        <div class="desc-img">
+                                            <div class="mega-dest-link">
+                                                <p><a href="#">All Tours</a></p>
+                                                <p><a href="#">Preferred Hotels</a></p>
+                                                <p><a href="#">Experiences</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5ths">
+                                        <div class="img-overlay-black tab-img">
+                                            <a href="#">
+                                                <span>Viet nam</span>
+                                                <img src="~/Content/images/vietnam.png">
+                                            </a>
+                                        </div>
+                                        <div class="desc-img">
+                                            <div class="mega-dest-link">
+                                                <p><a href="#">All Tours</a></p>
+                                                <p><a href="#">Preferred Hotels</a></p>
+                                                <p><a href="#">Experiences</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5ths">
+                                        <div class="img-overlay-black tab-img">
+                                            <a href="#">
+                                                <span>Viet nam</span>
+                                                <img src="~/Content/images/vietnam.png">
+                                            </a>
+                                        </div>
+                                        <div class="desc-img">
+                                            <div class="mega-dest-link">
+                                                <p><a href="#">All Tours</a></p>
+                                                <p><a href="#">Preferred Hotels</a></p>
+                                                <p><a href="#">Experiences</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5ths">
+                                        <div class="img-overlay-black tab-img">
+                                            <a href="#">
+                                                <span>Viet nam</span>
+                                                <img src="~/Content/images/vietnam.png">
+                                            </a>
+                                        </div>
+                                        <div class="desc-img">
+                                            <div class="mega-dest-link">
+                                                <p><a href="#">All Tours</a></p>
+                                                <p><a href="#">Preferred Hotels</a></p>
+                                                <p><a href="#">Experiences</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5ths">
+                                        <div class="img-overlay-black tab-img">
+                                            <a href="#">
+                                                <span>Viet nam</span>
+                                                <img src="~/Content/images/vietnam.png">
+                                            </a>
+                                        </div>
+                                        <div class="desc-img">
+                                            <div class="mega-dest-link">
+                                                <p><a href="#">All Tours</a></p>
+                                                <p><a href="#">Preferred Hotels</a></p>
+                                                <p><a href="#">Experiences</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5ths">
+                                        <div class="img-overlay-black tab-img">
+                                            <a href="#">
+                                                <span>Viet nam</span>
+                                                <img src="~/Content/images/vietnam.png">
+                                            </a>
+                                        </div>
+                                        <div class="desc-img">
+                                            <div class="mega-dest-link">
+                                                <p><a href="#">All Tours</a></p>
+                                                <p><a href="#">Preferred Hotels</a></p>
+                                                <p><a href="#">Experiences</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5ths">
+                                        <div class="img-overlay-black tab-img">
+                                            <a href="#">
+                                                <span>Viet nam</span>
+                                                <img src="~/Content/images/vietnam.png">
+                                            </a>
+                                        </div>
+                                        <div class="desc-img">
+                                            <div class="mega-dest-link">
+                                                <p><a href="#">All Tours</a></p>
+                                                <p><a href="#">Preferred Hotels</a></p>
+                                                <p><a href="#">Experiences</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5ths">
+                                        <div class="img-overlay-black tab-img">
+                                            <a href="#">
+                                                <span>Viet nam</span>
+                                                <img src="~/Content/images/vietnam.png">
+                                            </a>
+                                        </div>
+                                        <div class="desc-img">
+                                            <div class="mega-dest-link">
+                                                <p><a href="#">All Tours</a></p>
+                                                <p><a href="#">Preferred Hotels</a></p>
+                                                <p><a href="#">Experiences</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5ths">
+                                        <div class="img-overlay-black tab-img">
+                                            <a href="#">
+                                                <span>Viet nam</span>
+                                                <img src="~/Content/images/vietnam.png">
+                                            </a>
+                                        </div>
+                                        <div class="desc-img">
+                                            <div class="mega-dest-link">
+                                                <p><a href="#">All Tours</a></p>
+                                                <p><a href="#">Preferred Hotels</a></p>
+                                                <p><a href="#">Experiences</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5ths">
+                                        <div class="img-overlay-black tab-img">
+                                            <a href="#">
+                                                <span>Viet nam</span>
+                                                <img src="~/Content/images/vietnam.png">
+                                            </a>
+                                        </div>
+                                        <div class="desc-img">
+                                            <div class="mega-dest-link">
+                                                <p><a href="#">All Tours</a></p>
+                                                <p><a href="#">Preferred Hotels</a></p>
+                                                <p><a href="#">Experiences</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="hotels.html" class="nav-link">Groups</a>
+                            <div class="sub-menu groups clearfix">
+                                <div class="row mg-0 pd-0">
+                                    <div class="col-md-4 group-logo right-border">
+                                        <div>
+                                            <div class="grey-top">EXO GROUPS</div> <img src="~/Content/images/logo/logo-groups.png" width="200">
+                                            <div class="black-bot">From tailor-made and scheduled group trips to join-in journeys, EXO Groups reveals the magic of Asia to groups of any size or occasion at extraordinary value.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 tab-wrap-img ">
+                                        <div class="row mg-0 pd-0">
+                                            <div class="col-md-12 md-bot-15">
+                                                <div class="img-overlay-black tab-img">
+                                                    <a href="#">
+                                                        <span>Viet nam</span>
+                                                        <img src="~/Content/images/groups-04.png">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="img-overlay-black tab-img">
+                                                    <a href="#">
+                                                        <span>Viet nam</span>
+                                                        <img src="~/Content/images/groups-01.png">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="img-overlay-black tab-img">
+                                                    <a href="#">
+                                                        <span>Viet nam</span>
+                                                        <img src="~/Content/images/groups-02.png">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="img-overlay-black tab-img">
+                                                    <a href="#">
+                                                        <span>Viet nam</span>
+                                                        <img src="~/Content/images/groups-03.png">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="blog.html" class="nav-link">luxe</a>
+                            <div class="sub-menu luxe clearfix">
+                                <div class="row mg-0 pd-0">
+                                    <div class="col-md-3 right-border">
+                                        <div>
+                                            <div class="grey-top">Luxe by exo</div> <img src="~/Content/images/logo/luxe-logo.jpg">
+                                            <p class="black-bot">LUXE takes EXO's trademark style of unique and innovative touring and elevates it with touches of luxury, exclusivity and opulence that will ensure guests are treated to superlative comfort, service and amenities every step of the way.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 right-border">
+                                        <div class="col-sm-5ths">
+                                            <div class="img-overlay-black tab-img">
+                                                <a href="#">
+                                                    <span>Viet nam</span>
+                                                    <img src="~/Content/images/vietnam.png">
+                                                </a>
+                                            </div>
+                                            <div class="desc-img">
+                                                <div class="mega-dest-link">
+                                                    <p><a href="#">All Tours</a></p>
+                                                    <p><a href="#">Preferred Hotels</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5ths">
+                                            <div class="img-overlay-black tab-img">
+                                                <a href="#">
+                                                    <span>Viet nam</span>
+                                                    <img src="~/Content/images/vietnam.png">
+                                                </a>
+                                            </div>
+                                            <div class="desc-img">
+                                                <div class="mega-dest-link">
+                                                    <p><a href="#">All Tours</a></p>
+                                                    <p><a href="#">Preferred Hotels</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5ths">
+                                            <div class="img-overlay-black tab-img">
+                                                <a href="#">
+                                                    <span>Viet nam</span>
+                                                    <img src="~/Content/images/vietnam.png">
+                                                </a>
+                                            </div>
+                                            <div class="desc-img">
+                                                <div class="mega-dest-link">
+                                                    <p><a href="#">All Tours</a></p>
+                                                    <p><a href="#">Preferred Hotels</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5ths">
+                                            <div class="img-overlay-black tab-img">
+                                                <a href="#">
+                                                    <span>Viet nam</span>
+                                                    <img src="~/Content/images/vietnam.png">
+                                                </a>
+                                            </div>
+                                            <div class="desc-img">
+                                                <div class="mega-dest-link">
+                                                    <p><a href="#">All Tours</a></p>
+                                                    <p><a href="#">Preferred Hotels</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5ths">
+                                            <div class="img-overlay-black tab-img">
+                                                <a href="#">
+                                                    <span>Viet nam</span>
+                                                    <img src="~/Content/images/vietnam.png">
+                                                </a>
+                                            </div>
+                                            <div class="desc-img">
+                                                <div class="mega-dest-link">
+                                                    <p><a href="#">All Tours</a></p>
+                                                    <p><a href="#">Preferred Hotels</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5ths">
+                                            <div class="img-overlay-black tab-img">
+                                                <a href="#">
+                                                    <span>Viet nam</span>
+                                                    <img src="~/Content/images/vietnam.png">
+                                                </a>
+                                            </div>
+                                            <div class="desc-img">
+                                                <div class="mega-dest-link">
+                                                    <p><a href="#">All Tours</a></p>
+                                                    <p><a href="#">Preferred Hotels</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5ths">
+                                            <div class="img-overlay-black tab-img">
+                                                <a href="#">
+                                                    <span>Viet nam</span>
+                                                    <img src="~/Content/images/vietnam.png">
+                                                </a>
+                                            </div>
+                                            <div class="desc-img">
+                                                <div class="mega-dest-link">
+                                                    <p><a href="#">All Tours</a></p>
+                                                    <p><a href="#">Preferred Hotels</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5ths">
+                                            <div class="img-overlay-black tab-img">
+                                                <a href="#">
+                                                    <span>Viet nam</span>
+                                                    <img src="~/Content/images/vietnam.png">
+                                                </a>
+                                            </div>
+                                            <div class="desc-img">
+                                                <div class="mega-dest-link">
+                                                    <p><a href="#">All Tours</a></p>
+                                                    <p><a href="#">Preferred Hotels</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5ths">
+                                            <div class="img-overlay-black tab-img">
+                                                <a href="#">
+                                                    <span>Viet nam</span>
+                                                    <img src="~/Content/images/vietnam.png">
+                                                </a>
+                                            </div>
+                                            <div class="desc-img">
+                                                <div class="mega-dest-link">
+                                                    <p><a href="#">All Tours</a></p>
+                                                    <p><a href="#">Preferred Hotels</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5ths">
+                                            <div class="img-overlay-black tab-img">
+                                                <a href="#">
+                                                    <span>Viet nam</span>
+                                                    <img src="~/Content/images/vietnam.png">
+                                                </a>
+                                            </div>
+                                            <div class="desc-img">
+                                                <div class="mega-dest-link">
+                                                    <p><a href="#">All Tours</a></p>
+                                                    <p><a href="#">Preferred Hotels</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 intro-list">
+                                        <div class="grey-top">Luxe by exo</div>
+                                        <ul>
+                                            <li><a href="#">Introduction</a></li>
+                                            <li><a href="#">About LUXE by EXO</a></li>
+                                            <li><a href="#">The LUXE Service</a></li>
+                                            <li><a href="#">LUXE by EXO Exclusives</a></li>
+                                            <li><a href="#">The LUXE Team</a></li>
+                                            <li>
+                                                <a href="#" ">Contact the Team</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="adventure.html" class="nav-link ">Adventure</a>
+                            <div class="sub-menu aventure clearfix ">
+                                <div class="row mg-0 pd-0 ">
+                                    <div class="col-md-3 right-border ">
+                                        <div>
+                                            <div class="grey-top ">EXO ADVENTURE</div> <img src="~/Content/images/adventure-logo.png " width="200 ">
+                                            <div class="black-bot ">From tailor-made and scheduled group trips to join-in journeys, EXO Groups reveals the magic of Asia to groups of any size or occasion at extraordinary value.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 right-border ">
+                                        <div class="col-sm-5ths ">
+                                            <div class="img-overlay-black tab-img ">
+                                                <a href="adventure.html">
+                                                    <span>Viet nam</span>
+                                                    <img src="~/Content/images/vietnam.png ">
+                                                </a>
+                                            </div>
+                                            <div class="desc-img ">
+                                                <div class="mega-dest-link ">
+                                                    <p><a href="adventure.html">All Tours</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5ths ">
+                                            <div class="img-overlay-black tab-img ">
+                                                <a href="adventure.html">
+                                                    <span>Viet nam</span>
+                                                    <img src="~/Content/images/vietnam.png ">
+                                                </a>
+                                            </div>
+                                            <div class="desc-img ">
+                                                <div class="mega-dest-link ">
+                                                    <p><a href="# ">All Tours</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5ths ">
+                                            <div class="img-overlay-black tab-img ">
+                                                <a href="adventure.html">
+                                                    <span>Viet nam</span>
+                                                    <img src="~/Content/images/vietnam.png ">
+                                                </a>
+                                            </div>
+                                            <div class="desc-img ">
+                                                <div class="mega-dest-link ">
+                                                    <p><a href="adventure.html">All Tours</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5ths ">
+                                            <div class="img-overlay-black tab-img ">
+                                                <a href="adventure.html">
+                                                    <span>Viet nam</span>
+                                                    <img src="~/Content/images/vietnam.png ">
+                                                </a>
+                                            </div>
+                                            <div class="desc-img ">
+                                                <div class="mega-dest-link ">
+                                                    <p><a href="adventure.html">All Tours</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5ths ">
+                                            <div class="img-overlay-black tab-img ">
+                                                <a href="adventure.html">
+                                                    <span>Viet nam</span>
+                                                    <img src="~/Content/images/vietnam.png ">
+                                                </a>
+                                            </div>
+                                            <div class="desc-img ">
+                                                <div class="mega-dest-link ">
+                                                    <p><a href="adventure.html">All Tours</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5ths ">
+                                            <div class="img-overlay-black tab-img ">
+                                                <a href="adventure.html">
+                                                    <span>Viet nam</span>
+                                                    <img src="~/Content/images/vietnam.png ">
+                                                </a>
+                                            </div>
+                                            <div class="desc-img ">
+                                                <div class="mega-dest-link ">
+                                                    <p><a href="adventure.html">All Tours</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 ">
+                                        <div class="row mg-0 pd-0 ">
+                                            <div class="col-md-7 intro-list ">
+                                                <div class="grey-top ">Destinations</div>
+                                                <ul>
+                                                    <li><a href=" " class="mice-about-box-01-l ">Vietnam</a><a href=" " class="mice-about-box-01-r ">View tours</a></li>
+                                                    <li><a href=" " class="mice-about-box-01-l ">Thailand</a><a href=" " class="mice-about-box-01-r ">View tours</a></li>
+                                                    <li><a href=" " class="mice-about-box-01-l ">Cambodia</a><a href=" " class="mice-about-box-01-r ">View tours</a></li>
+                                                    <li><a href=" " class="mice-about-box-01-l ">Laos</a><a href=" " class="mice-about-box-01-r ">View tours</a></li>
+                                                    <li><a href=" " class="mice-about-box-01-l ">Myanmar</a><a href=" " class="mice-about-box-01-r ">View tours</a></li>
+                                                    <li><a href=" " class="mice-about-box-01-l ">Indonesia</a><a href=" " class="mice-about-box-01-r ">View tours</a></li>
+                                                    <li><a href=" " class="mice-about-box-01-l ">Malaysia &amp; Borneo</a><a href=" " class="mice-about-box-01-r ">View tours</a></li>
+                                                    <li><a href=" " class="mice-about-box-01-l ">Japan</a><a href=" " class="mice-about-box-01-r ">View tours</a></li>
+                                                    <li><a href=" " class="mice-about-box-01-l ">Multi Country</a><a href=" " class="mice-about-box-01-r ">View tours</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-5 intro-list ">
+                                                <div class="grey-top ">ABOUT EXO ADVENTURE </div>
+                                                <ul>
+                                                    <li><a href="adventure.html">Introduction</a></li>
+                                                    <li><a href="adventure.html">About EXO Adventure</a></li>
+                                                    <li><a href="adventure.html">Specialist Equipment</a></li>
+                                                    <li><a href="adventure.html">Meet The Team</a></li>
+                                                    <li><a href="adventure.html">Meet The Guides</a></li>
+                                                    <li><a href="adventure.html">Contact the Team</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item cta "><a href="# " class="nav-link "><span>Events</span></a></li>
+                        <li class="nav-item cta ">
+                            <a href="# " class="nav-link "><span>responsible Us</span></a>
+                            <div class="sub-menu clearfix responsible ">
+                                <div class="row ">
+                                    <div class="col-md-12 ">
+                                        <ul>
+                                            <li class="nav-icon nav-icon-responsible-about "><a href="# ">RESPONSIBLE TRAVEL</a></li>
+                                            <li class="nav-icon nav-icon-responsible-hotel "><a href="# ">RESPONSIBLE HOTELS</a></li>
+                                            <li class="nav-icon nav-icon-responsible-tour "><a href="# ">RESPONSIBLE TOURS</a></li>
+                                            <li class="nav-icon nav-icon-responsible-experience "><a href="# ">RESPONSIBLE EXPERIENCES</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item cta "><a href="# " class="nav-link "><span>Blog</span></a></li>
+                        <li class="nav-item cta quire ">
+                            <a href="# " class="nav-link link-quire" data-toggle="modal" data-target="#exampleModal">
+                                <span>Enquire</span>
+                            </a>
+                        </li>
+                        <li class="nav-item cta "><a href="# " class="nav-link" data-toggle="modal" data-target="#search"><span><i class="fas fa-search "></i></span></a></li>
+                        <li class="nav-item cta "><a href="# " class="nav-link " data-toggle="modal" data-target="#agent_hub"><span class="btn-agent-login ">Agent hub</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>

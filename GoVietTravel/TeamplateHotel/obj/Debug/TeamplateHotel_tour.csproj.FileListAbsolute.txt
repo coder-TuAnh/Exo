@@ -1,0 +1,615 @@
+E:\IIT\tandntravel\TeamplateHotel\bin\TeamplateHotel.dll.config
+E:\IIT\tandntravel\TeamplateHotel\bin\TeamplateHotel.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\TeamplateHotel.pdb
+E:\IIT\tandntravel\TeamplateHotel\bin\Antlr3.Runtime.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.AspNet.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.Core.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.OAuth.Consumer.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.OAuth.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.OpenId.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\EntityFramework.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\Microsoft.Data.Edm.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\Microsoft.Data.OData.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\Microsoft.Web.Infrastructure.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\Microsoft.Web.WebPages.OAuth.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\Newtonsoft.Json.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\PagedList.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\PagedList.Mvc.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\ProjectLibrary.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Net.Http.Formatting.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Spatial.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.Helpers.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.Http.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.Http.OData.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.Http.WebHost.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.Mvc.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.Optimization.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.Razor.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.WebPages.Deployment.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.WebPages.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.WebPages.Razor.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\WebGrease.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\WebMatrix.Data.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\WebMatrix.WebData.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\Org.Mentalis.Security.Cryptography.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\Mono.Math.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\ProjectLibrary.pdb
+E:\IIT\tandntravel\TeamplateHotel\bin\ProjectLibrary.dll.config
+E:\IIT\tandntravel\TeamplateHotel\bin\Antlr3.Runtime.pdb
+E:\IIT\tandntravel\TeamplateHotel\bin\Newtonsoft.Json.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\PagedList.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\PagedList.Mvc.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.Optimization.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\EntityFramework.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Net.Http.Formatting.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.Helpers.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.Http.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.Http.WebHost.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.Mvc.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.Razor.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.WebPages.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.WebPages.Deployment.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.WebPages.Razor.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\WebMatrix.Data.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\Microsoft.Web.WebPages.OAuth.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\WebMatrix.WebData.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.AspNet.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.Core.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.OAuth.Consumer.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.OAuth.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.OpenId.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Web.Http.OData.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\Microsoft.Data.Edm.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\Microsoft.Data.OData.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\System.Spatial.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\Org.Mentalis.Security.Cryptography.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\Mono.Math.xml
+E:\IIT\tandntravel\TeamplateHotel\bin\de\Microsoft.Data.Edm.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\es\Microsoft.Data.Edm.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\fr\Microsoft.Data.Edm.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\it\Microsoft.Data.Edm.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\ja\Microsoft.Data.Edm.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\ko\Microsoft.Data.Edm.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\ru\Microsoft.Data.Edm.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\de\Microsoft.Data.OData.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\es\Microsoft.Data.OData.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\fr\Microsoft.Data.OData.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\it\Microsoft.Data.OData.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\ja\Microsoft.Data.OData.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\ko\Microsoft.Data.OData.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\ru\Microsoft.Data.OData.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\de\System.Spatial.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\es\System.Spatial.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\fr\System.Spatial.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\it\System.Spatial.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\ja\System.Spatial.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\ko\System.Spatial.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\ru\System.Spatial.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\zh-Hans\System.Spatial.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\bin\zh-Hant\System.Spatial.resources.dll
+E:\IIT\tandntravel\TeamplateHotel\obj\Debug\TeamplateHotel_tour.csprojAssemblyReference.cache
+E:\IIT\tandntravel\TeamplateHotel\obj\Debug\TeamplateHotel_tour.csproj.CoreCompileInputs.cache
+E:\IIT\tandntravel\TeamplateHotel\obj\Debug\TeamplateHotel_tour.csproj.CopyComplete
+E:\IIT\tandntravel\TeamplateHotel\obj\Debug\TeamplateHotel.dll
+E:\IIT\tandntravel\TeamplateHotel\obj\Debug\TeamplateHotel.pdb
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\TeamplateHotel.dll.config
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\TeamplateHotel.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\TeamplateHotel.pdb
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\Antlr3.Runtime.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.AspNet.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.Core.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.OAuth.Consumer.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.OAuth.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.OpenId.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\EntityFramework.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\Microsoft.Data.Edm.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\Microsoft.Data.OData.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\Microsoft.Web.Infrastructure.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\Microsoft.Web.WebPages.OAuth.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\Newtonsoft.Json.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\PagedList.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\PagedList.Mvc.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\ProjectLibrary.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Net.Http.Formatting.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Spatial.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.Helpers.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.Http.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.Http.OData.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.Http.WebHost.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.Mvc.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.Optimization.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.Razor.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.WebPages.Deployment.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.WebPages.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.WebPages.Razor.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\WebGrease.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\WebMatrix.Data.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\WebMatrix.WebData.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\Org.Mentalis.Security.Cryptography.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\Mono.Math.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\ProjectLibrary.pdb
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\ProjectLibrary.dll.config
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\Antlr3.Runtime.pdb
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\Newtonsoft.Json.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\PagedList.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\PagedList.Mvc.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.Optimization.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\EntityFramework.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Net.Http.Formatting.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.Helpers.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.Http.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.Http.WebHost.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.Mvc.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.Razor.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.WebPages.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.WebPages.Deployment.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.WebPages.Razor.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\WebMatrix.Data.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\Microsoft.Web.WebPages.OAuth.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\WebMatrix.WebData.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.AspNet.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.Core.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.OAuth.Consumer.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.OAuth.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.OpenId.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Web.Http.OData.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\Microsoft.Data.Edm.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\Microsoft.Data.OData.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\System.Spatial.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\Org.Mentalis.Security.Cryptography.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\Mono.Math.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\de\Microsoft.Data.Edm.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\es\Microsoft.Data.Edm.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\fr\Microsoft.Data.Edm.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\it\Microsoft.Data.Edm.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\ja\Microsoft.Data.Edm.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\ko\Microsoft.Data.Edm.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\ru\Microsoft.Data.Edm.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\de\Microsoft.Data.OData.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\es\Microsoft.Data.OData.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\fr\Microsoft.Data.OData.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\it\Microsoft.Data.OData.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\ja\Microsoft.Data.OData.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\ko\Microsoft.Data.OData.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\ru\Microsoft.Data.OData.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\de\System.Spatial.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\es\System.Spatial.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\fr\System.Spatial.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\it\System.Spatial.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\ja\System.Spatial.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\ko\System.Spatial.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\ru\System.Spatial.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\zh-Hans\System.Spatial.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\bin\zh-Hant\System.Spatial.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\obj\Debug\TeamplateHotel_tour.csprojAssemblyReference.cache
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\obj\Debug\TeamplateHotel_tour.csproj.CoreCompileInputs.cache
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\obj\Debug\TeamplateHotel_tour.csproj.CopyComplete
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\obj\Debug\TeamplateHotel.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel\TeamplateHotel\obj\Debug\TeamplateHotel.pdb
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\TeamplateHotel.dll.config
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\TeamplateHotel.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\TeamplateHotel.pdb
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Antlr3.Runtime.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.AspNet.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.Core.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.OAuth.Consumer.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.OAuth.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.OpenId.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\EntityFramework.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Microsoft.Data.Edm.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Microsoft.Data.OData.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Microsoft.Web.Infrastructure.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Microsoft.Web.WebPages.OAuth.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Newtonsoft.Json.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\PagedList.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\PagedList.Mvc.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ProjectLibrary.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Net.Http.Formatting.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Spatial.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Helpers.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Http.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Http.OData.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Http.WebHost.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Mvc.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Optimization.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Razor.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.WebPages.Deployment.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.WebPages.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.WebPages.Razor.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\WebGrease.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\WebMatrix.Data.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\WebMatrix.WebData.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Org.Mentalis.Security.Cryptography.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Mono.Math.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ProjectLibrary.pdb
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ProjectLibrary.dll.config
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Antlr3.Runtime.pdb
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Newtonsoft.Json.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\PagedList.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\PagedList.Mvc.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Optimization.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\EntityFramework.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Net.Http.Formatting.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Helpers.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Http.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Http.WebHost.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Mvc.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Razor.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.WebPages.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.WebPages.Deployment.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.WebPages.Razor.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\WebMatrix.Data.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Microsoft.Web.WebPages.OAuth.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\WebMatrix.WebData.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.AspNet.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.Core.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.OAuth.Consumer.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.OAuth.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.OpenId.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Http.OData.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Microsoft.Data.Edm.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Microsoft.Data.OData.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Spatial.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Org.Mentalis.Security.Cryptography.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Mono.Math.xml
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\de\Microsoft.Data.Edm.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\es\Microsoft.Data.Edm.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\fr\Microsoft.Data.Edm.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\it\Microsoft.Data.Edm.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ja\Microsoft.Data.Edm.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ko\Microsoft.Data.Edm.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ru\Microsoft.Data.Edm.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\de\Microsoft.Data.OData.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\es\Microsoft.Data.OData.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\fr\Microsoft.Data.OData.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\it\Microsoft.Data.OData.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ja\Microsoft.Data.OData.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ko\Microsoft.Data.OData.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ru\Microsoft.Data.OData.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\de\System.Spatial.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\es\System.Spatial.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\fr\System.Spatial.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\it\System.Spatial.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ja\System.Spatial.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ko\System.Spatial.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ru\System.Spatial.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\zh-Hans\System.Spatial.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\zh-Hant\System.Spatial.resources.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\obj\Debug\TeamplateHotel_tour.csprojAssemblyReference.cache
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\obj\Debug\TeamplateHotel_tour.csproj.CoreCompileInputs.cache
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\obj\Debug\TeamplateHotel_tour.csproj.CopyComplete
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\obj\Debug\TeamplateHotel.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\obj\Debug\TeamplateHotel.pdb
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\CKFinder.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\CKFinder_ImageResize.dll
+E:\IIT\WebCustomer\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\CKFinder_ImageResize.pdb
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\obj\Debug\TeamplateHotel_tour.csprojAssemblyReference.cache
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\obj\Debug\TeamplateHotel.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\obj\Debug\TeamplateHotel.pdb
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\TeamplateHotel.dll.config
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\TeamplateHotel.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\TeamplateHotel.pdb
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Antlr3.Runtime.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\CKFinder.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\CKFinder_ImageResize.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.Core.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\EntityFramework.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Microsoft.Data.Edm.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Microsoft.Data.OData.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Newtonsoft.Json.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\PagedList.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\PagedList.Mvc.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ProjectLibrary.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Net.Http.Formatting.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Spatial.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Helpers.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Http.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Http.OData.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Http.WebHost.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Mvc.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Optimization.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Razor.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.WebPages.Deployment.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.WebPages.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.WebPages.Razor.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\WebGrease.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\WebMatrix.Data.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\WebMatrix.WebData.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Org.Mentalis.Security.Cryptography.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Mono.Math.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ProjectLibrary.pdb
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ProjectLibrary.dll.config
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Antlr3.Runtime.pdb
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\CKFinder_ImageResize.pdb
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Newtonsoft.Json.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\PagedList.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\PagedList.Mvc.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Optimization.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\EntityFramework.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Net.Http.Formatting.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Helpers.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Http.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Http.WebHost.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Mvc.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Razor.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.WebPages.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.WebPages.Deployment.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.WebPages.Razor.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\WebMatrix.Data.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\WebMatrix.WebData.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.Core.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Web.Http.OData.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Microsoft.Data.Edm.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Microsoft.Data.OData.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\System.Spatial.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Org.Mentalis.Security.Cryptography.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\Mono.Math.xml
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\de\Microsoft.Data.Edm.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\es\Microsoft.Data.Edm.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\fr\Microsoft.Data.Edm.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\it\Microsoft.Data.Edm.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ja\Microsoft.Data.Edm.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ko\Microsoft.Data.Edm.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ru\Microsoft.Data.Edm.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\de\Microsoft.Data.OData.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\es\Microsoft.Data.OData.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\fr\Microsoft.Data.OData.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\it\Microsoft.Data.OData.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ja\Microsoft.Data.OData.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ko\Microsoft.Data.OData.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ru\Microsoft.Data.OData.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\de\System.Spatial.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\es\System.Spatial.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\fr\System.Spatial.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\it\System.Spatial.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ja\System.Spatial.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ko\System.Spatial.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\ru\System.Spatial.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\zh-Hans\System.Spatial.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\private\Desktop\GoVietTravel\tandntravel - Copy\TeamplateHotel\obj\Debug\TeamplateHotel_tour.csproj.CopyComplete
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\TeamplateHotel.dll.config
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\TeamplateHotel.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\TeamplateHotel.pdb
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\Antlr3.Runtime.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\CKFinder.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\CKFinder_ImageResize.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.AspNet.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.Core.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.OAuth.Consumer.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.OAuth.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.OpenId.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\EntityFramework.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\Microsoft.Data.Edm.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\Microsoft.Data.OData.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\Microsoft.Web.Infrastructure.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\Microsoft.Web.WebPages.OAuth.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\Newtonsoft.Json.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\PagedList.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\PagedList.Mvc.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\ProjectLibrary.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Net.Http.Formatting.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Spatial.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.Helpers.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.Http.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.Http.OData.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.Http.WebHost.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.Mvc.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.Optimization.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.Razor.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.WebPages.Deployment.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.WebPages.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.WebPages.Razor.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\WebGrease.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\WebMatrix.Data.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\WebMatrix.WebData.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\Org.Mentalis.Security.Cryptography.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\Mono.Math.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\ProjectLibrary.pdb
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\ProjectLibrary.dll.config
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\Antlr3.Runtime.pdb
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\CKFinder_ImageResize.pdb
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\Newtonsoft.Json.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\PagedList.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\PagedList.Mvc.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.Optimization.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\EntityFramework.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Net.Http.Formatting.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.Helpers.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.Http.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.Http.WebHost.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.Mvc.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.Razor.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.WebPages.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.WebPages.Deployment.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.WebPages.Razor.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\WebMatrix.Data.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\Microsoft.Web.WebPages.OAuth.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\WebMatrix.WebData.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.AspNet.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.Core.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.OAuth.Consumer.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.OAuth.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.OpenId.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Web.Http.OData.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\Microsoft.Data.Edm.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\Microsoft.Data.OData.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\System.Spatial.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\Org.Mentalis.Security.Cryptography.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\Mono.Math.xml
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\de\Microsoft.Data.Edm.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\es\Microsoft.Data.Edm.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\fr\Microsoft.Data.Edm.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\it\Microsoft.Data.Edm.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\ja\Microsoft.Data.Edm.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\ko\Microsoft.Data.Edm.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\ru\Microsoft.Data.Edm.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\de\Microsoft.Data.OData.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\es\Microsoft.Data.OData.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\fr\Microsoft.Data.OData.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\it\Microsoft.Data.OData.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\ja\Microsoft.Data.OData.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\ko\Microsoft.Data.OData.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\ru\Microsoft.Data.OData.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\de\System.Spatial.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\es\System.Spatial.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\fr\System.Spatial.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\it\System.Spatial.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\ja\System.Spatial.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\ko\System.Spatial.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\ru\System.Spatial.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\zh-Hans\System.Spatial.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\bin\zh-Hant\System.Spatial.resources.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\obj\Debug\TeamplateHotel_tour.csprojAssemblyReference.cache
+B:\IIT\project3\GoVietTravel\TeamplateHotel\obj\Debug\TeamplateHotel_tour.csproj.CopyComplete
+B:\IIT\project3\GoVietTravel\TeamplateHotel\obj\Debug\TeamplateHotel.dll
+B:\IIT\project3\GoVietTravel\TeamplateHotel\obj\Debug\TeamplateHotel.pdb
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\TeamplateHotel.dll.config
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\TeamplateHotel.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\TeamplateHotel.pdb
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\Antlr3.Runtime.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\CKFinder.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\CKFinder_ImageResize.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.AspNet.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.Core.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.OAuth.Consumer.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.OAuth.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.OpenId.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\EntityFramework.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\Microsoft.Data.Edm.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\Microsoft.Data.OData.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\Microsoft.Web.Infrastructure.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\Microsoft.Web.WebPages.OAuth.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\Newtonsoft.Json.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\PagedList.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\PagedList.Mvc.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\ProjectLibrary.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Net.Http.Formatting.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Spatial.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.Helpers.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.Http.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.Http.OData.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.Http.WebHost.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.Mvc.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.Optimization.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.Razor.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.WebPages.Deployment.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.WebPages.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.WebPages.Razor.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\WebGrease.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\WebMatrix.Data.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\WebMatrix.WebData.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\Org.Mentalis.Security.Cryptography.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\Mono.Math.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\ProjectLibrary.pdb
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\ProjectLibrary.dll.config
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\Antlr3.Runtime.pdb
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\CKFinder_ImageResize.pdb
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\Newtonsoft.Json.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\PagedList.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\PagedList.Mvc.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.Optimization.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\EntityFramework.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Net.Http.Formatting.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.Helpers.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.Http.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.Http.WebHost.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.Mvc.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.Razor.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.WebPages.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.WebPages.Deployment.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.WebPages.Razor.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\WebMatrix.Data.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\Microsoft.Web.WebPages.OAuth.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\WebMatrix.WebData.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.AspNet.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.Core.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.OAuth.Consumer.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.OAuth.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.OpenId.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Web.Http.OData.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\Microsoft.Data.Edm.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\Microsoft.Data.OData.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\System.Spatial.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\Org.Mentalis.Security.Cryptography.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\Mono.Math.xml
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\de\Microsoft.Data.Edm.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\es\Microsoft.Data.Edm.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\fr\Microsoft.Data.Edm.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\it\Microsoft.Data.Edm.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\ja\Microsoft.Data.Edm.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\ko\Microsoft.Data.Edm.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\ru\Microsoft.Data.Edm.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\de\Microsoft.Data.OData.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\es\Microsoft.Data.OData.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\fr\Microsoft.Data.OData.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\it\Microsoft.Data.OData.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\ja\Microsoft.Data.OData.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\ko\Microsoft.Data.OData.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\ru\Microsoft.Data.OData.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\de\System.Spatial.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\es\System.Spatial.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\fr\System.Spatial.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\it\System.Spatial.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\ja\System.Spatial.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\ko\System.Spatial.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\ru\System.Spatial.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\zh-Hans\System.Spatial.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\bin\zh-Hant\System.Spatial.resources.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\obj\Debug\TeamplateHotel_tour.csprojAssemblyReference.cache
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\obj\Debug\TeamplateHotel_tour.csproj.CopyComplete
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\obj\Debug\TeamplateHotel.dll
+B:\IIT\Exo\GoVietTravel\TeamplateHotel\obj\Debug\TeamplateHotel.pdb

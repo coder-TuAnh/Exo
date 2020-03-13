@@ -1,0 +1,25 @@
+﻿.bpv-total-payment {
+    background-color: #f57921;
+    border: 1px solid #f57921;
+    font-size: 13px;
+    overflow: hidden;
+}
+
+.bpv-total-payment h2 {
+    color: #fff;
+    margin: 0;
+    padding: 8px 15px;
+    font-size: 20px;
+}
+.bpv-total-payment .content {
+    padding: 10px;
+    background-color: #fff;
+}
+.bpv-total-payment .border-dash {
+    border-top: 1px dashed #ccc;
+    padding: 7px 0;
+}
+.price-from {
+    font-size: 34px;
+    color: #b20000;
+}

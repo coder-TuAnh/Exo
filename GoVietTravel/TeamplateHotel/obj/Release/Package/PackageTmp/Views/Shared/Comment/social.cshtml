@@ -1,0 +1,22 @@
+﻿@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@using TeamplateHotel.Models
+@{
+    ViewBag.Title = "social";
+    var company = CommentController.DetailHotel(Request.Cookies["LanguageID"].Value);
+}
+
+<nav class="navbar-collapse collapse" id="navbar-sub">
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a target="_blank" href="@company.Facebook"><i class="fa fa-facebook"></i><span class="hidden-md hidden-lg">Facebook</span></a>
+        </li>
+        <li>
+            <a target="_blank" href="@company.Twitter"><i class="fa fa-twitter"></i><span class="hidden-md hidden-lg">Twitter</span></a>
+        </li>
+        <li>
+            <a target="_blank" href="@company.Youtube"><i class="fa fa-youtube"></i><span class="hidden-md hidden-lg">Google +</span></a>
+        </li>
+        <li><a target="_blank" href="mailto:@company.Email"><i class="fa fa-envelope-o"></i> <span class="hidden-md hidden-lg">Email</span></a></li>
+    </ul>
+</nav>

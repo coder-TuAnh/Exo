@@ -1,0 +1,14 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateTour.Controllers
+@{
+    List<Support> supports = CommentController.ListOnlineSupport();
+}
+@foreach(var item in supports)
+{
+    <a href="ymsgr:sendim?@item.YahooName">
+        <img  alt="yahoo" src="~/Content/images/yahoo.png">
+    </a>
+    <a href="skype:@item.SkypeName?chat">
+        <img alt="@item.SkypeName" style="border: none;" src="~/Content/images/skype.png">
+    </a>
+}

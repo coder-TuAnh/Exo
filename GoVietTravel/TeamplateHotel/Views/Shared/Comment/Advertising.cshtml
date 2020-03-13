@@ -1,0 +1,16 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@{
+    List<Advertising> advertisings = CommentController.GetAdvertisings();
+}
+
+@if (advertisings.Count > 0)
+{
+    foreach (var item in advertisings)
+    {
+        <div class="wrap-item-sidebar">
+            <a href="@item.Url" alt="@item.Title"><img src="@item.Image" width="279px" /></a>
+        </div>
+    }
+
+}

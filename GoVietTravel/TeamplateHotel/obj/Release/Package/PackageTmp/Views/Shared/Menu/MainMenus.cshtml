@@ -1,0 +1,82 @@
+﻿@using ProjectLibrary.Config
+@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    List<Menu> menus = CommentController.GetMainMenus(lan);
+    string alias = "";
+    List<Language> languages = CommentController.GetLanguages();
+    var language = languages.FirstOrDefault(a => a.ID == lan) ?? new Language();
+}
+<script src="~/Plugins/smartmenus-master/addons/bootstrap/jquery.smartmenus.bootstrap.min.js"></script>
+<script src="~/Plugins/smartmenus-master/jquery.smartmenus.js"></script>
+<!-- Collect the nav links, forms, and other content for toggling -->
+<ul class="nav navbar-nav pull-right">
+    @foreach (var item in menus.Where(a => a.ParentID == 0).OrderBy(a => a.Index).ToList())
+    {
+        if (item.Type == SystemMenuType.Home)
+        {
+            <li><a href="/" title="@item.Title">@item.Title</a></li>
+        }
+        else
+        {
+            var menuChilds = menus.Where(a => a.ParentID == item.ID).OrderBy(a => a.Index).ToList();
+            if (menuChilds.Count > 0)
+            {
+                <li class="title-menuSub">
+
+                    <a class="title-menuSub" href="javascript:void(0)">@item.Title <span class="caret"></span></a>
+
+                    <ul class="dropdown-menu ">
+                        @foreach (var itemChild in menuChilds)
+                        {
+                            var menuchild2 = menus.Where(a => a.ParentID == itemChild.ID).OrderBy(a => a.Index).ToList();
+                            if (menuchild2.Count > 0)
+                            {
+                                <li>
+                                    <a href="javascript:void(0)">@itemChild.Title <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var itemChild2 in menuchild2)
+                                        {
+                                            <li><a href="/@itemChild2.Alias">@itemChild2.Title</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li><a href="/@itemChild.Alias">@itemChild.Title</a></li>
+                               
+                            }
+
+                        }
+                    </ul>
+                </li>
+
+            }
+            else
+            {
+                <li><a class="type-@item.Type" href="/@item.Alias">@item.Title</a></li>
+            }
+        }
+    }
+    @*<li class="lang">
+        @foreach (var item in languages)
+        {
+            <a href="/SelectLanguge/@item.ID" class="lang-icon"><img src="@item.Icon" style="height: 20px;" /></a>
+        }
+    </li>*@
+    <li><a href="/vietnam-travel-blog" title="Blog">BLOG</a></li>
+</ul>
+<style>
+    .lang a {
+        float: left;
+        display: inline-block;
+    }
+  
+</style>
+<script>
+    $('.type-9').css('display', 'none');
+
+  
+</script>

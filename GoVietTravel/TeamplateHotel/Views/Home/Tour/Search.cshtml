@@ -1,0 +1,53 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Models
+@model IEnumerable<ShowObject>
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+}
+<div class="sub-nav">
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <h1 class="h1-title-d">
+                    Search
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="regular" style="padding-top: 4rem">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                @foreach (var item in Model)
+                {
+                    <div class="item-content">
+                        <div class="col-md-3">
+                            <a href="/@item.MenuAlias/@item.ID/@item.Alias" title="@item.Title">
+                                <img src="@item.Image" alt="@item.Title" style="width: 100%;" class="img-border" />
+                            </a>
+                        </div>
+                        <div class="col-md-7">
+                            <h3 class="title-content"><a href="/@item.MenuAlias/@item.ID/@item.Alias" title="@item.Title">@item.Title</a></h3>
+                            <div style="text-align: justify">
+                                @Html.Raw(item.Description)
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="div-book btn btn-primary"><a href="/@item.MenuAlias/@item.ID/@item.Alias" title="Book">See more</a></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                }
+            </div>
+            <div class="col-lg-3">
+                @Html.Partial("SideBar")
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+    </div>
+</section>
+

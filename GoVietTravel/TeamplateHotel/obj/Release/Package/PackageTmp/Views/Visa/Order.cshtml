@@ -1,0 +1,37 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@{
+    ViewBag.Title = "success";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    string Email = ViewBag.mail;
+    string name = ViewBag.name;
+}
+@{
+    Menu menu = ViewBag.Menu ?? new Menu();
+    List<Slider> sliders = CommentController.GetListSlider(Request.Cookies["LanguageID"].Value, 0);
+}
+<div class="owl-carousel owl-theme slideshow " id="slider">
+@foreach (var item in sliders)
+{
+    <figure>
+        <img src="@item.Image" class="img-slier" />
+    </figure>
+}
+</div>
+<div class="container">
+    <div class="row text-center">
+        <div class="col-sm-12">
+            <img  src="~/Files/Images/3-2-success-transparent.png" />
+            <h3>Dear, @name</h3>
+            <p style="font-size:20px;color:#5C5C5C;">
+                First of all, we would like to thank all customers who have supported our service, very pleased to serve you next time.
+                <br />
+                Your order has been successfully placed, please check Email : <a href="mailto:@Email">@Email </a>to receive order information
+            </p>
+            <a href="/" class="btn btn-success">    Back to home     </a>
+            <br><br>
+        </div>
+
+    </div>
+</div>
+

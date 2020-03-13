@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Submit";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<div class="container">
+    <div class="row text-center">
+        <div class="col-sm-12">
+            <img src="~/Files/Images/3-2-success-transparent.png" />
+            <h3>Dear, @ViewBag.Name</h3>
+            <p style="font-size:20px;color:#5C5C5C;">
+                First of all, we would like to thank all customers who have supported our service, very pleased to serve you next time.
+                <br />
+                Your order has been successfully placed, please check Email : <a href="mailto:@ViewBag.Email">@ViewBag.Email </a>to receive order information
+            </p>
+            <a href="/" class="btn btn-success">    Back to home     </a>
+            <br><br>
+        </div>
+
+    </div>
+</div>
+<script>
+    (function loadpage() {
+        setTimeout(function () {
+            rederect();
+        }, 4000);
+    })();
+    function rederect() {
+        toastr.error('Go Home After 10s');
+        setTimeout(function () {
+          $(location).attr('href', '/')
+        }, 10000);
+    };
+   
+</script>

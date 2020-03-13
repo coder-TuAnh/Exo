@@ -1,0 +1,184 @@
+﻿@using ProjectLibrary.Database
+@model TeamplateHotel.Areas.Administrator.EntityModel.EUser
+@{
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+    List<MenuSystem> listMenuSytem = ViewBag.ListMenuSystem ?? new List<MenuSystem>();
+    List<Role> listRole = ViewBag.ListRole ?? new List<Role>();
+}
+
+<script src="~/Areas/Administrator/Content/js/jquery-checktree.js"></script>
+<div class="span12">
+    <div class="widget ">
+        <div class="widget-header">
+            <i class=" icon-plus-sign"></i>
+            <h3>Edit User</h3>
+        </div> <!-- /widget-header -->
+
+        <div class="widget-content">
+            @Html.ValidationSummary(true)
+            @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                <div class="left-control">
+                    @Html.HiddenFor(c => c.UserId)
+                    <div class="control-group">
+                        @Html.LabelFor(c => c.UserName, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(c => c.UserName, new { @class = "span4" })
+                            @Html.ValidationMessageFor(c => c.UserName)
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(c => c.Password, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.PasswordFor(c => c.Password, new { @class = "span4" })
+                            @Html.ValidationMessageFor(c => c.Password)
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(c => c.FullName, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(c => c.FullName, new { @class = "span4" })
+                            @Html.ValidationMessageFor(c => c.FullName)
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(c => c.EmailAddress, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(c => c.EmailAddress, new { @class = "span4" })
+                            @Html.ValidationMessageFor(c => c.EmailAddress)
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(c => c.Phone, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(c => c.Phone, new { @class = "span4" })
+                            @Html.ValidationMessageFor(c => c.Phone)
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <label class="checkbox inline">
+                                @Html.CheckBoxFor(c => c.State) Status
+                            </label>
+                        </div>
+                    </div>
+                    @Html.HiddenFor(c => c.ListMenuId)
+
+
+                    <div class="form-actions">
+                        <input type="button" value="Submit" class="btn btn-primary" />
+                        <a href="@Url.Action("Index", "User")" class="btn">Cancel</a>
+                    </div>
+                </div>
+
+                <div id="right-listMenu">
+                    <h3 class="h3-boder">List Role</h3>
+                    <ul id="menu-main-menu" class="nav-menu">
+
+                        @foreach (MenuSystem menuParent in listMenuSytem.Where(a => a.ParentId == 0).ToList())
+                        {
+                            //chỗ này lấy danh sách quyền.
+                            <li>
+                                @if (listRole.Any(a => a.MenuId == menuParent.Id))
+                                {
+                                    <input type="checkbox" value="@menuParent.Id" checked="checked" /><label>@menuParent.Name</label>
+                                }
+                                else
+                                {
+                                    <input type="checkbox" value="@menuParent.Id" /><label>@menuParent.Name</label>
+                                }
+
+                                @if (listMenuSytem.Any(a => a.ParentId == menuParent.Id))
+                                {
+                                    <ul>
+                                        @foreach (var menuLevel1 in listMenuSytem.Where(a => a.ParentId == menuParent.Id).ToList())
+                                        {
+                                            <li>
+                                                @if (listRole.Any(a => a.MenuId == menuLevel1.Id))
+                                                {
+                                                    <input type="checkbox" value="@menuLevel1.Id" checked="checked" /><label>@menuLevel1.Name</label>
+                                                }
+                                                else
+                                                {
+                                                    <input type="checkbox" value="@menuLevel1.Id" /><label>@menuLevel1.Name</label>
+                                                }
+
+
+                                                @if (listMenuSytem.Any(a => a.ParentId == menuLevel1.Id))
+                                                {
+                                                    <ul>
+                                                        @foreach (var menuLevel2 in listMenuSytem.Where(a => a.ParentId == menuLevel1.Id).ToList())
+                                                        {
+                                                            <li>
+                                                                @if (listRole.Any(a => a.MenuId == menuLevel2.Id))
+                                                                {
+                                                                    <input type="checkbox" value="@menuLevel2.Id" checked="checked" /><label>@menuLevel2.Name</label>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <input type="checkbox" value="@menuLevel2.Id" /><label>@menuLevel2.Name</label>
+                                                                }
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                }
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    //lấy danh sách menu được chọn
+    function MenuSelect() {
+        var tempMenuSelect = "";
+        $("#menu-main-menu li input").each(function() {
+            if($(this).is(":checked")) {
+                tempMenuSelect += $(this).val() + ",";
+            }
+        });
+        $("#ListMenuId").val(tempMenuSelect);
+    }
+    $(document).ready(function() {
+
+        $(".btn-primary").click(function() {
+            MenuSelect();
+            $(".form-horizontal").submit();
+        });
+
+        $('.jquery').each(function () {
+            eval($(this).html());
+        });
+        $("#menu-main-menu").checktree();
+    });
+
+
+</script>
+<style>
+    #right-listMenu {
+        display: block;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .form-actions {
+        border: none;
+        background: none;
+    }
+</style>

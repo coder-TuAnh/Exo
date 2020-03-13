@@ -1,0 +1,131 @@
+﻿@using TeamplateHotel.Handler
+@model TeamplateHotel.Models.DetailRoom
+@using ProjectLibrary.Database
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+}
+<script src="~/Plugins/flexslider/jquery.flexslider.js"></script>
+<link href="~/Plugins/flexslider/flexslider.css" rel="stylesheet" />
+@Html.Partial("Slider/Slider")
+<div class="container room-title" style="margin-top:60px;">
+    <div class="row">
+        <div class="col-md-7 col-sm-7">
+            <!-- Place somewhere in the <body> of your page -->
+            <div id="slider" class="flexslider" style="margin:0px;">
+                <ul class="slides">
+                    @foreach (var item in Model.RoomGalleries)
+                    {
+                        <li><img src="@item.ImageLarge"></li>
+                    }
+                    <!-- items mirrored twice, total of 12 -->
+                </ul>
+            </div>
+            <div id="carousel" class="flexslider">
+                <ul class="slides">
+                    @foreach (var item in Model.RoomGalleries)
+                    {
+                        <li><img src="@item.ImageSmall"></li>
+                    }
+                    <!-- items mirrored twice, total of 12 -->
+                </ul>
+            </div>
+
+        </div>
+        <div class="col-md-5 col-sm-5">
+            <div class="room-details-text">
+                <h3 class="room-details-title">@Model.Room.Title</h3>
+                <p>@Html.Raw(Model.Room.Content)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Hotel Booking-->
+@if (Model.Rooms.Count > 0)
+{
+    <div class="detairoom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="room-details-title">@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "RoomArticle")</h3>
+                    <div class="owl-carousel owl-theme slideshow owldemo" id="owl-DetailRoom" style="position:relative;">
+                        @foreach (var item in Model.Rooms)
+                        {
+                            <div class="col">
+                                <div class="thumbnail item container-img">
+                                    <a href="/@item.MenuAlias/@item.ID/@item.Alias" title="@item.Title">
+                                        <img class="img image" src="@item.Image" alt="@item.Title" />
+                                    </a>
+                                    <div class="caption cap-img">
+                                        <div class="item-description">
+                                            <a href="/@item.MenuAlias/@item.ID/@item.Alias" title="@item.Title">
+                                                <div class="item-title">@item.Title</div>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    $(document).ready(function () {
+        ///slider room detail
+        $(window).load(function () {
+            // The slider being synced must be initialized first
+            $('#carousel').flexslider({
+                animation: "slide",
+                controlNav: true,
+                animationLoop: false,
+                slideshow: false,
+                itemWidth: 110,
+                itemMargin: 5,
+                item: 6,
+                asNavFor: '#slider',
+                directionNav: false,
+                prevText: ['<span class="fa fa-angle-left"></span>'],
+                nextText: ['<span class="fa fa-angle-right"></span>']
+            });
+
+            $('#slider').flexslider({
+                animation: "slide",
+                controlNav: true,
+                animationLoop: false,
+                slideshow: false,
+                sync: "#carousel",
+                directionNav: true,
+                prevText: ['<span class="fa fa-angle-left"></span>'],
+                nextText: ['<span class="fa fa-angle-right"></span>']
+            });
+        });
+
+
+        $("#owl-DetailRoom").owlCarousel({
+            loop: false,
+            margin: 30,
+            responsiveClass: true,
+            autoplay: true,
+            items: 4,
+            dots: false,
+            nav: true,
+            navText: ['<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>'],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 4
+                }
+            }
+        });
+    });
+</script>

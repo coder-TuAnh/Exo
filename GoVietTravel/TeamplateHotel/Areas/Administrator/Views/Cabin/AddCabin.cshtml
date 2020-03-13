@@ -1,0 +1,187 @@
+﻿@{
+    ViewBag.Title = "AddCabin";
+    Layout = null;
+}
+@using ProjectLibrary.Config
+@model TeamplateHotel.Areas.Administrator.EntityModel.ECabin
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Areas/Administrator/Content/js/bootstrap.js"></script>
+<style>
+    ul#context-menucabin {
+        position: relative;
+        display: none;
+        width: 100px;
+        background: #333;
+        color: #fff;
+        font-size: 12px;
+        list-style: none;
+        cursor: pointer;
+        border: 2px solid #808080;
+    }
+
+        ul#context-menucabin li {
+            padding: 5px;
+        }
+
+    .itemprice {
+        float: left;
+        margin-right: 10px;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px #eeeeee solid;
+        border-radius: 3px;
+    }
+</style>
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">@(ViewBag.IsUpdate ? "Cập nhật Cabin" : "Tạo mới CaBin")</h4>
+    </div>
+    <div class="modal-body">
+
+        <form id="cabinfrom">
+            <input style="display:none" value="@ViewBag.IDCruise" id="IDCruise" name="IDCruise" />
+            <div class="form-group" style="width: 100%;font-size: 14px">
+                <div class="col-md-12">
+                    <label class="control-label" for="Name">Tên Cabin<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    @Html.TextBoxFor(c => c.Name, new { @class = "span4" })
+                    @Html.ValidationMessageFor(c => c.Name)
+                </div>
+                <div class="col-md-12" style="float:left;width:100%;padding:0px">
+                    @foreach (var i in Model.listcruitab)
+                    {
+                        <div class="col-lg-6 itemprice">
+                            <label>Giá cabin - @i.NameTabCruise</label>
+                            <div class="col-md-12">
+                                <label class="control-label" for="Name">Giá<span class="asterisk" style="display: inline; float: none">*</span></label>
+                                <input name="Price-@i.IDTabCruise" id="Price-@i.IDTabCruise" value="@i.Price" class="span4" />
+                            </div>
+                            <div class="col-md-12">
+                                <label class="control-label" for="Name">Giá trẻ em<span class="asterisk" style="display: inline; float: none">*</span></label>
+                                <input name="Pricechildren-@i.IDTabCruise" id="Pricechildren-@i.IDTabCruise" value="@i.Pricechildren" class="span4" />
+                            </div>
+                            <div class="col-md-12">
+                                <label class="control-label" for="Name">Giá khuyến mãi<span class="asterisk" style="display: inline; float: none">*</span></label>
+                                <input name="Pricesale-@i.IDTabCruise" id="Pricesale-@i.IDTabCruise" value="@i.Pricesale" class="span4" />
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="col-md-12">
+                    <label class="control-label" for="Name">Diện tích(m<sup>2</sup>)<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    @Html.TextBoxFor(c => c.Size, new { @class = "span4" })
+                    @Html.ValidationMessageFor(c => c.Size)
+                </div>
+                <div class="col-md-12">
+                    <label class="control-label" for="Name">Số người<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    @Html.TextBoxFor(c => c.MaxAdults, new { @class = "span4" })
+                    @Html.ValidationMessageFor(c => c.MaxAdults)
+                </div>
+                <div class="col-md-12">
+                    <label class="control-label" for="Name">Số giường<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    @Html.TextBoxFor(c => c.Bed, new { @class = "span4" })
+                    @Html.ValidationMessageFor(c => c.Bed)
+                </div>
+                <div class="col-md-12">
+                    <label class="control-label" for="Name">Nội dung</label>
+                    <textarea class="basic-ckeditor" id="Descrip" name="Descrip">@(ViewBag.IsUpdate == true ? Model.Description : "")</textarea>
+
+                </div>
+                <div class="col-md-12">
+                    <label class="control-label" for="Name">Mô tả về Tàu</label>
+                    @Html.TextAreaFor(c => c.Content, new { @class = "basic-ckeditor" })
+                </div>
+                <div class="col-md-12">
+                    <label class="control-label" for="Image">Ảnh đại diện <span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls img-link">
+                        @Html.TextBoxFor(c => c.Image, new { @class = "span4 inputbox upload", id = "txtimgcabin" })
+                        <input onclick="openPopup(0)" name="photo" type="button" value="Chon Ảnh">
+                        @Html.ValidationMessageFor(c => c.Image)
+                        <p class="help-img">Nên chọn ảnh có kích thước @ConfigImage.InfoImageRoom</p>
+                    </div>
+                </div>
+
+                @if (ViewBag.IsUpdate == true)
+                {
+                    <input style="display:none" value="@Model.ID" id="IDCabin" name="IDCabin" />
+                    <div class="control-group">
+                        <div class="controls">
+                            <h3 class="mg-h">Thêm hình ảnh cho bộ sưu tập</h3>
+
+                            <ul class="adminformlist">
+                                <li class="imgthumb">
+                                    <label>Hình ảnh </label>
+                                    <input type="text" id="img-thumbcabin" style="min-width: 190px" class="upload" />
+                                    <input onclick="openPopup(1)" name="photo" type="button" value="Upload">
+                                    <button type="button" id="addimgcabin" class="btn btn-primary">Insert</button>
+                                    <p class="help-img">Nên chọn hình ảnh có kích thước lớn hơn 600px</p>
+                                </li>
+                                <li>
+                                    <ul style="clear: both; height: auto; width: 100%;" class="allImage" id="listCabingallery">
+                                        @*@if (Model.EGalleryITems != null)
+                                            {
+                                                foreach (EGalleryITem gallery in Model.EGalleryITems)
+                                                {
+                                                    <li>
+                                                        <input id="EGalleryITems_@(flag)__Image" name="EGalleryITems[@(flag)].Image" type="hidden" value="@(gallery.Image)" />
+                                                        <img src="@(gallery.Image)" width="100" />
+                                                    </li>
+                                                    flag++;
+                                                }
+                                            }*@
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul id='context-menucabin'>
+                                <li>Delete</li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+        </form>
+
+    </div>
+
+    <div class="modal-footer">
+        @if (ViewBag.IsUpdate == true)
+        {
+            <button value="Save" id="updatecabin" name="cmd" class="btn btn-primary">Cập nhật</button>
+        }
+        else
+        {
+            <button id="createcabin" value="update" name="cmd" class="btn btn-primary">Tạo mới</button>
+        }
+        <button type="button" class="btn btn-default" id="close" data-dismiss="modal">Đóng</button>
+    </div>
+</div>
+<script>
+    $("#updatecabin").click(function (e) {
+        $(this).attr('disabled', 'disabled');
+        $("#Content").val(CKEDITOR.instances['Content'].getData());
+        $("#Descrip").val(CKEDITOR.instances['Descrip'].getData());
+        var form = $("#cabinfrom").serialize();
+        $.ajax({
+            type: 'POST',
+            url: "/admin/Cabin/UpdateCabin",
+            data: form,
+            dataType: 'json',
+            success: function (data) {
+                if (data.success == true) {
+                    bootbox.alert("Sửa Cabin thành công", function () {
+                        window.location.reload();
+
+                    });
+                } else {
+                    bootbox.alert("Lỗi");
+                    $(this).removeAttr('disabled');
+                }
+            },
+            error: function () {
+                bootbox.alert("Lỗi");
+                $(this).removeAttr('disabled');
+            }
+        });
+    })
+</script>
+<script src="~/Areas/Administrator/Content/js/bootbox.min.js"></script>
+<script src="~/Areas/Administrator/Content/js/Cabin/Cabin.js"></script>

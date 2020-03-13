@@ -1,0 +1,1006 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Models
+@using TeamplateHotel.Handler
+@using System
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    List<Review> lst = CommentController.GetListReview((int)ViewData["MenuID"], (int)ViewData["id"]);
+    int total = 0;
+    int one = 0, two = 0, three = 0, four = 0, five = 0;
+    int AccomodationsPoint = 0, ActivityPoint = 0, GuidePoint = 0, FoodDrinkPoint = 0, ItineraryPoint = 0;
+    foreach (Review rv in lst)
+    {
+        ItineraryPoint += rv.ItineraryPoint + 5;
+        FoodDrinkPoint += rv.FoodDrinkPoint + 5;
+        GuidePoint += rv.GuidePoint + 5;
+        ActivityPoint += rv.ActivityPoint + 5;
+        AccomodationsPoint += rv.AccomodationsPoint + 5;
+        total += rv.Point;
+        switch (rv.Point)
+        {
+            case 0:
+                break;
+            case 1:
+                one += rv.Point;
+                break;
+            case 2:
+                two += rv.Point;
+                break;
+            case 3:
+                three += rv.Point;
+                break;
+            case 4:
+                four += rv.Point;
+                break;
+            case 5:
+                five += rv.Point;
+                break;
+        }
+
+    }
+    double average = ((double)total / (double)(lst.Count));
+    average = Math.Round(average, 2);
+    if (Double.IsNaN(average))
+    {
+        average = 0;
+    }
+
+    double Avgfive = Math.Round(((double)five / (double)(lst.Count * 5) * 100), 0);
+    if (Double.IsNaN(Avgfive)) { Avgfive = 0; }
+    double Avgone = Math.Round(((double)one / (double)(lst.Count * 5) * 100), 0);
+    if (Double.IsNaN(Avgone)) { Avgone = 0; }
+    double Avgtwo = Math.Round(((double)two / (double)(lst.Count * 5) * 100), 0);
+    if (Double.IsNaN(Avgtwo)) { Avgtwo = 0; }
+    double Avgthree = Math.Round(((double)three / (double)(lst.Count * 5) * 100), 0);
+    if (Double.IsNaN(Avgthree)) { Avgthree = 0; }
+    double Avgfour = Math.Round(((double)four / (double)(lst.Count * 5) * 100), 0);
+    if (Double.IsNaN(Avgfour)) { Avgfour = 0; }
+
+}
+<style>
+    .badge {
+        background-color: #f1f11e !important;
+        color: blue;
+    }
+
+    .review-block-rate {
+        clear: both;
+        padding-top: 10px;
+        padding-left: 15px;
+    }
+
+    .review-block-title {
+        font-size: 14px;
+        font-weight: bold;
+        color: blue;
+        margin-top: 10px;
+        margin-bottom: 8px;
+    }
+
+    .review-block-description {
+        margin-left: 14px;
+        font-style: italic;
+    }
+
+    .review-block-name {
+        margin: 10px 0px 5px 5px;
+    }
+
+        .review-block-name a:hover {
+            text-decoration: none;
+            color: blue;
+        }
+
+    .morecontent span {
+        display: none;
+    }
+
+    .morelink {
+        display: block;
+        margin-left: 14px;
+        text-decoration: none;
+    }
+
+        .morelink:hover {
+            text-decoration: none;
+        }
+
+    a.morelink.less {
+        text-decoration: none;
+    }
+
+    i.fa.active.fa-star {
+        color: #f1f11e;
+    }
+
+    .rating-input {
+        margin-left: 10px;
+        font-size: 20px;
+        clear: both;
+        float: right;
+    }
+
+    label.notifi {
+        display: inline-block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #00a680;
+    }
+
+    a.rating-clear {
+        font-size: 12px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+
+    #img-upload {
+        width: 100%;
+        padding-top: 23px;
+    }
+
+    i.glyphicon.glyphicon-star {
+        color: #e0ed35;
+    }
+
+    .label.error {
+        color: red !important;
+    }
+
+    .nav-justified.thumbnail {
+        border: none;
+    }
+
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+        color: #000;
+        background-color: #fbfbf9;
+        border-bottom: 1px solid #000;
+        border-radius: 0px;
+    }
+</style>
+<link href="~/Plugins/toastr/toastr.min.css" rel="stylesheet" />
+<link href="~/Plugins/Validate/jquery-validation-1.13.1/jquery-validation.css" rel="stylesheet" />
+<script src="~/Plugins/Validate/jquery-validation-1.13.1/jquery.validate.min.js"></script>
+<script src="~/Plugins/Validate/jquery-validation-1.13.1/additional-methods.min.js"></script>
+<script src="~/Plugins/toastr/toastr.min.js"></script>
+<div class="col-md-12">
+    <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+        <li class="active"><a data-toggle="tab" href="#CustomerReviews">Customer Reviews</a></li>
+        <li><a data-toggle="tab" href="#YouReviews">You Reviews</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="CustomerReviews" class="tab-pane fade in active">
+            <br />
+            <div class="row">
+                <div class="col-md-3 col-xs-12">
+                    <div class="rating-block">
+                        <h4>@GetLanguage.Language(lan, "AverageUserRating")</h4>
+                        <h2 class="bold padding-bottom-7">@average <small>/ 5</small></h2>
+                        @for (int i = 0; i < 5; i++)
+                        {
+                            if (i <= average - 1)
+                            {
+                                <span class="fa fa-star checked"></span>
+                            }
+                            else
+                            {
+                                <span class="fa fa-star"></span>
+                            }
+
+                        }
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <h4>@GetLanguage.Language(lan, "RatingBreakdown")</h4>
+                    <div class="pull-left">
+                        <div class="pull-left" style="width:35px; line-height:1;">
+                            <div style="height:9px; margin:5px 0;">5 <span class="fa fa-star"></span></div>
+                        </div>
+                        <div class="pull-left" style="width:180px;">
+                            <div class="progress" style="height:9px; margin:8px 0;">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: @Avgfive%">
+                                    <span class="sr-only">80% Complete (danger)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right" style="margin-left:10px;">@(five / 5)</div>
+                    </div>
+                    <div class="pull-left">
+                        <div class="pull-left" style="width:35px; line-height:1;">
+                            <div style="height:9px; margin:5px 0;">4 <span class="fa fa-star"></span></div>
+                        </div>
+                        <div class="pull-left" style="width:180px;">
+                            <div class="progress" style="height:9px; margin:8px 0;">
+                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: @Avgfour%">
+                                    <span class="sr-only">80% Complete (danger)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right" style="margin-left:10px;">@(four / 4)</div>
+                    </div>
+                    <div class="pull-left">
+                        <div class="pull-left" style="width:35px; line-height:1;">
+                            <div style="height:9px; margin:5px 0;">3 <span class="fa fa-star"></span></div>
+                        </div>
+                        <div class="pull-left" style="width:180px;">
+                            <div class="progress" style="height:9px; margin:8px 0;">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: @Avgthree%">
+                                    <span class="sr-only">80% Complete (danger)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right" style="margin-left:10px;">@(three / 3)</div>
+                    </div>
+                    <div class="pull-left">
+                        <div class="pull-left" style="width:35px; line-height:1;">
+                            <div style="height:9px; margin:5px 0;">2 <span class="fa fa-star"></span></div>
+                        </div>
+                        <div class="pull-left" style="width:180px;">
+                            <div class="progress" style="height:9px; margin:8px 0;">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width:  @Avgtwo%">
+                                    <span class="sr-only">80% Complete (danger)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right" style="margin-left:10px;">@(two / 2)</div>
+                    </div>
+                    <div class="pull-left">
+                        <div class="pull-left" style="width:35px; line-height:1;">
+                            <div style="height:9px; margin:5px 0;">1 <span class="fa fa-star"></span></div>
+                        </div>
+                        <div class="pull-left" style="width:180px;">
+                            <div class="progress" style="height:9px; margin:8px 0;">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: @Avgone%">
+                                    <span class="sr-only">80% Complete (danger)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right" style="margin-left:10px;">@(one / 1)</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sx-12">
+                    <h4 style="clear: both;padding-top: 8px;">@GetLanguage.Language(lan, "OtherVote")</h4>
+                    <div class="pull-left">
+                        <div class="pull-left" style="width:200px; line-height:1;">
+                            <div style="height:9px; margin:5px 0;">@GetLanguage.Language(lan, "ItineraryPoint"): </div>
+                        </div>
+                        <div class="pull-left" style="width:180px;">
+                            <div class="progress" style="height:9px; margin:8px 0;">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: @(Math.Round(((double)ItineraryPoint / (double)lst.Count),1)*10)%">
+                                    <span class="sr-only">80% Complete (danger)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right" style="margin-left:10px;">
+                            @(Double.IsNaN(Math.Round(((double)ItineraryPoint / (double)lst.Count), 1)) ? 0 : Math.Round(((double)ItineraryPoint / (double)lst.Count) - 5, 1) )
+                        </div>
+                    </div>
+                    <div class="pull-left">
+                        <div class="pull-left" style="width:200px; line-height:1;">
+                            <div style="height:9px; margin:5px 0;">@GetLanguage.Language(lan, "FoodDrinkPoint"): </div>
+                        </div>
+                        <div class="pull-left" style="width:180px;">
+                            <div class="progress" style="height:9px; margin:8px 0;">
+                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: @(Math.Round(((double)FoodDrinkPoint / (double)lst.Count),1)*10)%">
+                                    <span class="sr-only">80% Complete (danger)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right" style="margin-left:10px;">
+                            @(Double.IsNaN(Math.Round(((double)FoodDrinkPoint / (double)lst.Count), 1)) ? 0 : Math.Round(((double)FoodDrinkPoint / (double)lst.Count) - 5, 1) )
+                        </div>
+                    </div>
+                    <div class="pull-left">
+                        <div class="pull-left" style="width:200px; line-height:1;">
+                            <div style="height:9px; margin:5px 0;">@GetLanguage.Language(lan, "GuidePoint"): </div>
+                        </div>
+                        <div class="pull-left" style="width:180px;">
+                            <div class="progress" style="height:9px; margin:8px 0;">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: @(Math.Round(((double)GuidePoint / (double)lst.Count),1)*10)%">
+                                    <span class="sr-only">80% Complete (danger)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right" style="margin-left:10px;">
+                            @(Double.IsNaN(Math.Round(((double)GuidePoint / (double)lst.Count), 1)) ? 0 : Math.Round(((double)GuidePoint / (double)lst.Count) - 5, 1) )
+                        </div>
+                    </div>
+                    <div class="pull-left">
+                        <div class="pull-left" style="width:200px; line-height:1;">
+                            <div style="height:9px; margin:5px 0;">@GetLanguage.Language(lan, "FoodDrinkPoint"): </div>
+                        </div>
+                        <div class="pull-left" style="width:180px;">
+                            <div class="progress" style="height:9px; margin:8px 0;">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width:  @(Math.Round(((double)ActivityPoint / (double)lst.Count),1)*10)%">
+                                    <span class="sr-only">80% Complete (danger)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right" style="margin-left:10px;">
+                            @(Double.IsNaN(Math.Round(((double)ActivityPoint / (double)lst.Count), 1)) ? 0 : Math.Round(((double)ActivityPoint / (double)lst.Count) - 5, 1) )
+                        </div>
+                    </div>
+                    <div class="pull-left">
+                        <div class="pull-left" style="width:200px; line-height:1;">
+                            <div style="height:9px; margin:5px 0;">@GetLanguage.Language(lan, "AccomodationsPoint"): </div>
+                        </div>
+                        <div class="pull-left" style="width:180px;">
+                            <div class="progress" style="height:9px; margin:8px 0;">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: @(Math.Round(((double)AccomodationsPoint / (double)lst.Count),1)*10)%">
+                                    <span class="sr-only">80% Complete (danger)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right" style="margin-left:10px;">
+                            @(Double.IsNaN(Math.Round(((double)AccomodationsPoint / (double)lst.Count), 1)) ? 0 : Math.Round(((double)AccomodationsPoint / (double)lst.Count) - 5, 1) )
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <hr />
+                    <div class="review-block" id="respontdata">
+
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-default" id="LoadMore">Load More</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="YouReviews" class="tab-pane fade">
+            <br />
+            <form action="/Review-data" method="post" enctype="multipart/form-data" id="frmReview">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3  col-xs-7">
+                            <div class="form-group">
+                                <label class="control-label">@GetLanguage.Language(lan, "Point"): *</label>
+                                <input type="number" class="rating" id="rate" value="1" name="Point" />
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-xs-5" id="notifiRatePoint"></div>
+                        <div class="col-md-7">
+                            <input type="hidden" name="ObjID" value='@((int)ViewData["id"])' />
+                            <input type="hidden" name="MenuID" value='@((int)ViewData["MenuID"])' />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">@GetLanguage.Language(lan, "TitleRV"): *</label>
+                                <input type="text" class="form-control" name="Title" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">@GetLanguage.Language(lan, "ContentReview"): *</label>
+                                <textarea rows="5" class="form-control" name="Content"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">@GetLanguage.Language(lan, "UseService"): (*)</label>
+                                <select name="UseService" class="form-control">
+                                    <option value="True">@GetLanguage.Language(lan, "Used")</option>
+                                    <option value="False">@GetLanguage.Language(lan, "NotUsed")</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="control-label">Email: (*)</label>
+                                <input type="text" class="form-control" name="Email" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">@GetLanguage.Language(lan, "KindOfTrip"): *</label>
+                                <select name="KindOfTrip" class="form-control">
+                                    <option value=""> -- @GetLanguage.Language(lan, "SelectKindOfTrip") -- </option>
+                                    <option value="Enterprise">@GetLanguage.Language(lan, "Enterprise")</option>
+                                    <option value="Couple">@GetLanguage.Language(lan, "Couple")</option>
+                                    <option value="Family">@GetLanguage.Language(lan, "Family")</option>
+                                    <option value="Friend">@GetLanguage.Language(lan, "Friend")</option>
+                                    <option value="Alone">@GetLanguage.Language(lan, "Alone")</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2 hidden-xs"></div>
+                        <div class="col-md-4 col-xs-7">
+                            <div class="form-group">
+                                <label class="control-label">@GetLanguage.Language(lan, "ItineraryPoint"): *</label>
+                                <input type="number" class="rating" id="ItineraryPoint" name="ItineraryPoint" value="1" />
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-xs-5" id="notifiItineraryPoint"></div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 hidden-xs"></div>
+                        <div class="col-md-4 col-xs-7">
+                            <div class="form-group">
+                                <label class="control-label">@GetLanguage.Language(lan, "FoodDrinkPoint"): *</label>
+                                <input type="number" class="rating" id="FoodDrinkPoint" name="FoodDrinkPoint" value="1" />
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-xs-5" id="notifiFoodDrinkPoint"></div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 hidden-xs"></div>
+                        <div class="col-md-4 col-xs-7">
+                            <div class="form-group">
+                                <label class="control-label">@GetLanguage.Language(lan, "GuidePoint"): *</label>
+                                <input type="number" class="rating" name="GuidePoint" id="GuidePoint" value="1" />
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-xs-5" id="notifiGuidePoint"></div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 hidden-xs"></div>
+                        <div class="col-md-4 col-xs-7">
+                            <div class="form-group">
+                                <label class="control-label">@GetLanguage.Language(lan, "ActivityPoint"): *</label>
+                                <input type="number" class="rating" value="1" id="ActivityPoint" name="ActivityPoint" />
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-xs-5" id="notifiActivityPoint"></div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 hidden-xs"></div>
+                        <div class="col-md-4 col-xs-7">
+                            <div class="form-group">
+                                <label class="control-label">@GetLanguage.Language(lan, "AccomodationsPoint"): *</label>
+                                <input type="number" class="rating" id="AccomodationsPoint" value="1" name="AccomodationsPoint" />
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-xs-5" id="notifiAccomodationsPoint"></div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">@GetLanguage.Language(lan, "Country"): *</label>
+                                <select id="Country" name="Country" class="form-control">
+                                    <option value=""> -- @GetLanguage.Language(lan, "SelectCountry") -- </option>
+                                    <option value="Việt Nam" selected="selected">Việt Nam</option>
+                                    <option value="Argentina">Argentina</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="Austria">Austria</option>
+                                    <option value="Belarus">Belarus</option>
+                                    <option value="Belgium">Belgium</option>
+                                    <option value="Brazil">Brazil</option>
+                                    <option value="Brunei">Brunei</option>
+                                    <option value="Bulgaria">Bulgaria</option>
+                                    <option value="Cambodia">Cambodia</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="Chile">Chile</option>
+                                    <option value="China">China</option>
+                                    <option value="Colombia">Colombia</option>
+                                    <option value="Croatia">Croatia</option>
+                                    <option value="Cuba">Cuba</option>
+                                    <option value="Czech">Czech Republic</option>
+                                    <option value="Ecuador">Ecuador</option>
+                                    <option value="Fiji">Fiji</option>
+                                    <option value="France">France</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="Greece">Greece</option>
+                                    <option value="Greenland">Greenland</option>
+                                    <option value="Hong Kong">Hong Kong</option>
+                                    <option value="Hungary">Hungary</option>
+                                    <option value="Iceland">Iceland</option>
+                                    <option value="India">India</option>
+                                    <option value="Ireland">Ireland</option>
+                                    <option value="Italy">Italy</option>
+                                    <option value="Latvia">Latvia</option>
+                                    <option value="Liechtenstein">Liechtenstein</option>
+                                    <option value="Lithuania">Lithuania</option>
+                                    <option value="Luxembourg">Luxembourg</option>
+                                    <option value="Macau">Macau</option>
+                                    <option value="Macedonia">Macedonia</option>
+                                    <option value="Malta">Malta</option>
+                                    <option value="Mexico">Mexico</option>
+                                    <option value="Moldova">Moldova</option>
+                                    <option value="Monaco">Monaco</option>
+                                    <option value="Mongolia">Mongolia</option>
+                                    <option value="Montenegro">Montenegro</option>
+                                    <option value="Myanmar">Myanmar</option>
+                                    <option value="Netherlands">Netherlands</option>
+                                    <option value="New Zealand">New Zealand</option>
+                                    <option value="Paraguay">Paraguay</option>
+                                    <option value="Peru">Peru</option>
+                                    <option value="Poland">Poland</option>
+                                    <option value="Portugal">Portugal</option>
+                                    <option value="Romania">Romania</option>
+                                    <option value="Russia">Russia</option>
+                                    <option value="Serbia">Serbia</option>
+                                    <option value="Slovakia">Slovakia</option>
+                                    <option value="Slovenia">Slovenia</option>
+                                    <option value="South Africa">South Africa</option>
+                                    <option value="South Kore">South Korea</option>
+                                    <option value="Spain">Spain</option>
+                                    <option value="Switzerland">Switzerland</option>
+                                    <option value="Taiwan">Taiwan</option>
+                                    <option value="Ukraine">Ukraine</option>
+                                    <option value="United Kingdom">United Kingdom</option>
+                                    <option value="United States">United States</option>
+                                    <option value="Uruguay">Uruguay</option>
+                                    <option value="Vanuatu">Vanuatu</option>
+                                    <option value="Vatican City">Vatican City</option>
+                                    <option value="Venezuela">Venezuela</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">@GetLanguage.Language(lan, "Address"): *</label>
+                                <input type="text" class="form-control" name="Address" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">@GetLanguage.Language(lan, "Gender"): (*)</label>
+                                <select name="Gender" class="form-control" id="gender">
+                                    <option value="True">Mr.</option>
+                                    <option value="False">Ms.</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="control-label">@GetLanguage.Language(lan, "FullName"): (*)</label>
+                                <input type="text" class="form-control" name="FullName" id="fullname" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>@GetLanguage.Language(lan, "UploadImage")</label>
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-default btn-file">
+                                            Browse… <input type="file" id="imgInp" name="file" accept="image/*">
+                                        </span>
+                                    </span>
+                                    <input type="text" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <img id='img-upload' />
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-success right" style="float: right;">
+                                @GetLanguage.Language(lan, "Submit")
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <hr />
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/mustache/mustache.min.js"></script>
+
+<script>
+    function notifi(val, element) {
+        switch (val) {
+            case "1":
+                $(element).html('<label class="notifi" for="Title">Disgusting</label>')
+                break;
+            case "2":
+                $(element).html('<label class="notifi" for="Title">Bad</label>')
+                break;
+            case "3":
+                $(element).html('<label class="notifi" for="Title">Medium</label>')
+                break;
+            case "4":
+                $(element).html('<label class="notifi" for="Title">Very good</label>')
+                break;
+            case "5":
+                $(element).html('<label class="notifi" for="Title">Great</label>')
+                break;
+            case "0":
+                $(element).html('<label class="error" for="Title">Click to rank</label>')
+                break;
+        }
+    }
+    var rate = [0, 1, 2, 3, 4, 5];
+    function rm(val) {
+        var index = rate.indexOf(val);
+        if (index > -1) {
+            rate.splice(index, 1);
+        }
+    }
+    function changeRate() {
+        $('#rate').on('change', function () {
+            notifi($(this).val(), '#notifiRatePoint');
+            rm(0);
+        });
+        $('#ItineraryPoint').on('change', function () {
+            notifi($(this).val(), '#notifiItineraryPoint');
+            rm(1);
+        });
+        $('#FoodDrinkPoint').on('change', function () {
+            notifi($(this).val(), '#notifiFoodDrinkPoint');
+            rm(2);
+        });
+        $('#GuidePoint').on('change', function () {
+            notifi($(this).val(), '#notifiGuidePoint');
+            rm(3);
+        });
+        $('#ActivityPoint').on('change', function () {
+            notifi($(this).val(), '#notifiActivityPoint');
+            rm(4);
+        });
+        $('#AccomodationsPoint').on('change', function () {
+            notifi($(this).val(), '#notifiAccomodationsPoint');
+            rm(5);
+        });
+        if (rate.length > 0) {
+            return rate[0];
+        } else {
+            return 6;
+        }
+
+    };
+    changeRate();
+    $(document).ready(function () {
+        $(document).on('change', '.btn-file :file', function () {
+            var input = $(this),
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [label]);
+        });
+
+        $('.btn-file :file').on('fileselect', function (event, label) {
+
+            var input = $(this).parents('.input-group').find(':text'),
+                log = label;
+
+            if (input.length) {
+                input.val(log);
+            } else {
+                if (log)
+                    alert(log);
+            }
+
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img-upload').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgInp").change(function () {
+            if ((this.files[0].size / 1024) > 500) {
+                $('#imgInp').attr('src', '');
+                toastr.error('You select file lage: ' + Math.round((this.files[0].size / 1024) * 100) / 100 + 'KB <br\>Please select file < 500 KB !', 'Error');
+                return;
+            } else {
+                readURL(this);
+            }
+        });
+    });
+</script>
+
+<script>
+    //validate
+    jQuery.validator.setDefaults({
+        debug: true,
+        success: "valid"
+    });
+    $("#frmReview").validate({
+        rules: {
+            'Point': {
+                required: true,
+                number: true
+            },
+            'Gender': {
+                required: true,
+            },
+            'FullName': {
+                required: true,
+                maxlength: 150
+            },
+            'Country': {
+                required: true,
+            },
+            'Title': {
+                required: true,
+                maxlength: 100
+            },
+            'Email': {
+                required: true,
+                email: true
+            },
+            'Content': {
+                required: true,
+            },
+            'Address': {
+                required: true,
+            },
+            'file': {
+                required: true,
+                accept: "image/*"
+            },
+            'KindOfTrip': {
+                required: true,
+            }
+        },
+        messages: {
+            'Title': {
+                required: "Please input Title",
+                maxlength: "Max length is 100 character"
+            },
+            'Point': "Please rating point",
+            'Gender': "Please select Gender",
+            'FullName': "Please enter Full Name",
+            'Country': "Please select Country",
+            'Email': {
+                required: "Please enter Email for us check Used Service",
+                email: "Please enter Email for us check Used Service"
+            },
+            'Address': "Please enter itinerary",
+            'Content': "Please input Content!",
+            'file': {
+                required: "Please input file!",
+                accept: "Only image !"
+            },
+            'KindOfTrip': "Please select Kind Of Trip!",
+        },
+        submitHandler: function (form) {
+            if (changeRate() < 6) {
+                toastr.error('Please reating point!', 'Error');
+                jQuery.fn.extend({
+                    scrollToMe: function () {
+                        var x = jQuery(this).offset().top - 100;
+                        jQuery('html,body').animate({ scrollTop: x }, 500);
+                    }
+                });
+                switch (changeRate()) {
+                    case 0:
+                        $('#notifiRatePoint').scrollToMe();
+                        notifi("0", '#notifiRatePoint');
+                        break;
+                    case 1:
+                        $('#notifiItineraryPoint').scrollToMe();
+                        notifi("0", '#notifiItineraryPoint');
+                        break;
+                    case 2:
+                        $('#notifiFoodDrinkPoint').scrollToMe();
+                        notifi("0", '#notifiFoodDrinkPoint');
+                        break;
+                    case 3:
+                        $('#notifiGuidePoint').scrollToMe();
+                        notifi("0", '#notifiGuidePoint');
+                        break;
+                    case 4:
+                        $('#notifiActivityPoint').scrollToMe();
+                        notifi("0", '#notifiActivityPoint');
+                        break;
+                    case 5:
+                        $('#notifiAccomodationsPoint').scrollToMe();
+                        notifi("0", '#notifiAccomodationsPoint');
+                        break;
+                }
+                return false;
+            }
+
+            form.submit();
+        }
+    });
+</script>
+
+<script>
+    var menuID=@((int)ViewData["MenuID"]);
+    var ID=@((int)ViewData["id"]);
+    $("#LoadMore").hide();
+    currPage = 5;
+    var ReviewController = {
+
+        init: function () {
+            ReviewController.register();
+
+            ReviewController.LoadData(currPage, menuID, ID);
+        },
+        register: function () {
+
+        },
+        LoadData: function (_page, _menuID,_ID) {
+            $.ajax({
+                url: "/load-review",
+                method: 'POST',
+                data: { pageNumber: _page, menuID: _menuID, ID: _ID },
+                success: function (response) {
+                    if(response.status){
+                        var data = response.data;
+                        var html = '';
+                        var Template = $("#template-GetCustomRv").html();
+                        $.each(data, function (index, elm) {
+                            html += Mustache.render(Template, {
+                                ProfileImages: elm.ProfileImages,
+                                FullName: elm.FullName,
+                                KindOfTrip: elm.KindOfTrip,
+                                TimeReview: elm.TimeReview,
+                                UseService: elm.UseService,
+                                Title: elm.Title,
+                                Content: elm.Content,
+                                ItineraryPoint: elm.ItineraryPoint,
+                                FoodDrinkPoint: elm.FoodDrinkPoint,
+                                AccomodationsPoint: elm.AccomodationsPoint,
+                                GuidePoint: elm.GuidePoint,
+                                ItineraryPoint: elm.ItineraryPoint,
+                                rate:elm.rate,
+                                unrate:elm.unrate,
+                            });
+                        });
+                        $("#respontdata").html(html);
+                        toggleContent();
+                        $("#LoadMore").show();
+                    }else
+                    {
+                        $("#LoadMore").hide();
+                    }
+                }
+            })
+        },
+
+    }
+    ReviewController.init();
+    $("#LoadMore").click(function(){
+        currPage+=5;
+        ReviewController.LoadData(currPage, menuID, ID);
+    });
+</script>
+
+<script id="template-GetCustomRv" type="x-tmpl-mustache">
+    <div class="row">
+        <div class="col-md-2 col-xs-12">
+            <div class="col-md-12 col-xs-6">
+                <img src="{{ProfileImages}}" class="img-rounded img-responsive">
+            </div>
+            <div class="col-md-12 col-xs-6">
+                <div class="review-block-name text-center"><a href="#">{{FullName}}</a></div>
+                <div class="review-block-KindOfTrip text-center">{{KindOfTrip}}</div>
+                <div class="review-block-date text-center">{{TimeReview}}</div>
+            </div>
+        </div>
+        <div class="col-md-10 col-xs-12">
+
+            <div class="review-block-rate">
+
+                {{#rate}}
+                <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                    <span class="fa fa-star" aria-hidden="true"></span>
+                </button>
+                {{/rate}}
+                {{#unrate}}
+                <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                    <span class="fa fa-star" aria-hidden="true"></span>
+                </button>
+                {{/unrate}}
+                {{#UseService}}
+                <span>
+                    <img class="verifyImg" width="15" height="16" src="../Files/Images/veryfi.png">
+                    <span class="verify">Used Service</span>
+                </span>
+                {{/UseService}}
+
+
+            </div>
+            <div class="review-block-title">"{{Title}}"</div>
+            <span class="more review-block-description">{{Content}}</span>
+            <p>Itinerary <span class="badge badge-danger" style="margin-right: 10px;">{{ItineraryPoint}}</span> Food/Drink <span class="badge badge-danger" style="margin-right: 10px;">{{FoodDrinkPoint}}</span>Guide<span class="badge badge-danger" style="margin-right: 10px;">{{GuidePoint}}</span>Activity <span class="badge badge-danger" style="margin-right: 10px;">5</span>Accomodations <span class="badge badge-danger" style="margin-right: 10px;">{{AccomodationsPoint}}</span></p>
+
+        </div>
+    </div>
+    <hr />
+</script>
+
+<script>
+    function toggleContent()
+    {
+        $(document).ready(function () {
+            // Configure/customize these variables.
+            var showChar = 200;  // How many characters are shown by default
+            var ellipsestext = "...";
+            var moretext = "Show more >";
+            var lesstext = "Show less";
+
+            $('.more').each(function () {
+                var content = $(this).html();
+
+                if (content.length > showChar) {
+
+                    var c = content.substr(0, showChar);
+                    var h = content.substr(showChar, content.length - showChar);
+
+                    var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+
+                    $(this).html(html);
+                }
+
+            });
+
+            $(".morelink").click(function () {
+                if ($(this).hasClass("less")) {
+                    $(this).removeClass("less");
+                    $(this).html(moretext);
+                } else {
+                    $(this).addClass("less");
+                    $(this).html(lesstext);
+                }
+                $(this).parent().prev().toggle();
+                $(this).prev().toggle();
+                return false;
+            });
+        });
+    }
+</script>

@@ -1,0 +1,142 @@
+﻿@model TeamplateHotel.Areas.Administrator.EntityModel.EArticle
+@{
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+}
+<div class="span12">
+    <div class="widget ">
+        <div class="widget-header">
+            <i class="icon-plus-sign"></i>
+            <h3>@ViewBag.Title</h3>
+        </div> <!-- /widget-header -->
+
+        <div class="widget-content">
+            @Html.ValidationSummary(true)
+            @using (Html.BeginForm("Create", "Article", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <div class="control-group" id="listHotel">
+            <label class="control-label" for="MenuID">Category<span class="asterisk">*</span></label>
+            <div class="controls">
+                @Html.DropDownListFor(p => p.MenuID, new SelectList(ViewBag.ListMenu, "Value", "Text"), new { @class = "span3" })
+                @Html.ValidationMessageFor(p => p.MenuID)
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="Title">Title<span class="asterisk">*</span></label>
+            <div class="controls">
+                @Html.TextBoxFor(c => c.Title, new { @class = "span4" })
+                @Html.ValidationMessageFor(c => c.Title)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(c => c.Alias, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(c => c.Alias, new { @class = "span4" })
+                @Html.ValidationMessageFor(c => c.Alias)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(c => c.Image, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(c => c.Image, new { @class = "span4 inputbox upload" })
+                @Html.ValidationMessageFor(c => c.Image)
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="Title">Status</label>
+            <div class="controls">
+                <label class="radio-inline"> <input type="radio" name="Status" value="True" checked="checked"> có</label>
+                <label class="radio-inline"> <input type="radio" name="Status" value="false"> Không</label>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Title">Show Home</label>
+            <div class="controls">
+                @Html.CheckBoxFor(c => c.Home);
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Title">Hot</label>
+            <div class="controls">
+                @Html.CheckBoxFor(c => c.Hot);
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Title">Highlight</label>
+            <div class="controls">
+                @Html.CheckBoxFor(c => c.New);
+            </div>
+        </div>
+        <div class="control-group" style="display: none">
+            <label class="control-label" for="Title">TripCambodia</label>
+            <div class="controls">
+                @Html.CheckBoxFor(c => c.TripCambodia);
+            </div>
+        </div>
+        <div class="control-group" style="display: none">
+            <label class="control-label" for="Title">TripLao</label>
+            <div class="controls">
+                @Html.CheckBoxFor(c => c.TripLao);
+            </div>
+        </div>
+        <div class="control-group" style="display: none">
+            <label class="control-label" for="Title">TripVietNam</label>
+            <div class="controls">
+                @Html.CheckBoxFor(c => c.TripVietNam);
+            </div>
+        </div>
+        <div class="control-group" style="margin-top: 40px">
+            @Html.LabelFor(c => c.Description, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextAreaFor(c => c.Description, new { @class = "basic-ckeditor" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="Content">Content<span class="asterisk">*</span></label>
+            <div class="controls">
+                <p>
+                    <span class="error-login">@Html.ValidationMessageFor(a => a.Content)</span>
+                </p>
+                @Html.TextAreaFor(c => c.Content, new { @class = "full-ckeditor" })
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+            <a href="@Url.Action("Index", "Article")" class="btn">Cancel</a>
+        </div>
+
+        <div class="control-seo">
+            <h3 class="mg-h">Search engine optimization(Seo)</h3>
+            <div class="control-group">
+                @Html.LabelFor(c => c.MetaTitle)
+                @Html.TextBoxFor(c => c.MetaTitle, new { @class = "span4" })
+                @Html.ValidationMessageFor(p => p.MetaTitle)
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(c => c.MetaDescription)
+                <div class="jtable-input jtable-text-input">
+                    @Html.TextAreaFor(c => c.MetaDescription, new { @class = "span4 meta-seo" })
+                    @Html.ValidationMessageFor(p => p.MetaDescription)
+                </div>
+            </div>
+        </div>
+}
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        bindUl();
+        AutoAlias("Title", "Alias");
+        CreateCkEditor();
+    });
+
+</script>

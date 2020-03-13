@@ -1,0 +1,44 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@{
+    ViewBag.Title = "Reviews Tour";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    string name = ViewBag.name;
+}
+
+
+
+<div class="container">
+    <div class="row text-center">
+        @if (ViewBag.Status == 0)
+        {
+            <div class="col-sm-12">
+                <img src="~/Files/Images/3-2-success-transparent.png" />
+                <h3>Dear, @name</h3>
+                <p style="font-size:20px;color:#5C5C5C;">
+                    Thank For Rating!
+                </p>
+                <a href="/" class="btn btn-success">    Back to home     </a>
+                <br><br>
+            </div>
+        }
+        else
+        {
+            <div class="col-sm-12">
+                <img src="~/Files/Images/error.png" />
+                <h3>Dear, @name</h3>
+                <p style="font-size:20px;color:#5C5C5C;">
+                    Thank For Rating! But there was an error please contact Admin
+                </p>
+                <script>
+                    console.log('@ViewBag.description')
+                </script>
+                <a href="/" class="btn btn-success">    Back to home     </a>
+                <br><br>
+            </div>
+        }
+
+
+    </div>
+</div>
+

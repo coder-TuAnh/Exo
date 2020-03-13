@@ -1,0 +1,21 @@
+﻿@using TeamplateHotel.Handler
+@using ProjectLibrary.Database
+@{
+    ViewBag.Title = "Messages";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="container">
+
+    <div class="col-md-12">
+        <div class="des-article">
+            <h1 class="tieudecategory uppercase">Messages</h1>
+            <h5>@Html.Raw(ViewBag.Messages)</h5>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+</div>
+
+
+

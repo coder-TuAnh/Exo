@@ -1,0 +1,79 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Handler
+@using TeamplateHotel.Controllers
+@using ProjectLibrary.Config
+@using PagedList.Mvc
+@model  IEnumerable<Article>
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    //int i = 1;
+    string lan = Request.Cookies["LanguageID"].Value;
+    var detailHotel = CommentController.DetailHotel(lan);
+}
+
+
+<div class="sub-nav">
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <h1 class="h1-title-d">
+                    @menu.Title
+                </h1>
+            </div>
+
+
+            <!-- Sub Nav Links -->
+            @Html.Partial("Comment/social")
+
+        </div>
+    </div>
+</div>
+
+<section class="regular" style="padding-top: 4rem">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="/" class="text-success">Home</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="/@menu.Alias" class="text-success">@menu.Title</a>
+                    </li>
+
+                </ol>
+            </div>
+            <div class="col-lg-9">
+                @foreach (var item in Model)
+                {
+                    <div class="item-content">
+                        <div class="col-md-4">
+                            <a href="/@menu.Alias/@item.ID/@item.Alias" title="@item.Title">
+                                <img src="@item.Image" alt="@item.Title" style="width: 100%;" class="img-border" />
+                            </a>
+                        </div>
+                        <div class="col-md-8">
+                            <h3 class="title-content">
+                                <a href="/@menu.Alias/@item.ID/@item.Alias" title="@item.Title">@item.Title</a>
+                            </h3>
+                            @Html.Raw(item.Description)
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                }
+            </div>
+            <div class="col-lg-3">
+                @{
+                    if (menu.Type == SystemMenuType.Tour || menu.Type == SystemMenuType.Visa)
+                    {
+                        @Html.Partial("SideBar")
+                    }
+                }
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</section>
+

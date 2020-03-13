@@ -1,0 +1,379 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@{
+    ViewBag.Title = "Visa Việt Nam";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@{
+    Menu menu = ViewBag.Menu ?? new Menu();
+    List<Slider> sliders = CommentController.GetListSlider(Request.Cookies["LanguageID"].Value);
+}
+<div class="owl-carousel owl-theme slideshow " id="slider">
+    @foreach (var item in sliders)
+    {
+        <figure>
+            <img src="@item.Image" class="img-slier" />
+        </figure>
+    }
+</div>
+
+<link href="~/Content/Css/Visa.css" rel="stylesheet" />
+@using (Html.BeginForm("Order", "Visa", FormMethod.Post, new { id = "formOrder" }))
+{
+    <br />
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a><span class="glyphicon glyphicon-menu-right"></span></li>
+            <li><a href="/visa-vietnam/">Vietnam Visa</a><span class="glyphicon glyphicon-menu-right"></span></li>
+            <li><a href="#">Apply Visa On Arrival</a><span class="glyphicon glyphicon-menu-right"></span></li>
+            <li>Visa Details</li>
+        </ol>
+    </div>
+    <div class="container">
+        <div class="row form-group">
+            <div class="col-xs-12">
+                <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                    <li class="active">
+                        <a href="#step-1">
+                            <h4 class="list-group-item-heading">Step 1</h4>
+                            <p class="list-group-item-text">Fill in Visa form online</p>
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a href="#step-2">
+                            <h4 class="list-group-item-heading">Step 2</h4>
+                            <p class="list-group-item-text">Confirm and Order</p>
+                        </a>
+                    </li>
+
+                    <li class="disabled">
+                        <a href="#step-3">
+                            <h4 class="list-group-item-heading">Step 3</h4>
+                            <p class="list-group-item-text">Pay Online</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row setup-content" id="step-1">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-left">
+                        <p id="dv_err" class="error" style="display: none;">Please review and correct information of applicants below (the fields marked in red):</p>
+                        <div class="margin-top-20" style="background-color: #f6f6f6; padding: 20px 20px 30px 20px;">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label">Number of visa</label>
+                                        <select id="select_number_visa" class="form-control" name="numb_visa">
+                                            <option value="" selected="selected">Select Number of visa </option>
+                                            <option value="1">1 applicant </option>
+                                            <option value="2">2 applicants </option>
+                                            <option value="3">3 applicants </option>
+                                            <option value="4">4 applicants </option>
+                                            <option value="5">5 applicants </option>
+                                            <option value="6">6 applicants </option>
+                                            <option value="7">7 applicants </option>
+                                            <option value="8">8 applicants </option>
+                                            <option value="9">9 applicants </option>
+                                            <option value="10">10 applicants </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label">Date Of Arrival</label>
+                                        <input type="date" id="datearrival"  min='@DateTime.Now.ToString("yyyy-MM-dd")' value='@DateTime.Now.ToString("yyyy-MM-dd")' placeholder="Please enter Departure Date" name="DateOfArrival" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-3"></div>
+                            </div>
+                            <h3 class="text-highlight">Passport Information</h3>
+                            <div id="visa-detail">
+
+                            </div>
+                            <h3>Your arrival details</h3>
+                            <div class="border-panel form-horizontal" id="arrival_details">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Arrival Airport: (*)</label>
+                                                <select id="arrival_airport" name="ArrivalAirport" class="form-control">
+                                                    <option value=""> -- Please select arrival airport -- </option>
+                                                    <option value="Hanoi airport">Hanoi airport</option>
+                                                    <option value="Ho Chi Minh City airport">Ho Chi Minh City airport</option>
+                                                    <option value="Danang airport">Danang airport</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Processing time: (*)</label>
+                                                <select class="select_processing_time form-control" id="processing_time" name="ProcessingTime"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Type of visa:</label>
+                                                <select name="IDTypeOfVisa" id="visa_type" class="form-control"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" style="padding: 0px;">
+                <div id="visa-rates-form" class="bpv-total-payment margin-bottom-20">
+                    <h2>Apply for Vietnam Visa</h2>
+                    <div class="content">
+                        <div class="row">
+                            <label class="col-xs-6">Your selections:</label>
+                            <div id="your_selections" class="col-xs-6 padding-left-0 text-right">
+                                <ul class="list-unstyled">
+                                    <li id="selection_nationality" style="color: rgb(51, 51, 51);">
+                                    </li>
+                                    <li id="selection_visa_type">
+                                    </li>
+                                    <li id="selection_rush_service">Normal processing</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix border-dash" id="div_service_fee">
+                            <b class="col-xs-6 padding-left-0">Visa service fee:</b>
+                            <div class="col-xs-6 padding-right-0 text-right" id="visa_from_price">
+
+                            </div>
+                        </div>
+                        <div class="clearfix border-dash">
+                            <div class="col-xs-7 no-padding">
+                                <b class="margin-bottom-0">Total service fee:</b>
+                                <span class="process_note" style="display: inline-block;">(exclude stamp fee)</span>
+                            </div>
+                            <div class="col-xs-5 padding-right-0 text-right text-price">
+                                <span class="font-size-13">US</span> <span id="visa_total_fee" class="price-from">
+
+                                </span>
+                                <input type="hidden" name="TotalPrice" id="totalprice" />
+                            </div>
+                            <br />
+                        </div>
+                        <div class="clearfix border-dash">
+                            <div class="col-md-12">
+                                <div class="input-group" style="float:right">
+                                    <div class="input-group-append">
+                                        <button id="activate-step-2" class="btn btn-primary btn-md">STEP 2</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <br />
+        </div>
+        <div class="row setup-content" id="step-2">
+            <div class="col-xs-9">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">Gender: (*)</label>
+                            <select name="Gender" class="form-control" id="gender">
+                                <option value="True">Mr.</option>
+                                <option value="False">Ms.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="control-label">Full name: (*)</label>
+                            <input type="text" class="form-control" name="FullName" id="fullname" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Email: *</label>
+                            <input type="text" class="form-control" name="Email" id="email" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Confirm Email: *</label>
+                            <input type="text" class="form-control" name="ReMail" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Country: *</label>
+                            <select id="Country" name="Country" class="form-control">
+                                <option value=""> -- Please select your nationality -- </option>
+                                <option value="Argentina">Argentina</option>
+                                <option value="Australia" selected="selected">Australia</option>
+                                <option value="Austria">Austria</option>
+                                <option value="Belarus">Belarus</option>
+                                <option value="Belgium">Belgium</option>
+                                <option value="Brazil">Brazil</option>
+                                <option value="Brunei">Brunei</option>
+                                <option value="Bulgaria">Bulgaria</option>
+                                <option value="Cambodia">Cambodia</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Chile">Chile</option>
+                                <option value="China">China</option>
+                                <option value="Colombia">Colombia</option>
+                                <option value="Croatia">Croatia</option>
+                                <option value="Cuba">Cuba</option>
+                                <option value="Czech">Czech Republic</option>
+                                <option value="Ecuador">Ecuador</option>
+                                <option value="Fiji">Fiji</option>
+                                <option value="France">France</option>
+                                <option value="Germany">Germany</option>
+                                <option value="Greece">Greece</option>
+                                <option value="Greenland">Greenland</option>
+                                <option value="Hong Kong">Hong Kong</option>
+                                <option value="Hungary">Hungary</option>
+                                <option value="Iceland">Iceland</option>
+                                <option value="India">India</option>
+                                <option value="Ireland">Ireland</option>
+                                <option value="Italy">Italy</option>
+                                <option value="Latvia">Latvia</option>
+                                <option value="Liechtenstein">Liechtenstein</option>
+                                <option value="Lithuania">Lithuania</option>
+                                <option value="Luxembourg">Luxembourg</option>
+                                <option value="Macau">Macau</option>
+                                <option value="Macedonia">Macedonia</option>
+                                <option value="Malta">Malta</option>
+                                <option value="Mexico">Mexico</option>
+                                <option value="Moldova">Moldova</option>
+                                <option value="Monaco">Monaco</option>
+                                <option value="Mongolia">Mongolia</option>
+                                <option value="Montenegro">Montenegro</option>
+                                <option value="Myanmar">Myanmar</option>
+                                <option value="Netherlands">Netherlands</option>
+                                <option value="New Zealand">New Zealand</option>
+                                <option value="Paraguay">Paraguay</option>
+                                <option value="Peru">Peru</option>
+                                <option value="Poland">Poland</option>
+                                <option value="Portugal">Portugal</option>
+                                <option value="Romania">Romania</option>
+                                <option value="Russia">Russia</option>
+                                <option value="Serbia">Serbia</option>
+                                <option value="Slovakia">Slovakia</option>
+                                <option value="Slovenia">Slovenia</option>
+                                <option value="South Africa">South Africa</option>
+                                <option value="South Kore">South Korea</option>
+                                <option value="Spain">Spain</option>
+                                <option value="Switzerland">Switzerland</option>
+                                <option value="Taiwan">Taiwan</option>
+                                <option value="Ukraine">Ukraine</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="United States">United States</option>
+                                <option value="Uruguay">Uruguay</option>
+                                <option value="Vanuatu">Vanuatu</option>
+                                <option value="Vatican City">Vatican City</option>
+                                <option value="Venezuela">Venezuela</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">City: *</label>
+                            <input type="text" class="form-control" name="City" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Phone Number: *</label>
+                            <input type="text" class="form-control" name="PhoneNumber" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Social Media (WhatsApp, Viber...):</label>
+                            <input type="text" class="form-control" name="SocialMedia" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">Special Requests: *</label>
+                            <textarea rows="5" class="form-control" name="SpecialRequests"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-3" style="padding: 0px;">
+                <div id="visa-rates-form" class="bpv-total-payment margin-bottom-20">
+                    <h2>Apply for Vietnam Visa</h2>
+                    <div class="content">
+                        <div class="row">
+                            <label class="col-xs-6">Your selections:</label>
+                            <div id="your_selections" class="col-xs-6 padding-left-0 text-right">
+                                <ul class="list-unstyled">
+                                    <li id="selection_nationality-2" style="color: rgb(51, 51, 51);">
+                                    </li>
+                                    <li id="selection_visa_type-2">
+
+                                    </li>
+                                    <li id="selection_rush_service-2">Normal processing</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="clearfix border-dash" id="div_service_fee">
+                            <b class="col-xs-6 padding-left-0">Visa service fee:</b>
+                            <div class="col-xs-6 padding-right-0 text-right" id="visa_from_price-2">
+
+                            </div>
+                        </div>
+                        <div class="clearfix border-dash">
+                            <div class="col-xs-7 no-padding">
+                                <b class="margin-bottom-0">Total service fee:</b>
+                                <span class="process_note" style="display: inline-block;">(exclude stamp fee)</span>
+                            </div>
+                            <div class="col-xs-5 padding-right-0 text-right text-price">
+                                <span class="font-size-13">US</span> <span id="visa_total_fee-2" class="price-from"></span>
+                            </div>
+                            <br />
+                        </div>
+                        <div class="clearfix border-dash">
+                            <div class="col-md-12">
+                                <div class="input-group" style="float:right">
+                                    <div class="input-group-append">
+                                        <button id="confirm" type="submit" class="btn btn-primary btn-md">Confirm and Order</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Content/Js/Visa.js"></script>
+<script src="~/Content/Js/VisaValidate.js"></script>
+@if (TempData["notification"] != null && (string)TempData["notification"] != "")
+{
+    <script>
+        toastr.error('@TempData["notification"]', 'Error');
+    </script>
+}

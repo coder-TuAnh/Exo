@@ -1,0 +1,78 @@
+﻿@{
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+}
+
+<div id="jtable-main-container"></div>
+<script type="text/javascript">
+        $(document).ready(function() {
+            $('#jtable-main-container').jtable({
+                title: '@ViewBag.Title',
+                paging: true, //Enable paging
+                pageSize: 20, //Set page size (default: 10)
+                sorting: true, //Enable sorting
+                defaultSorting: 'Name ASC', //Set default sorting
+                selecting: true, //Enable selecting
+                multiselect: true, //Allow multiple selecting
+                selectingCheckboxes: true, //Show checkboxes on first column
+                columnResizable: true, //Actually, no need to set true since it's default
+                columnSelectable: true, //Actually, no need to set true since it's default
+                saveUserPreferences: true, //Actually, no need to set true since it's default
+
+                actions: {
+                    listAction: '@Url.Action("List", "CustomizeTrip")',
+                    deleteAction: '@Url.Action("Delete", "CustomizeTrip")',
+                },
+                fields: {
+                    ID: {
+                        key: true,
+                        create: false,
+                        edit: false,
+                        list: false
+                    },
+                    FullName: {
+                        title: 'Họ tên',
+                        width: '10%',
+                        display: function (data) {
+                            return '<a href="/admin/CustomizeTrip/Detail/' + data.record.ID + '">' + data.record.FullName + '</a>';
+                        }
+                    },
+                    Email: {
+                        title: 'Địa chỉ email',
+                        width: '10%'
+                    },
+                    Phone: {
+                        title: 'Số điện thoại',
+                        width: '10%'
+                    },
+                    Country: {
+                        title: 'Quốc gia',
+                        width: '10%'
+                    },
+                    NumberOfClients: {
+                        title: 'Số lượng khách hàng',
+                        width: '10%',
+                    },
+                    '':
+                        {
+                            title: '',
+                            width: '2%',
+                            sorting: false,
+                            display: function (data) {
+                                return '<button title="Edit" type="button" class="jtable-command-button jtable-edit-command-button" onclick="detailRecord(' + data.record.ID + ')"><span>Edit</span></button>';
+                            }
+                        },
+                },
+
+            });
+            $('#jtable-main-container').jtable('load');
+        });
+</script>
+
+
+<script>
+
+    function detailRecord(Id) {
+        window.location = '@Url.Action("Detail", "CustomizeTrip")' + '/' + Id;
+    }
+
+</script>

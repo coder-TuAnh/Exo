@@ -1,0 +1,18 @@
+﻿@using ProjectLibrary.Config
+@using ProjectLibrary.Database
+@using TeamplateTour.Controllers
+@{
+    Menu menu = ViewBag.Menu ?? new Menu();
+    List<Advertising> advertisings = CommentController.ListAdvertising(menu.MenuId).Where(a=>a.PositionId==AdvPossition.Siderbar).ToList();
+}
+
+@if(advertisings.Count>0)
+{
+    foreach (var item in advertisings)
+    {
+        <div class="wrap-item-sidebar">
+            <a href="@item.Url" alt="@item.TitleAdv"><img src="@item.Image" width="279px"/></a>
+        </div>
+    }
+
+}

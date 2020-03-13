@@ -1,0 +1,767 @@
+﻿@using System
+@using ProjectLibrary.Database
+@using TeamplateHotel.Handler
+@model ProjectLibrary.Database.BookTour
+@{
+    ViewBag.MetaTitle = "Book tour - " + ViewBag.title;
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    Tour tours = ViewBag.Tour ?? new Tour();
+    string lan = Request.Cookies["LanguageID"].Value;
+    List<TabTour> tabTours = ViewBag.TabTours ?? new List<TabTour>();
+}
+<style>
+    .col-form-label {
+        line-height: 42px;
+    }
+
+    .apply-code {
+        text-decoration: line-through;
+    }
+</style>
+<link href="~/Plugins/Validate/jquery-validation-1.13.1/jquery-validation.css" rel="stylesheet" />
+
+<header class="business-header"></header>
+
+
+
+<div class="sub-nav">
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <h1 class="h1-title-d">
+                    BOOKING TOUR
+                </h1>
+
+            </div>
+            <!-- Sub Nav Links -->
+            <nav class="navbar-collapse collapse" id="navbar-sub">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a target="_blank" href=""><i class="fa fa-envelope-o"></i> <span class="hidden-md hidden-lg">Email</span></a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+
+<section class="regular" style="padding-top: 4rem">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<div class="container max1000">
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="col-lg-12">
+        <h1 class="mt-4 mb-3 text-center" style="font-size: 30px">
+            Booking Details
+        </h1>
+        <p style="margin-left: 20px;">
+            To request a booking please fill in the form below. You will receive acknowledgement of your booking normally within 12 to 24 hours. A deposit or Full payment will be required for all bookings. For urgent booking, please call us at 0084 902 088 698.
+            <br />
+            (Fields marked with * are required).
+        </p>
+        <form action="/BookTour/SendBooking" method="POST" id="bk-tour" class="form-horizontal">
+            <input type="hidden" name="TourId" value="@ViewBag.tourID" id="TourId">
+            @*<input type="hidden" name="Option" value="@ViewBag.Option">
+                <h3 class="border-bottom my-4"> @GetLanguage.Language(lan, "PaymentInformation")</h3>*@
+            @*<div class="form-group">
+                                <label class="col-sm-3 control-label">@GetLanguage.Language(lan, "SelectOption"):</label>
+                                <div class="col-sm-9">
+                                    <input type="radio" name="TypePayment" id="Radio1" value="1" checked="checked" onchange="changePaymethod()" class="radio-type-pay">
+                <label class="payment-method" for="Radio1">@GetLanguage.Language(lan, "BookNow")</label>
+                                    <input type="radio" name="TypePayment" id="Radio2" value="2" onchange="changePaymethod()" class="radio-type-pay">
+                                    <label class="payment-method" for="Radio2">@GetLanguage.Language(lan, "RequestTour")</label>
+                                </div>
+                            </div>*@
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label text-right font-weight-bold text-mobile-left">Tour:</label>
+                <div class="col-sm-9 font-weight-bold col-form-label">
+                    @Model.InfoBooking
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label text-right font-weight-bold text-mobile-left">Itineraries:</label>
+                <div class="col-sm-9 font-weight-bold col-form-label">
+                    @if (tabTours.Count > 1)
+                    {
+                        <select name="TabTourID" id="TabId" onchange="amountPrice()" style="width: 278px;">
+                            <option value="" data-price="0"></option>
+                            @foreach (var item in tabTours)
+                            {
+                                <option value="@item.ID" data-price="@item.Price">@item.TitleTab ($ @item.Price)</option>
+                            }
+                        </select>
+                    }
+                    else
+                    {
+                        @tabTours[0].TitleTab
+                        <select name="TabTourID" id="TabId" style="display: none">
+                            <option value="@tabTours[0].ID" data-price="@tabTours[0].Price">@tabTours[0].ID</option>
+                        </select>
+                    }
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label text-right font-weight-bold text-mobile-left">Departure:<span class="text-danger">*</span>:</label>
+                <div class="col-sm-9 font-weight-bold">
+                    <input type="text" name="Departure" id="Departure" value="@DateTime.Now.ToString("MM/dd/yyyy")" min="@DateTime.Now.ToString("MM/dd/yyyy")" class="datepicker form-control" style="width: 300px">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label text-right font-weight-bold text-mobile-left">@GetLanguage.Language(lan, "Priceitinerary"):</label>
+                <div class="col-sm-9 font-weight-bold col-form-label">
+                    <span id="text-price-itinerary">@ViewBag.price USD</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label text-right font-weight-bold text-mobile-left">Adults:</label>
+                <div class="col-sm-9 font-weight-bold">
+                    <select name="Adult" id="Adult" class="form-control" style="width: 100px" onchange="amountPrice()">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+                </div>
+            </div>
+
+            @*<div class="form-group row">
+                    <label class="col-sm-3 col-form-label text-right font-weight-bold text-mobile-left">@GetLanguage.Language(lan, "PromotionCode"):</label>
+                    <div class="col-sm-9 font-weight-bold col-form-label">
+                        <div class="col-md-3 col-xs-12" style="padding-left:0px">
+                            <input type="text" placeholder="@GetLanguage.Language(lan, "PromotionCode")" id="PromotionCode" name="PromotionCode" />
+                            <span id="info-discout">@GetLanguage.Language(lan, "Discount") <strong id="text-discount">5%</strong> ~ <strong id="text-value-discount">120 USD</strong></span>
+                            <input type="hidden" id="value-discout" value="0" />
+                        </div>
+                        <div class="col-md-4 col-xs-12" style="padding-left:0px">
+                            <button class="btn btn-success" id="applyCode" style="font-size:12px">@GetLanguage.Language(lan, "Apply")</button>
+                        </div>
+                    </div>
+                </div>*@
+            @*<div class="form-group">
+                    <label class="col-sm-3 control-label">@GetLanguage.Language(lan, "Totalitinerary"):</label>
+                    <div class="col-sm-9">
+                        <span id="text-total-price">00.00 USD</span>
+                    </div>
+                </div>*@
+            @*<div class="form-group" id="deposit" style="display: block;">
+                    <label class="col-sm-3 control-label">@GetLanguage.Language(lan, "Deposit"):</label>
+                    <div class="col-sm-9">
+                        <span id="show-deposit">@tours.Deposit</span> %
+                        <input type="hidden" id="text-deposit" value="@tours.Deposit">
+                    </div>
+                </div>*@
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Children:</label>
+                <div class="col-sm-9">
+                    <div class="p-child">
+                        <select name="Child1" id="Child1">
+                            @for (int i = 0; i <= 10; i++)
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        </select>
+                        <span>0-5 age (Free)</span>
+                    </div>
+                    <div class="p-child">
+                        <select name="Child2" id="Child2" onchange=" amountPrice() ">
+                            @for (int i = 0; i <= 10; i++)
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        </select>
+                        <span>6-10 age (75%)</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group" id="payment-now" style="display: block;">
+                <label class="col-sm-3 control-label">Total Amount:</label>
+                <div class="col-sm-9">
+                    <span id="text-total-price"></span>
+                </div>
+            </div>
+            @*<div class="form-group row">
+                    <label class="col-sm-3 col-form-label text-right font-weight-bold text-mobile-left">@GetLanguage.Language(lan, "Balance"):</label>
+                    <div class="col-sm-9 font-weight-bold col-form-label">
+                        <span id="text-due-payment"></span>
+                    </div>
+                </div>*@
+
+            <h3 class="border-bottom my-4">@GetLanguage.Language(lan, "GuestInformation")</h3>
+
+            @*<div class="form-group row">
+                    <label class="col-sm-3 col-form-label text-right font-weight-bold text-mobile-left">@GetLanguage.Language(lan, "RoomType")<span class="text-danger">*</span>:</label>
+                    <div class="col-sm-9 font-weight-bold">
+                        <select name="RoomType" class="form-control d-none" style="width: 300px">
+                            <option value="Double room">@GetLanguage.Language(lan, "Doubleroom")</option>
+                            <option value="Twin room">@GetLanguage.Language(lan, "Twinroom")</option>
+                            <option value="Triple room">@GetLanguage.Language(lan, "Tripleroom")</option>
+                        </select>
+                    </div>
+                </div>*@
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label text-right font-weight-bold text-mobile-left">@GetLanguage.Language(lan, "Gender")<span class="text-danger">*</span>:</label>
+                <div class="col-sm-9 font-weight-bold">
+                    <select name="Gender" id="Gender" class="form-control" style="width: 150px;">
+                        <option value="Mr">@GetLanguage.Language(lan, "Mr")</option>
+                        <option value="Ms">@GetLanguage.Language(lan, "Ms")</option>
+                        <option value="Mrs">@GetLanguage.Language(lan, "Mrs")</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label text-right font-weight-bold text-mobile-left">@GetLanguage.Language(lan, "FullName")<span class="text-danger">*</span>:</label>
+                <div class="col-sm-9 font-weight-bold">
+                    <input type="text" name="FullName" id="FullName" class="form-control" style="width: 300px">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label text-right font-weight-bold text-mobile-left">@GetLanguage.Language(lan, "Tel"):</label>
+                <div class="col-sm-9 font-weight-bold">
+                    <input type="text" name="Tel" id="Tel" class="form-control" style="width: 300px">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label text-right font-weight-bold text-mobile-left">Email<span class="text-danger">*</span>:</label>
+                <div class="col-sm-9 font-weight-bold">
+                    <input type="text" name="Email" id="Email" class="form-control" style="width: 300px">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label text-right font-weight-bold text-mobile-left">@GetLanguage.Language(lan, "Country")<span class="text-danger">*</span>:</label>
+                <div class="col-sm-9 font-weight-bold">
+                    <select id="Country" name="Country" class="form-control" style="width: 300px">
+                        <option value="">Select a country</option>
+                        <option value="USA">USA</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Afghanistan">Afghanistan </option>
+                        <option value="Albania">Albania</option>
+                        <option value="Algeria">Algeria</option>
+                        <option value="American Samoa">American Samoa </option>
+                        <option value="Andorra">Andorra </option>
+                        <option value="Angola">Angola </option>
+                        <option value="Anguilla">Anguilla </option>
+                        <option value="Antarctica">Antarctica </option>
+                        <option value="Antigua and Barbuda">Antigua and Barbuda </option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Armenia">Armenia</option>
+                        <option value="Aruba">Aruba </option>
+                        <option value="Australia">Australia</option>
+                        <option value="Austria">Austria</option>
+                        <option value="Azerbaijan">Azerbaijan </option>
+                        <option value="Bahamas">Bahamas </option>
+                        <option value="Bahrain">Bahrain</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="Barbados">Barbados </option>
+                        <option value="Belarus">Belarus</option>
+                        <option value="Belgium">Belgium</option>
+                        <option value="Belize">Belize </option>
+                        <option value="Benin">Benin </option>
+                        <option value="Bermuda">Bermuda</option>
+                        <option value="Bhutan">Bhutan </option>
+                        <option value="Bolivia">Bolivia</option>
+                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina </option>
+                        <option value="Botswana">Botswana </option>
+                        <option value="Bouvet Island">Bouvet Island </option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="British Indian Ocean Territory ">British Indian Ocean Territory </option>
+                        <option value="British Virgin Islands ">British Virgin Islands </option>
+                        <option value="Brunei">Brunei</option>
+                        <option value="Bulgaria">Bulgaria</option>
+                        <option value="Burkina Faso ">Burkina Faso </option>
+                        <option value="Burundi ">Burundi </option>
+                        <option value="Cambodia">Cambodia</option>
+                        <option value="Cameroon ">Cameroon </option>
+                        <option value="Cape Verde ">Cape Verde </option>
+                        <option value="Cayman Islands ">Cayman Islands </option>
+                        <option value="Central African Republic">Central African Republic</option>
+                        <option value="Chad">Chad</option>
+                        <option value="Chile">Chile</option>
+                        <option value="China">China</option>
+                        <option value="Chile">Christmas Island </option>
+                        <option value="Cocos Islands ">Cocos Islands </option>
+                        <option value="Colombia ">Colombia </option>
+                        <option value="Comoros ">Comoros </option>
+                        <option value="Congo ">Congo </option>
+                        <option value="Cook Islands ">Cook Islands </option>
+                        <option value="Costa Rica ">Costa Rica </option>
+                        <option value="Croatia">Croatia</option>
+                        <option value="Cuba">Cuba</option>
+                        <option value="Cyprus ">Cyprus </option>
+                        <option value="Czech Republic">Czech Republic</option>
+                        <option value="Denmark">Denmark</option>
+                        <option value="Djibouti">Djibouti</option>
+                        <option value="Dominica">Dominica</option>
+                        <option value="Dominican Republic">Dominican Republic</option>
+                        <option value="East Timor">East Timor</option>
+                        <option value="Ecuador">Ecuador</option>
+                        <option value="Egypt">Egypt</option>
+                        <option value="El Salvador">El Salvador</option>
+                        <option value="Equatorial Guinea">Equatorial Guinea</option>
+                        <option value="Eritrea">Eritrea</option>
+                        <option value="Estonia">Estonia</option>
+                        <option value="Ethiopia">Ethiopia</option>
+                        <option value="Falkland Islands ">Falkland Islands </option>
+                        <option value="Faroe Islands">Faroe Islands</option>
+                        <option value="Fiji">Fiji</option>
+                        <option value="Finland">Finland</option>
+                        <option value="France">France</option>
+                        <option value="Gabon">Gabon</option>
+                        <option value="Gambia">Gambia</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Ghana">Ghana</option>
+                        <option value="Gibraltar">Gibraltar</option>
+                        <option value="Greece">Greece</option>
+                        <option value="Greenland">Greenland</option>
+                        <option value="Grenada">Grenada</option>
+                        <option value="Guadeloupe">Guadeloupe</option>
+                        <option value="Guam">Guam</option>
+                        <option value="Guatemala">Guatemala</option>
+                        <option value="Guinea">Guinea</option>
+                        <option value="Guinea-Bissau">Guinea-Bissau</option>
+                        <option value="Guyana">Guyana</option>
+                        <option value="Haiti">Haiti</option>
+                        <option value="Heard">Heard</option>
+                        <option value="Honduras">Honduras</option>
+                        <option value="Hong Kong">Hong Kong</option>
+                        <option value="Hungary">Hungary</option>
+                        <option value="Iceland">Iceland</option>
+                        <option value="India">India</option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="Iran">Iran</option>
+                        <option value="Iraq">Iraq</option>
+                        <option value="Ireland">Ireland</option>
+                        <option value="Israel">Israel</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Ivory Coast">Ivory Coast</option>
+                        <option value="Jamaica">Jamaica</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Jordan">Jordan</option>
+                        <option value="Kazakhstan">Kazakhstan</option>
+                        <option value="Kenya">Kenya</option>
+                        <option value="Kiribati">Kiribati</option>
+                        <option value="Korea, North">Korea, North</option>
+                        <option value="Korea, South">Korea, South</option>
+                        <option value="Kuwait">Kuwait</option>
+                        <option value="Kyrgyzstan">Kyrgyzstan</option>
+                        <option value="Laos">Laos</option>
+                        <option value="Latvia">Latvia</option>
+                        <option value="Lebanon">Lebanon</option>
+                        <option value="Lesotho">Lesotho</option>
+                        <option value="Liberia">Liberia</option>
+                        <option value="Libya">Libya</option>
+                        <option value="Liechtenstein">Liechtenstein</option>
+                        <option value="Lithuania">Lithuania</option>
+                        <option value="Luxembourg">Luxembourg</option>
+                        <option value="Macau">Macau</option>
+                        <option value="Macedonia">Macedonia</option>
+                        <option value="Madagascar">Madagascar</option>
+                        <option value="Malawi">Malawi</option>
+                        <option value="Malaysia">Malaysia</option>
+                        <option value="Maldives">Maldives</option>
+                        <option value="Mali">Mali</option>
+                        <option value="Malta">Malta</option>
+                        <option value="Marshall Islands">Marshall Islands</option>
+                        <option value="Martinique">Martinique</option>
+                        <option value="Mauritania">Mauritania</option>
+                        <option value="Mauritius">Mauritius</option>
+                        <option value="Mayotte">Mayotte</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Micronesia">Micronesia</option>
+                        <option value="Moldova">Moldova</option>
+                        <option value="Monaco">Monaco</option>
+                        <option value="Mongolia">Mongolia</option>
+                        <option value="Montserrat">Montserrat</option>
+                        <option value="Morocco">Morocco</option>
+                        <option value="Mozambique">Mozambique</option>
+                        <option value="Myanmar">Myanmar</option>
+                        <option value="Namibia">Namibia</option>
+                        <option value="Nauru">Nauru</option>
+                        <option value="Nepal">Nepal</option>
+                        <option value="Netherlands">Netherlands</option>
+                        <option value="Netherlands Antilles">Netherlands Antilles</option>
+                        <option value="New Caledonia">New Caledonia</option>
+                        <option value="New Zealand">New Zealand</option>
+                        <option value="Nicaragua">Nicaragua</option>
+                        <option value="Niger">Niger</option>
+                        <option value="Nigeria">Nigeria</option>
+                        <option value="Niue">Niue</option>
+                        <option value="Norfolk Island">Norfolk Island</option>
+                        <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                        <option value="Norway">Norway</option>
+                        <option value="Oman">Oman</option>
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="Palau">Palau</option>
+                        <option value="Panama">Panama</option>
+                        <option value="Papua New Guinea">Papua New Guinea</option>
+                        <option value="Paraguay">Paraguay</option>
+                        <option value="Peru">Peru</option>
+                        <option value="Philippines">Philippines</option>
+                        <option value="Pitcairn Island">Pitcairn Island</option>
+                        <option value="Poland">Poland</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Puerto Rico">Puerto Rico</option>
+                        <option value="Qatar">Qatar</option>
+                        <option value="Reunion">Reunion</option>
+                        <option value="Romania">Romania</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Rwanda">Rwanda</option>
+                        <option value="S.Georgia">S.Georgia</option>
+                        <option value="Saint Kitts Nevis">Saint Kitts Nevis</option>
+                        <option value="Saint Lucia">Saint Lucia</option>
+                        <option value="Saint Vincent">Saint Vincent</option>
+                        <option value="Samoa">Samoa</option>
+                        <option value="San Marino">San Marino</option>
+                        <option value="Sao Tome">Sao Tome</option>
+                        <option value="Saudi Arabia">Saudi Arabia</option>
+                        <option value="Senegal">Senegal</option>
+                        <option value="Seychelles">Seychelles</option>
+                        <option value="Sierra Leone">Sierra Leone</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Slovakia">Slovakia</option>
+                        <option value="Slovenia">Slovenia</option>
+                        <option value="Somalia">Somalia</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="Spain">Spain</option>
+                        <option value="Sri Lanka">Sri Lanka</option>
+                        <option value="St. Helena">St. Helena</option>
+                        <option value="St. Pierre">St. Pierre</option>
+                        <option value="Sudan">Sudan</option>
+                        <option value="Suriname">Suriname</option>
+                        <option value="Svalbard">Svalbard</option>
+                        <option value="Swaziland">Swaziland</option>
+                        <option value="Sweden">Sweden</option>
+                        <option value="Switzerland">Switzerland</option>
+                        <option value="Syria">Syria</option>
+                        <option value="Taiwan">Taiwan</option>
+                        <option value="Tajikistan">Tajikistan</option>
+                        <option value="Tanzania">Tanzania</option>
+                        <option value="Thailand">Thailand</option>
+                        <option value="Togo">Togo</option>
+                        <option value="Tokelau">Tokelau</option>
+                        <option value="Tonga">Tonga</option>
+                        <option value="Trinidad">Trinidad</option>
+                        <option value="Tunisia">Tunisia</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="Turkmenistan">Turkmenistan</option>
+                        <option value="Turks">Turks</option>
+                        <option value="Tuvalu">Tuvalu</option>
+                        <option value="Uganda">Uganda</option>
+                        <option value="Ukraine">Ukraine</option>
+                        <option value="United Arab Emirates">United Arab Emirates</option>
+                        <option value="United Kingdom">United Kingdom </option>
+                        <option value="Uruguay">Uruguay</option>
+                        <option value="Uzbekistan">Uzbekistan</option>
+                        <option value="Vanuatu">Vanuatu</option>
+                        <option value="Vatican City">Vatican City</option>
+                        <option value="Venezuela">Venezuela</option>
+                        <option value="Vietnam">Vietnam</option>
+                        <option value="Virgin Islands">Virgin Islands </option>
+                        <option value="Wallis">Wallis</option>
+                        <option value="Western Sahara">Western Sahara </option>
+                        <option value="Yemen">Yemen</option>
+                        <option value="Yugoslavia">Yugoslavia</option>
+                        <option value="Zaire">Zaire</option>
+                        <option value="Zambia">Zambia</option>
+                        <option value="Zimbabwe">Zimbabwe</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Address</label>
+                <div class="col-sm-6">
+                    <input type="text" name="Address" id="Address" />
+                </div>
+            </div>
+            <div class="form-group row" style="display: none">
+                <label class="col-sm-3 col-form-label text-right font-weight-bold text-mobile-left">WhatsApp, Viber...:</label>
+                <div class="col-sm-9 font-weight-bold">
+                    <input type="text" name="SocialMedia" id="SocialMedia" class="form-control" style="width: 300px">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label text-right font-weight-bold text-mobile-left">Request:</label>
+                <div class="col-sm-9 font-weight-bold">
+                    <textarea name="Request" id="Request" style="height:80px;" class="form-control"></textarea>
+                </div>
+            </div>
+
+            @if (lan == "vi")
+            {
+                <div class="col-sm-offset-3 col-md-9">
+                    <input type="checkbox" name="agreed">Tôi xác nhận với Công ty Cổ phần GoVietTravel rằng tôi đã đọc các <a href="/terms-and-conditions">điều khoản & điều kiện</a> và đồng ý với hướng dẫn của họ
+                </div>
+            }
+            else
+            {
+                <div class="col-sm-offset-3 col-md-9">
+                    <input type="checkbox" name="agreed">I certify toGoVietTravel Stock Company that I have read the <a href="/terms-and-conditions">terms &amp; conditions</a> and agreed to their guidelines
+                </div>
+            }
+
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-md-9">
+                    @*   <input type="submit" id="BookTour-paynow" value="@GetLanguage.Language(lan, "PAYNOW")" class="btn btn-success text-uppercase" style="margin-left:-10px;">*@
+                    <input type="submit" id="BookTour-button" value="@GetLanguage.Language(lan, "BookTour")" class="btn btn-success text-uppercase" style="margin-left:-10px;">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<link href="~/Plugins/toastr/toastr.css" rel="stylesheet" />
+<script src="~/Plugins/toastr/toastr.min.js"></script>
+<script src="~/Plugins/Validate/jquery-validation-1.13.1/jquery.validate.min.js"></script>
+<div id="wraploadding">
+    <div id="imgloadding"><img src="~/Areas/Administrator/Content/img/ajax-loader.gif" alt="loading"></div>
+</div>
+
+<script>
+
+
+
+    var discount = 0;
+    var money = "USD";
+    $("#wraploadding").hide();
+    function LoadingSendEmail() {
+        $("#wraploadding").show();
+        $("#wraploadding").css("width", $(window).width());
+        $("#wraploadding").css("height", $(window).height());
+        $("#imgloadding").css("top", ($(window).height() / 2) - 80);
+    }
+      function amountPrice() {
+        var child2 = $('#Child2').val();
+          var adult = $('#Adult').val();
+          console.log("so luong " + adult);
+          var selectItinerary = $("#TabId option:selected");
+
+
+
+
+
+          var priceTour = selectItinerary.data("price");
+          var priceTourUSD = priceTour;
+          console.log("priceTourUSD " + priceTourUSD);
+            if ("@lan"== "vi") {
+
+                priceTour = (@CodeHelper.GetExrate()* priceTour);
+                console.log("gia" + priceTour);
+                money = "VND";
+            }
+           //discount = $("#value-discout").val();
+          //console.log(priceTour + " " + adult + " discount" + discount);
+
+          var totalPrice = priceTour * adult /** (1 - discount/100);*/ + priceTour * child2 * 0.6;
+          console.log("tong tien " + totalPrice.toLocaleString());
+          if (discount = 0) {
+              $("#text-discount").text(discount + " % ");
+              $("#text-value-discount").text((priceTour * adult) / 100 + money)
+              $("#info-discout").show();
+          }
+          else {
+              $("#info-discout").hide();
+          }
+        var deposit = $("#text-deposit").val();
+
+        if (parseFloat(priceTour) <= 100) {
+            deposit = 100;
+            $("#show-deposit").text("100");
+            $("#text-deposit").val("100");
+        } else {
+            deposit = '@tours.Deposit';
+            $("#show-deposit").text(deposit);
+            $("#text-deposit").val(deposit);
+          }
+          var paymentNow = priceTourUSD * adult;
+          console.log("paymentNow" + paymentNow);
+          var vndTotal = (@CodeHelper.GetExrate()* paymentNow).toLocaleString();
+
+          vndTotal = vndTotal;
+        var duePayment = 0;
+          var typePayment = $('input.radio-type-pay:checked').val();
+        if (typePayment == "1") {
+            var duePayment = totalPrice - paymentNow;
+            $("#BookTour-paynow").show();
+            $("#BookTour-button").hide();
+        } else {
+            $("#BookTour-paynow").hide();
+            $("#BookTour-button").show();
+            duePayment = totalPrice;
+        }
+          $("#text-price-itinerary").text("");
+          $("#text-price-itinerary").text(priceTour.toLocaleString() + money);
+
+          $("#text-total-price").text("");
+          $("#text-total-price").text(totalPrice.toLocaleString() + " @GetLanguage.Language(lan,"USD")");
+          console.log("@GetLanguage.Language(lan, "USD")");
+
+        $("#text-payment-now").text("");
+        $("#text-payment-now").text(paymentNow.toFixed(2) + " USD" );
+
+        $("#text-due-payment").text("");
+        $("#text-due-payment").text(duePayment.toFixed(2) + " USD");
+    }
+
+    function changePaymethod() {
+        if ($("#Radio2").is(":checked")) {
+            amountPrice();
+            $("#payment-now").hide();
+            $("#deposit").hide();
+            $("#BookTour-paynow").hide();
+            $("#BookTour-button").show();
+        } else {
+            amountPrice();
+            $("#payment-now").show();
+            $("#deposit").show();
+            $("#BookTour-paynow").show();
+            $("#BookTour-button").hide();
+        }
+
+    }
+
+    $(document).ready(function () {
+        amountPrice();
+        $(".datepicker").datepicker({
+            minDate: new Date(),
+        });
+
+        $("#applyCode").on("click", function (e) {
+            e.preventDefault();
+            // lay ma code trong input
+            var promotionCode = $("#PromotionCode").val();
+            // lay ma tua
+            var id = @ViewBag.tourID;
+
+            $("#success").empty();
+            var model = {
+                code: promotionCode,
+                IDTour : id
+            }
+            $.ajax({
+                type: 'POST',
+                url: "/BookTour/CheckCode",
+                data: JSON.stringify(model),
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    if(data.Result=="OK"){
+                        // neu ma het
+                        if (data.Message == "1") {
+                            discount = 0;
+                            $("#value-discout").val(0);
+                            amountPrice();
+                            $("#info-discout").hide();
+                            toastr.error('Out of code!', 'Error');
+                        }
+                        else{
+                            $("#value-discout").val(data.rate * 100);
+                            amountPrice();
+                        }
+
+                    }
+                    else if (data.Result == "ERROR") {
+                        discount = 0;
+                        $("#value-discout").val(0);
+                        amountPrice();
+                        $("#info-discout").hide();
+                        toastr.error('The code has expired or does not exist!', 'Error');
+                    }
+
+                },
+                error: function () {
+                    toastr.success(data.messages, 'Success');
+                }
+            });
+        });
+
+
+        // I'm tired, I do not want to think
+    });
+</script>
+<script>
+    jQuery.validator.setDefaults({
+        debug: true,
+        success: "valid"
+    });
+    $("#bk-tour").validate({
+        rules: {
+            'Departure': {
+                required: true,
+                date: true
+            },
+            'Gender': {
+                required: true,
+            },
+            'Adults': {
+                required: true,
+            },
+            'FullName': {
+                required: true,
+            },
+            'Country': {
+                required: true,
+            },
+            'Email': {
+                required: true,
+                email: true
+            },
+            'agreed': {
+                required: true,
+            }
+        },
+        messages: {
+            'Departure': "Please enter Departure(MM/DD/YYYY)",
+            'Gender': "Please select Gender",
+            'FullName': "Please enter First Name",
+            'Country': "Please select Country",
+            'Email': "Please enter Email Adress",
+            'Adults': "Please enter Email Adress",
+            'agreed': "You need accept payments of swallowtravel.com",
+        },
+        submitHandler: function (form) {
+            form.submit();
+            LoadingSendEmail();
+        }
+    });
+</script>
+
+<style>
+    .div-scroll {
+        width: 97.5% !important;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 25px 0px 5px !important;
+        overflow-y: scroll;
+    }
+</style>

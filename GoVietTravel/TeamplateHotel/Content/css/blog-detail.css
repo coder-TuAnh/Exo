@@ -1,0 +1,237 @@
+.title_blog_detail{
+	    padding: 0;
+    background: #eeeeee;
+    margin-bottom: 55px;
+    background-size: cover;
+    background-position: center center;
+}
+.blog_thumb .title_blog a.post_title {
+	display: inherit;
+}
+.title_blog_detail h1{
+	font-size: 35px;
+	font-weight: 600;
+	color:#444;
+}
+.title_blog_detail .wrap_blog {
+    padding-top: 85px;
+}
+.wrapper_right {
+	padding-top: 0
+}
+.banner img{
+	width: 100%;
+	object-fit: cover;
+	transition:.4s;
+}
+.banner img:hover{
+	opacity: .8
+}
+.content_detail{
+	padding:30px 0;
+}
+.content_detail .gallery{
+	text-align: center
+}
+.content_detail .gallery ul{
+	padding:0;
+	margin:0;
+	padding-top:20px;
+	padding-bottom:20px;
+}
+.content_detail .gallery img{
+	width: 150px;
+	height: 150px;
+	transition:.4s;
+	object-fit: cover
+}
+.content_detail .gallery a:hover img{
+	opacity: .8
+}
+.content_detail .travel_life{
+	border: 0;
+    margin-left: 0;
+    padding-left: 0;
+    background: #eeeeee;
+    padding-bottom: 45px;
+    padding-top: 45px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-left: 120px;
+    padding-right: 120px;
+    font-size: 25px;
+    line-height: 32px;
+    text-align: center
+}
+.content_detail .travel_life p{
+	    color: #047e7b;
+	    font-size:25px;
+	    font-weight: bold;
+	    margin-bottom: 20px
+}
+.content_detail .title-out strong{
+	color: #047e7b;
+	font-size:20px;
+	margin-bottom: 20px
+}
+.content_detail .link-exo{
+	color: #55b493;
+	transition:.4s
+}
+.content_detail .link-exo:hover{
+	color: #000
+}
+.content_detail .flex-md-gro{
+	text-align: center
+}
+.content_detail .flex-md-gro img{
+	max-width: 544px;
+	margin:auto;
+	object-fit: cover
+}
+.want-read {
+	padding:20px;
+	border:1px solid #55b493;
+}
+.want-read .form-title{
+	margin-top: 25px;
+	font-size: 22px;
+    line-height: 22px;
+    font-weight: 600;
+    font-family: 'Raleway';
+}
+.want-read span{
+	font-size: 14px
+}
+.want-read .form-gup{
+	margin-right: 20px
+}
+.want-read .form-gup label{
+	font-weight: bold;
+	font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+    color: #55b493
+}
+.want-read form{
+	display:flex;
+}
+.want-read .form-gup input{
+	padding: 10px 12px;
+	font-size:14px;
+	width: 150px;
+	border: #979797 1px solid;
+    border-radius: 4px;
+    color: #000 ;
+}
+input, textarea, textarea:focus, input:focus{
+	outline: none
+}
+.want-read button{
+	background: #55b493;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 27px;
+}
+.visited{
+	display:block;
+	margin-bottom: 30px
+}
+.wrap_control .prev{
+	text-align: right;
+	font-size: 14px
+}
+.wrap_control .next{
+	text-align: left;
+	font-size: 14px
+}
+.wrap_control .col-tro a{
+	padding:40px 30px;
+	display:block;
+	text-decoration: none;
+	color: #000
+}
+.wrap_control .col-tro .prev-nav{
+	color: #55b493
+}
+.post-info{
+	margin-bottom: 30px
+}
+.wrap_control .col-tro{
+	transition:.4s;
+}
+.wrap_control .col-tro:hover{
+	background:#55b493;
+}
+.wrap_control .col-tro:hover a{
+	color: #fff
+}
+.wrap_control .col-tro:hover .prev-nav{
+	color: #fff
+}
+
+/**/
+.check_mail{
+	margin-top: 50px;
+	padding:35px 0;
+	margin-bottom: 100px
+}
+.check_mail .title_check{
+	margin-bottom: 25px
+}
+.check_mail .title_check .title{
+	font-size: 24px;
+	color: #444;
+	margin-bottom: 15px
+}
+.check_mail textarea{
+	padding:5px 13px;
+	border:1px solid #eeeeee;
+	width: 100%;
+	border-radius: 3px
+}
+.check_mail .form-group label{
+	min-width: 70px;
+	font-weight:bold;
+	margin-bottom: 5px
+}
+.check_mail .form-group{
+	margin-bottom: 25px
+}
+.check_mail .form-group input{
+	border:1px solid #eeeeee;
+	border-radius: 3px;
+	color: #000000;
+	padding:5px 13px;
+}
+.check_mail input[type="submit"]{
+    border: none;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 8px 15px;
+    border-radius: 3px;
+    border:1px solid #eeeeee;
+    transition:.4s;
+    background:#fff;
+	color: #000000
+}
+.check_mail input[type="submit"]:hover{
+	background: #55b493;
+	color: #fff;
+	border:1px solid #55b493;
+}
+
+
+
+
+
+
+
+
+
+
+

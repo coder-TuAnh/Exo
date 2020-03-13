@@ -1,0 +1,146 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@model IEnumerable<Contact>
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    var hotel = CommentController.DetailHotel(Request.Cookies["LanguageID"].Value);
+    Menu menu = ViewBag.Menu ?? new Menu();
+}
+
+<link href="~/Plugins/Validate/jquery-validation-1.13.1/jquery-validation.css" rel="stylesheet" />
+<script src="~/Plugins/Validate/jquery-validation-1.13.1/jquery.validate.min.js"></script>
+<script src="~/Plugins/Validate/jquery-validation-1.13.1/additional-methods.min.js"></script>
+
+<div class="sub-nav">
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <h1 class="h1-title-d">
+                    @menu.Title
+                </h1>
+            </div>
+            <!-- Sub Nav Links -->
+            @Html.Partial("Comment/social")
+        </div>
+    </div>
+</div>
+
+<section class="regular" style="padding-top: 4rem">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <form action="/Contact/SubmitContact" method="POST" id="contactform" class="form-horizontal">
+                    <div id="contact-div">
+                        <strong>@hotel.Name</strong><br />
+                        <strong>Address: </strong>@hotel.Address<br />
+                        <strong>Phone: </strong>@hotel.Tel<br />
+                        <strong>Email: </strong>@hotel.Email
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <label for="FullName" class="col-sm-2 control-label">@GetLanguage.Language(lan, "FullName")<span class="required">*</span></label>
+                        <div class="col-sm-7">
+                            <input type="text" name="FullName" id="FullName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Tel" class="col-sm-2 control-label">@GetLanguage.Language(lan, "Tel")</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="Tel" id="Tel" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Email" class="col-sm-2 control-label">@GetLanguage.Language(lan, "Email")<span class="required">*</span></label>
+                        <div class="col-sm-7">
+                            <input type="text" name="Email" id="Email" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Title" class="col-sm-2 control-label">@GetLanguage.Language(lan, "Subject")<span class="required">*</span></label>
+                        <div class="col-sm-7">
+                            <input type="text" name="Subject" id="Subject" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Content" class="col-sm-2 control-label">@GetLanguage.Language(lan, "Messages")<span class="required">*</span></label>
+                        <div class="col-sm-7">
+                            <textarea name="Request" id="Request" style="height: 120px;"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="submit" value="Continue" class="button-anchor btn-book" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            @*<div class="col-lg-3">
+                @Html.Partial("SideBar")
+                <div class="clearfix"></div>
+            </div>*@
+        </div>
+    </div>
+</section>
+
+<div id="wraploadding">
+    <div id="imgloadding"><img src="/Areas/Administrator/Content/img/ajax-loader.gif" alt="loading" /></div>
+</div>
+
+<style>
+    .content-container-anchor img {
+        max-width: none;
+    }
+
+    #contact-div {
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+    }
+</style>
+<script type="text/javascript">
+    function LoadingSendEmail() {
+        $("#wraploadding").show();
+        $("#wraploadding").css("width", $(window).width());
+        $("#wraploadding").css("height", $(window).height());
+        $("#imgloadding ").css("top", ($(window).height() / 2) - 80);
+    }
+    //validate
+    jQuery.validator.setDefaults({
+        debug: true,
+        success: "valid"
+    });
+    $("#contactform").validate({
+        rules: {
+            'FullName': {
+                required: true,
+            },
+            'Tel': {
+                required: true,
+            },
+            'Email': {
+                required: true,
+                email: true
+            },
+            'Title': {
+                required: true,
+            },
+            'Content': {
+                required: true,
+            },
+        },
+        messages: {
+            'FullName': "Please enter First Name",
+            'Tel': "Please enter Tel",
+            'Email': "Please enter Email Adress",
+            'Title': "Please enter Title",
+            'Content': "Please enter Content",
+        },
+        submitHandler: function (form) {
+            form.submit();
+            LoadingSendEmail();
+        }
+    });
+</script>

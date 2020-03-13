@@ -1,0 +1,36 @@
+﻿@using TeamplateHotel.Controllers
+@{
+    ViewBag.Title = "MessageThank";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    var Hotel = CommentController.DetailHotel(Request.Cookies["LanguageID"].Value);
+}
+<style>
+    #checkimg{
+        width:63px;
+    }
+    #box{
+        padding:200px 10px 50px 10px; 
+    }
+</style>
+<div class="thank-body text-center">
+    <div class="row" id="box">
+        <div class="col-lg-offset-1 col-lg-10 col-md-12">
+            <h1>
+                <label class="inline-block text-middle"><img id="checkimg" src="~/Files/files/select_item2.png" alt=""></label> <span class="inline-block text-middle">Thank you!</span>
+            </h1>
+            <div class="caption z_16 lh24">
+                <p class="z_24">
+                    We have received your booking request!
+                </p>
+                <br>
+                <p class="">
+                    Our reservation team will be sending you confirmation shortly,
+                    together with payment information and other trip details. If
+                    there is anything we can do to make this trip even more special
+                    for you, please email us <a href="@Hotel.Email">@Hotel.Email</a>
+                    or call us @Hotel.Tel.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

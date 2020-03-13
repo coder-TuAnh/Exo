@@ -1,0 +1,86 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@{
+                /**/
+
+                Menu menu = ViewBag.Menu ?? new Menu();
+                List<Slider> sliders = CommentController.GetListSlider(Request.Cookies["LanguageID"].Value);
+}
+
+<link href="~/Areas/Administrator/Content/Slider/theme/default.css" rel="stylesheet" />
+<link href="~/Areas/Administrator/Content/Slider/nivo-slider.css" rel="stylesheet" />
+<script src="~/Plugins/nino-slider/jquery.nivo.slider.js"></script>
+@*@if (sliders.Count > 0)
+    {
+        <section class="hero hero-overlap" style="background-image: url(@sliders[0].Image);">
+            <div class="bg-overlay">
+                <div class="container">
+                    <div class="intro-wrap">
+                        <h1 class="intro-title">@sliders[0].Title </h1>
+                        <div class="intro-text"> @sliders[0].Description</div>
+                        <form class="form-inline" action="/Search" method="get">
+                            <div class="form-group">
+                                <input type="text" id="keysearch" name="key" class="form-control" placeholder="I want to travel to...">
+                            </div>
+                            <button type="submit" class="btn btn-primary mb-2">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }*@
+@if (sliders.Count > 0)
+{
+    <section class="hero hero-overlap" style="background-image: url(@sliders[0].Image);">
+        <div class="bg-overlay">
+            <div class="container">
+                <div class="intro-wrap">
+                    <h1 class="intro-title">@sliders[0].Title </h1>
+                    <div class="intro-text"> @sliders[0].Description</div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+@*<div id="slider" class="nivoSlider">
+    @foreach (var item in sliders)
+    {
+        <div class="item">
+            <img src="@item.Image" data-thumb="@item.Image" alt="" />
+        </div>
+    }
+</div>
+<script type="text/javascript">
+    $(window).load(function () {
+        $('#slider').nivoSlider({
+            effect: 'fade',
+            slices: 15,
+            boxCols: 8,
+            boxRows: 4,
+            animSpeed: 500,
+            pauseTime: 3000,
+            startSlide: 0,
+            directionNav: true,
+            controlNav: false,
+            controlNavThumbs: false,
+            pauseOnHover: true,
+            manualAdvance: false,
+            prevText: '<i class="fa fa-chevron-left"></i>',
+            nextText: '<i class="fa fa-chevron-right"></i>',
+
+        });
+    });
+</script>
+<style>
+    .nivo-prevNav i {
+        color: #fff;
+        font-size: 35px;
+        margin-left: 20px;
+    }
+
+    .nivo-nextNav i {
+        color: #fff;
+        font-size: 35px;
+        margin-right: 20px;
+    }
+</style>*@

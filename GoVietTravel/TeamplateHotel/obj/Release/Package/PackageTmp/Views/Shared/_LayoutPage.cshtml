@@ -1,0 +1,378 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@using ProjectLibrary.Config
+@using TeamplateHotel.Models
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    var company = CommentController.DetailHotel(lan);
+    ShowObject Wellcome = CommentController.WellcomeArticle(lan);
+    List<Language> languages = CommentController.GetLanguages();
+    Plugin plugin = CommentController.GetPluigPlugin();
+    List<Menu> menus = CommentController.GetMainMenus(lan);
+    List<Menu> menufooter = CommentController.GetSecondMenus(lan).OrderBy(a => a.Index).ToList();
+    List<Menu> menuTop = CommentController.GetSecondMenusTop(lan).OrderBy(a => a.Index).ToList();
+    var language = languages.FirstOrDefault(a => a.ID == lan) ?? new Language();
+
+    string homepage = "";
+    if (ViewBag.HomePage == true)
+    {
+        homepage = "home";
+    }
+
+    if (lan == "ja")
+    {
+        <style>
+            #cssmenu > ul > li > a {
+                padding: 0 30px !important;
+            }
+
+            #cssmenu > ul > li.has-sub > a::after {
+                top: 6px;
+            }
+
+            #cssmenu > ul > li.has-sub > a {
+                margin-top: 30px;
+            }
+        </style>
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>@ViewBag.MetaKeyword</title>
+
+    <meta name="description" content="@ViewBag.MetaDesctiption">
+    <meta name="keywords" content="@ViewBag.MetaKeyword">
+
+    <meta property="og:title" content="@ViewBag.Title">
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="@company.Logo">
+    <meta property="og:description" content="@ViewBag.MetaDesctiption">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    @*<meta property="og:url" content="goviettravel.com" />
+
+        <meta property="fb:admins" content="{phongcsm}" />
+        <meta property="fb:app_id" content="1487995971506850" />*@
+
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="~/Plugins/smartmenus-master/addons/bootstrap/jquery.smartmenus.bootstrap.css" rel="stylesheet" />
+    <link href="~/Plugins/jquery-ui/css/Theme/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Plugins/jquery-ui/css/Theme/jquery-ui.theme.css" rel="stylesheet" />
+
+    <link href="~/Plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/Custom.css" rel="stylesheet" />
+    <link href="~/Content/Css/Custom.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/Js/jquery-ui.js"></script>
+    <script src="~/Plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="~/Content/Js/custom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+</head>
+
+<body>
+    <div class="navbar-wrapper">
+        <header class="navbar navbar-default navbar-fixed-top scrolled menu-shrink" id="MainMenu" role="navigation">
+            <div class="navbar-extra-top clearfix">
+                <div class="navbar container-fluid">
+                    <ul id="menu-top-bar-menu" class="nav navbar-nav navbar-left">
+                        <li class="menu-item">
+                            <a href="/about-us"><i class="fa fa-user"></i> About Us</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/contact-us"><i class="fa fa-envelope"></i> Contact Us</a>
+                        </li>
+
+                    </ul>
+                    <div class="navbar-top-right">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="https://www.facebook.com/GOVIETTravelcom/" target="_blank"><i class="fa fa-facebook fa-fw"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fa fa-google-plus fa-fw"></i></a></li>
+                            <li><a href="https://twitter.com/goviettravel" target="_blank"><i class="fa fa-twitter fa-fw"></i></a></li>
+                            <li><a href="https://www.instagram.com/goviet_travel/ " target="_blank"><i class="fa fa-instagram fa-fw"></i></a></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid collapse-md" id="navbar-main-container">
+                <div class="navbar-header logo-vn">
+                    <a href="/" title="Vietnam - Tourist Spots" rel="home" class="navbar-brand">
+                        <img src="@company.Logo" alt="@company.Name">
+                    </a>
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <nav class="navbar-collapse collapse" id="navbar-main">
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    @Html.Partial("Menu/MainMenus")
+                </nav>
+            </div>
+        </header>
+    </div>
+
+
+    @Html.Partial("Slider/Slider")
+
+    @RenderBody()
+    <footer id="footer">
+        <section class="top-footer regular">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <h3 class="widgettitle">@company.Name</h3>
+                        <div id="info-hotel">
+                            Address: @company.Address<br>
+                            Telephone: @company.Tel<br>
+                            Hotline: @company.Hotline <br>
+                            Email: @company.Email<br>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-lg-2 col-sm-6" style="height:150px">
+                        <h3 class="widgettitle"></h3>
+                        <ul class="menusecord">
+                            @foreach (var item in menufooter.Skip(0).Take(4))
+                            {
+                                if (item.Type == SystemMenuType.OutSite)
+                                {
+                                    <li><a href="@item.Link">@item.Title</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="/@item.Alias">@item.Title</a></li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-sm-6" style="height:150px">
+                        <h3 class="widgettitle"></h3>
+                        <ul class="menusecord">
+                            @foreach (var item in menufooter.Skip(4).Take(4))
+                            {
+                                if (item.Type == SystemMenuType.OutSite)
+                                {
+                                    <li><a href="@item.Link">@item.Title</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="/@item.Alias">@item.Title</a></li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-sm-6" style="height:150px">
+                        <h3 class="widgettitle"></h3>
+                        <ul class="menusecord" style="font-size:13px;margin-bottom:1em">
+                            <li><a href="/top-destinations-in-vietnam">Top Destinations In Viet Nam </a></li>
+                            <li><a href="/top-destinations-in-laos">Top Destinations In Laos </a></li>
+                            <li><a href="/top-destinations-in-cambodia">Top Destinations In Cambodia </a></li>
+                        </ul>
+                        <!--   <div id="TA_linkingWidgetRedesign158" class="TA_linkingWidgetRedesign" >
+
+                               <ul id="lr6YCwyW8ai" class="TA_links M6AbgbjrNaGX">
+                                   <li id="5s0s5ZEJW39" class="SW8hHDAHQjT">
+                                       <a target="_blank" href="https://www.tripadvisor.com/"><img src="https://www.tripadvisor.com/img/cdsi/partner/tripadvisor_logo_115x18-15079-2.gif" alt="TripAdvisor" /></a>
+                                   </li>
+                               </ul>
+                           </div>-->
+                        <script src="https://www.jscache.com/wejs?wtype=linkingWidgetRedesign&amp;uniq=158&amp;locationId=12162429&amp;lang=en_US&amp;border=true&amp;display_version=2"></script>
+
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6" style="height:150px">
+                        <h3 class="widgettitle">FOLLOW US ON</h3>
+                        <a href="https://www.facebook.com/GOVIETTravelcom/" target="_blank"><i class="fa fa-facebook-square sizeIcon"></i></a>
+                        <a href="https://www.tripadvisor.com/Attraction_Review-g293924-d12162429-Reviews-Go_Viet_Travel-Hanoi.html" target="_blank"><i class="fa fa-tripadvisor sizeIcon"></i></a>
+                        <a href="#" target="_blank"><i class="fa fa-google-plus sizeIcon"></i></a>
+                        <a href="https://twitter.com/goviettravel" target="_blank"><i class="fa fa-twitter sizeIcon"></i></a>
+
+                        <a href="https://www.pinterest.com/goviettravel/" target="_blank"><i class="fa fa-pinterest-p sizeIcon"></i></a>
+
+                        <a href="https://www.instagram.com/goviet_travel/" target="_blank"><i class="fa fa-instagram sizeIcon "></i></a>
+                       @* </ul>*@
+                        <!-- <ul class="menusecord" style="margin-top:28px;">
+                             <li><i class="fa fa-check-circle-o" aria-hidden="true" style="padding-right: 3px;"></i> Trustworthy tour operator</li>
+                             <li><i class="fa fa-check-circle-o" aria-hidden="true" style="padding-right: 3px;"></i>Flexibility</li>
+                             <li><i class="fa fa-check-circle-o" aria-hidden="true" style="padding-right: 3px;"></i>Best competitive prices</li>
+                             <li><i class="fa fa-check-circle-o" aria-hidden="true" style="padding-right: 3px;"></i>Authentic experiences</li>
+                             <li><i class="fa fa-check-circle-o" aria-hidden="true" style="padding-right: 3px;"></i>Hassle Free Traveling</li>
+                         </ul>-->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="sub-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <span style="color:#999; font-size: 13px;">@company.CopyRight. power by <a href="https://webhotel.vn" target="blank">webhotel.vn</a></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+    @*<footer id="footer">
+            <section class="top-footer regular">
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-lg-4 col-md-4 col-sm-4 ">
+                            <h3 class="widgettitle">@company.Name</h3>
+                            <div id="info-hotel">
+                                Address: @company.Address<br>
+                                Telephone: @company.Tel<br>
+                                Hotline: @company.Hotline <br>
+                                Email: @company.Email<br>
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-lg-2 col-md-2  col-sm-6" style="height:150px">
+                            <h3 class="widgettitle">@GetLanguage.Language(lan, "SITELINKS")</h3>
+                            <ul class="menusecord" style="margin-top:-6px;">
+                                @foreach (var item in menufooter.Skip(0).Take(4))
+                                {
+                                    if (item.Type == SystemMenuType.OutSite)
+                                    {
+                                        <li><a href="@item.Link">@item.Title</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="/@item.Alias">@item.Title</a></li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                        <div class="col-lg-2 col-lg-2 col-md-2  col-sm-6" style="height:150px">
+                            <h3 class="widgettitle"></h3>
+                            <ul class="menusecord" style="margin-top:28px;">
+                                @foreach (var item in menufooter.Skip(4).Take(4))
+                                {
+                                    if (item.Type == SystemMenuType.OutSite)
+                                    {
+                                        <li><a href="@item.Link">@item.Title</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="/@item.Alias">@item.Title</a></li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                        <div class="col-lg-2 col-lg-2 col-md-2  col-sm-6" style="height:150px">
+                            <h3 class="widgettitle">Tripadvisor</h3>
+                            <div id="TA_linkingWidgetRedesign158" class="TA_linkingWidgetRedesign">
+
+                                <ul class="menusecord">
+                                    <li><a href="#">TOP DESTINATIONS IN VIETNAM</a></li>
+                                    <li><a href="#">TOP DESTINATIONS IN LAOS</a></li>
+                                    <li><a href="#">TOP DESTINATIONS IN CAMBODIA</a></li>
+                                </ul>
+                            </div>
+                            <script src="https://www.jscache.com/wejs?wtype=linkingWidgetRedesign&amp;uniq=158&amp;locationId=12162429&amp;lang=en_US&amp;border=true&amp;display_version=2"></script>
+
+                        </div>
+
+                        <div class="col-lg-2 col-lg-2 col-md-2  col-sm-6" style="height:150px">
+                            <h3 class="widgettitle">@GetLanguage.Language(lan, "WHYUS")</h3>
+                            <ul class="menusecord" style="margin-top:28px;">
+                                <li><i class="fa fa-check-circle-o" aria-hidden="true" style="padding-right: 3px;"></i> @GetLanguage.Language(lan, "Trustworthytouroperator")</li>
+                                <li><i class="fa fa-check-circle-o" aria-hidden="true" style="padding-right: 3px;"></i> @GetLanguage.Language(lan, "Flexibility")</li>
+                                <li><i class="fa fa-check-circle-o" aria-hidden="true" style="padding-right: 3px;"></i> @GetLanguage.Language(lan, "Bestcompetitiveprices")</li>
+                                <li><i class="fa fa-check-circle-o" aria-hidden="true" style="padding-right: 3px;"></i> @GetLanguage.Language(lan, "Authenticexperiences")</li>
+                                <li><i class="fa fa-check-circle-o" aria-hidden="true" style="padding-right: 3px;"></i> @GetLanguage.Language(lan, "HassleFreeTraveling")</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="sub-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span style="color:#999; font-size: 13px;">@company.CopyRight. power by <a href="https://webhotel.vn" target="blank">webhotel.vn</a></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </footer>*@
+</body>
+</html>
+<script type="text/javascript">$().ready(function () { if ($('#vietiso_sitebadgecontainer').length > 0) { $('#vietiso_sitebadgecontainer').hover(function () { $('#vietiso_sitebadgecontainer').stop().animate({ left: '0px' }, 500); }, function () { $('#vietiso_sitebadgecontainer').stop().animate({ left: '-137px' }, 500); }); setMinHeight('group_col_2'); } }); function setMinHeight(class_name) { var min_height = 0; $('.' + class_name).each(function () { if ($(this).height() > min_height) min_height = $(this).height(); }); if (min_height < 150) { min_height = 150; } $('.' + class_name).eq(1).css('height', min_height); }</script>
+
+<script>
+    $(document).ready(function () {
+        $("#btn-get-email").click(function () {
+            $.ajax({
+                url: 'EmailMarketing/SaveEmail',
+                type: 'Post',
+                dataType: 'Json',
+                data: { emailMarketing: $("#emailmarketing").val() },
+                success: function (data) {
+                    if (data.result == "ok") {
+                        alert("Thanks for subscribing to our newsletter");
+                    } else {
+                        alert(data.message);
+                    }
+                },
+            });
+
+
+        });
+
+    });
+
+    $('.title-menuSub').click((e) => {
+        e.preventDefault();
+    })
+
+</script>
+
+
+<script>
+
+    $(document).ready(function () {
+        var waypoint = new Waypoint({
+            element: $('#navbar-main-container'),
+            handler: function (d) {
+
+                $('.navbar-fixed-top').toggleClass('toogleMainMenu');
+            }
+
+
+        });
+
+        var getLink = $('.type-8').attr("href");
+        var hotline = "@company.Tel";
+        $("#hotline").html = hotline;
+        console.log(hotline);
+
+        $('.btn-customize').attr("href", getLink)
+    });
+
+
+
+    $('.title-menuSub').click((e) => {
+        e.preventDefault();
+    })
+</script>
+
+
+
+
+
+
+
+
+
+

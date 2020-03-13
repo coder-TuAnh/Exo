@@ -1,0 +1,1057 @@
+﻿@using TeamplateHotel.Handler
+@model TeamplateHotel.Models.DetailCruise
+@using ProjectLibrary.Database
+@{
+    //ViewBag.MetaTitle = "CruiseDetail";
+    ViewBag.MetaTitle = Model.Cruise.Name;
+    ViewBag.MetaDesctiption = Model.Cruise.MetaDescription;
+    ViewBag.MetaKeywords = Model.Cruise.MetaKeywords;
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    int i = 1;
+    var listcabin = Model.CruiseCabin;// danh sach cach cabin
+}
+<link href="~/Plugins/flexslider/flexslider.css" rel="stylesheet" />
+<script src="~/Plugins/flexslider/jquery.flexslider-min.js"></script>
+
+<style>
+    .flexslider {
+        margin: 0 !important;
+    }
+
+    .search {
+        margin-top: 100px;
+        background-color: rgba(0,0,0,0.19);
+        box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+    }
+
+    .form-div {
+        margin-left: 8%;
+    }
+
+    .form-search {
+    }
+
+        .form-search button {
+            border-radius: 0px;
+        }
+
+    .form-control {
+    }
+
+    .form-search div {
+        float: left;
+    }
+
+    .form-search h1 {
+        margin-bottom: 30px;
+        color: rgb(185, 111, 23);
+    }
+
+
+    .form-search button {
+        background-color: rgb(185, 111, 23);
+        border: none;
+        color: white;
+        text-align: center;
+        font-size: 16px;
+        padding: 8px;
+        width: 130px;
+        height: 34px;
+    }
+
+        .form-search button:hover {
+            color: white;
+        }
+
+
+    @@media only screen and (max-width:768px) {
+        .form-div .form-group {
+            width: 90%;
+            float: left;
+        }
+
+        .search {
+            width: 80%;
+            margin: auto;
+            border: solid 1px #AAAAAA;
+        }
+    }
+
+    .CruiseName h2 {
+        font-weight: bold;
+    }
+
+    .rateStar {
+    }
+
+    hr._hr {
+        border: 0;
+        height: 1px;
+        background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+        background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+        background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    }
+
+    .listAction {
+        width: 80%;
+        margin: auto;
+    }
+
+        .listAction span {
+            margin-right: 10px;
+        }
+
+            .listAction span b {
+                color: #0074D9;
+                line-height: 3
+            }
+
+    .slides-detail {
+        padding: 10px !important;
+        width: 80%;
+        margin: auto;
+    }
+
+    .CheckinInfo {
+        margin: auto;
+        background-color: #f9f9f9;
+        padding-bottom: 30px;
+        padding-top: 40px;
+        border-bottom: 1px solid rgb(185, 111, 23);
+    }
+
+        .CheckinInfo .col-sm-12 {
+            margin-bottom: 10px;
+        }
+
+    .inputShowrate {
+        border-radius: 5px;
+        border-color: rgb(185, 111, 23);
+    }
+
+    .bg-inputIcon {
+        background: rgb(185, 111, 23);
+    }
+
+        .bg-inputIcon i {
+            color: white;
+        }
+
+    .tab {
+        overflow: hidden;
+        background-color: #f1f1f1;
+        margin-top: 20px;
+    }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 10px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+            width: 33.333333333%;
+            border: 1px solid rgb(185, 111, 23);
+            border-right: none;
+            height: 60px;
+        }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ffa335;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: rgb(185, 111, 23);
+                color: white;
+            }
+
+    /* Style the tab content */
+
+    .tabcontent {
+        display: none;
+        border: 1px solid #ccc;
+        border-top: none;
+        padding: 0 60px 50px 60px;
+        margin-bottom: 50px;
+    }
+
+    .CabinImg {
+        position: relative;
+    }
+
+        .CabinImg .btnCabin {
+            position: absolute;
+            top: 30%;
+            background-color: rgba(192,192,192,0.3);
+            border:none;
+        }
+        .CabinImg .cabin-next {
+            right:0px;
+           
+
+        }
+        .CabinImg .cabin-prev {
+            left: 40px;
+        }
+
+    .CabinImg ul li {
+        list-style-type: none;
+    }
+
+    /*.listSlideCabinImg {
+        float: left;
+        list-style-type: none;
+    }*/
+        .listSlideCabinImg img {
+        width:100%;
+        }
+
+    .CabinImg ul li img {
+        width: 100%;
+    }
+
+</style>
+<div class="tour-bgr">
+    <div class="container">
+    </div>
+</div>
+<div class="cd-main">
+    <div class="container">
+        @*Phần Search*@
+        <div class="row search">
+            <div class="datepickerebe">
+                <div class="datepickerebe-on">
+                    <form class="form-search" method="post" action="/BookingCruise/DetailSearch" _lpchecked="1">
+                        <br />
+                        <h1 class="text-center text-bold" style=" text-transform:uppercase; font-weight:bold;">Find your perfect cruise</h1>
+                        <div class="form-div">
+                            <div class="form-group">
+                                <input id="namecruise" name="namecruise" type="text" class="form-control ui-autocomplete-input" placeholder="Cruise name..." autocomplete="off" style="">
+                            </div>
+                            <div class="form-group">
+                                <input id="chekin" name="chekin" type="text" class="form-control datepicker1" placeholder="Checkin">
+                            </div>
+                            <div class="form-group">
+                                @Html.DropDownList("catalorycruise", (IEnumerable<SelectListItem>)ViewBag.ListMenuID, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" id="duration" name="duration">
+                                    <option value="ALL">All Duration</option>
+                                    <option value="FullDay">Full Day</option>
+                                    <option value="Day2N1">2 Days/1 Night</option>
+                                    <option value="Day3N2">3 Days/2 Night</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                @Html.DropDownList("price", (IEnumerable<SelectListItem>)ViewBag.ListMenuPrice, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-style-1 text-uppercase text-bold form-control"><span>Search <i class="fas fa-search"></i></span></button>
+                            </div>
+                            <br style="clear:both" />
+                        </div>
+                        <br /> <br /><br />
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <div class="CruiseName">
+            <br /><br />
+            <hr class="_hr" />
+            <h2>
+                @Model.Cruise.Name
+                <span>
+                    @for (int a = 0; i <= Model.Cruise.Star; i++)
+                    {
+                        <span class="rateStar" style="color:#FFDC00">★</span>
+                    }
+                    @{
+                        double count = 5 - Model.Cruise.Star;
+                        for (int b = 0; b < count; b++)
+                        {
+                            <span class="rateStar" style="color:#FFDC00">☆</span>
+                        }
+                    }
+                </span>
+            </h2>
+        </div>
+        <address>
+            <i class="fas fa-map-marker-alt" style="color:rgb(185, 111, 23)"></i>
+            <strong>DESTINATIONS:</strong> Ha Long Bay, Lan Ha Bay, Halong Pearl Farm Village, Sung Sot Cave
+        </address>
+        <p class="listAction">
+            @{
+                string[] Action = Model.Cruise.Action.Split(new Char[] { ',' });
+                foreach (var item in Action)
+                {
+                    <span class="well well-sm"><b style="color:rgb(185, 111, 23)">@item</b></span>
+                }
+            }
+        </p>
+
+        @*Phần Slide Ảnh*@
+        <div style="width:80%; margin:auto">
+            <div id="slider" class="flexslider">
+                <ul class="slides">
+                    @foreach (var item in Model.cruiseGallery)
+                    {
+                        <li><img src="@item.NameImages" alt="Alternate Text" /></li>
+                    }
+                </ul>
+            </div>
+            <div id="carousel" class="flexslider">
+                <ul class="slides">
+                    @foreach (var item in Model.cruiseGallery)
+                    {
+                        <li><img src="@item.NameImages" alt="Alternate Text" /></li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        @*Phần Detail Cruise*@
+        <div class="description-cruise">
+            <h3><a data-toggle="collapse" href="#collapse-Description" id="btn-collapse" style="color:black;text-decoration:none"> Descriptions @Model.Cruise.Name  <i class="fas fa-chevron-circle-down" style="color:rgb(185, 111, 23);font-size:20px;"></i>  </a></h3>
+            <div id="collapse-Description" class="collapse in">
+                @Html.Raw(Model.Cruise.Description)
+            </div>
+        </div>
+
+        <div class="tab">
+            <button class="tablinks active" onclick="openCity(event, 'check-availability')"> Check availability <i class="fas fa-plane-departure"></i> </button>
+            <button class="tablinks" onclick="openCity(event, 'full-itinerary')">Full Itinerary</button>
+            <button class="tablinks" onclick="openCity(event, 'inclusions-options')" style="border: 1px solid rgb(185, 111, 23);">Inclusions & Options</button>
+        </div>
+
+        @*Phần Booking*@
+        <div id="check-availability" class="tabcontent">
+            <div class="form-inline">
+                <br />
+                <h3><a data-toggle="collapse" href="#" id="btn-collapse" style="color:black;text-decoration:none"> Available  <i class="fas fa-chevron-circle-down" style="color:rgb(185, 111, 23);font-size:20px;"></i>  </a></h3>
+                <br />
+                <form action="#" method="post">
+                    <div class="row CheckinInfo">
+                        <div class="col-md-3 col-sm-12">
+                            @Html.DropDownList("ip-duration", (IEnumerable<SelectListItem>)ViewBag.ListTabCruise, new { @class = "form-control inputShowrate", @style = "width:100%;" })
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <div class="input-group">
+                                <input name="chekin" type="text" id="datebooking" class="form-control datepicker1 inputShowrate" placeholder="Checkin" value="@String.Format("{0:dd/MM/yyyy}",DateTime.Now)">
+                                <span class="input-group-addon bg-inputIcon">
+                                    <i class="far fa-calendar-alt inputShowrate"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-12">
+                            <div class="input-group">
+                                <input id="adults" type="number" class="form-control inputShowrate" name="adults" placeholder="Adult" value="1">
+                                <span class="input-group-addon bg-inputIcon">
+                                    <i class="fas fa-male inputShowrate"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-12">
+                            <div class="input-group">
+                                <input id="adultschild" type="number" class="form-control inputShowrate" name="email" placeholder="Children" value="1">
+                                <span class="input-group-addon bg-inputIcon">
+                                    <i class="fas fa-child inputShowrate"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-12">
+                            <div class="input-group">
+                                <button type="button" onclick="checkshowratecabin()" class="btn btn-default inputShowrate" style="width:130px">Show Rate</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <br />
+                <div id="result">
+                    <div class="table table-bordered table-rooms table-rooms-empty" style="overflow:hidden">
+                        <div id="tbodyresult">
+                            <div class="col-md-12" style="overflow:hidden;padding:0;border-top: 1px solid #ddd;height: 40px;line-height: 39px;font-weight:bold">
+                                <div class="col-md-4">Room Types</div>
+                                <div class="col-md-3"></div>
+                                <div class="col-md-3">Max</div>
+                                <div class="bg-e0 col-md-2">Rates (per room)</div>
+                            </div>
+                            @for (var c = 0; c < Model.CruiseCabin.Count; c++)
+                            {
+                                <div class="col-md-12" style="overflow:hidden;padding:10px 0;border-top: 1px solid #ddd;">
+                                    <div class="col-md-4">
+                                        <img class="img img-responsive" src="@Model.CruiseCabin[c].Image" alt="Deluxe Cabin" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h5 class="media-heading z_14 text-bold" style="color:#144aa8">@Model.CruiseCabin[c].Name</h5>
+                                        <ul class="list-inline c6 z_11">
+                                            <li><i class="fa fa-cube"></i> Size: @Model.CruiseCabin[c].Size m<sup>2</sup></li>
+                                            <li><i class="fa fa-user"></i> Max Adults: @Model.CruiseCabin[c].MaxAdults Adults</li>
+                                            <li><i class="fa fa-hotel"></i> Bed options: @Model.CruiseCabin[c].Bed  Bed</li>
+                                        </ul>
+                                        <p class="c6 z_11">
+                                            <strong>Extra beds available:</strong> <br />
+                                            <b>&bull;</b> Crib <br />
+                                        </p>
+                                        <p class="show-room z_12" onclick="loadroomdetail(@Model.CruiseCabin[c].ID)"> <i class="fa fa-info-circle"></i> Show more</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="has-feedback">
+                                            <ul class="list-inline">
+                                                <li class="adult">
+                                                    @for (var u = 0; u < Model.CruiseCabin[c].MaxAdults; u++)
+                                                    {
+                                                        <span class="fa fa-user"></span>
+                                                    }
+                                                </li>
+                                            </ul>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="show-price" style="padding-top: 50px;">
+                                            Choose dates to show prices
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            @*Bang info cabin*@
+            <div id="result">
+
+            </div>
+        </div>
+
+        @*Full Itinerary*@
+        <div id="full-itinerary" class="tabcontent">
+            <div class="Full-Itinerary">
+                <br />
+                <h3>Full Itinerary <i class="fas fa-chevron-circle-down" style="color:rgb(185, 111, 23);font-size:20px;"></i> </h3>
+                <br />
+                <div class="panel-group" id="accordion">
+                    @{
+                        int collapse = 1;
+                        foreach (var item in Model.Cruisetabs)
+                        {
+                            if (item.Price != 0)
+                            {
+                                <div class="tabs-cruise">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-@collapse" style="color:rgb(185, 111, 23);font-weight:bold;font-family:'Helvetica,Arial,sans-serif'"><i class="fas fa-chevron-down" style="padding-right:20px;"></i><i class="fa fa-book" style="font-style:italic;padding-right:10px;"></i>@item.Name</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse-@collapse" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                @Html.Raw(item.Content)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                collapse++;
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        @*Cruise Inclusions & Options*@
+        <div id="inclusions-options" class="tabcontent">
+            <div class="Note-important" style="margin-left:20px;">
+                <br style="clear:both" />
+                <h3 style="color:#FF851B">
+                    Important Notes
+                    <i class="fas fa-exclamation"></i>
+                </h3>
+                <ul class="list-dot" style="line-height:30px;">
+                    <li>PROGRAMS &amp; SCHEDULES SUBJECT TO CHANGE WITHOUT PRIOR NOTICE</li>
+                    <li><a style="color:#ffa65f"><strong>Trip cancellation due to bad weather in Halong Bay:</strong></a></li>
+                    <li>The cancellation decision is made by Management Board of Halong Bay on the day of the trip in case of bad weather conditions. In such case, we will make alternative travel arrangement for you on request or offer refund in accordance with the cruise policy (Read more about cancellation due to bad weather).</li>
+                </ul>
+            </div>
+
+            <div class="Inclusions-Options">
+                <h3>Cruise Inclusions & Options  <i class="fas fa-chevron-circle-down" style="color:rgb(185, 111, 23);font-size:20px;"></i> </h3>
+                <div class="panel-group" id="accordion">
+                    @{
+                        int options = 1;
+                        foreach (var item in Model.Cruisetabs)
+                        {
+                            if (item.Price == 0)
+                            {
+                                <div class="tabs-cruise">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseIncluse-@options" style="color:rgb(185, 111, 23);font-weight:bold;font-family:'Helvetica,Arial,sans-serif'"><i class="fas fa-chevron-down" style="padding-right:20px;"></i><i class="fa fa-book" style="font-style:italic;padding-right:10px;"></i>@item.Name</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseIncluse-@options" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                @Html.Raw(item.Content)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                options++;
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@*info cabin*@
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title nameCabin"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="CabinImg">
+                            <ul class="groupcabinImg"></ul>
+                            <button type="button" class="btnCabin cabin-prev"><i class="fas fa-chevron-circle-left"></i></button>
+                            <button type="button" class="btnCabin cabin-next"><i class="fas fa-chevron-circle-right"></i></button>
+                        </div>
+                        <div class="flexslider-carousel">
+                            
+                        </div>
+                        <br style="clear:both" />
+                    </div>
+                    <div class="col-sm-6 cabinDescription"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="template1" type="x-tmpl-mustache">
+    <li class="listcabinImg"><img src="{{Img}}" alt="Alternate Text" /></li>
+</script> 
+<script id="template2" type="x-tmpl-mustache">
+    <li class="listSlideCabinImg" style="padding:3px;"><img src="{{Img}}" alt="Alternate Text" /></li>
+</script>
+<script src="~/Scripts/mustache.js"></script>
+<script>
+    function loadroomdetail(id) {
+        $('#myModal').modal('show');
+        showmoreCabin(id);
+        $('#myModal').on('shown.bs.modal', function () {
+            $('.slide-carousel').flexslider({
+                animation: "slide",
+                animationLoop: false,
+                itemWidth: 210,
+                itemMargin: 5,
+                minItems: 3,
+                maxItems: 4,
+                controlNav: false,
+                prevText: ['<button type ="button" class="btnCabin cabin-prev" style="background-color: rgba(192,192,192,0.3);border:none;"> <i class="fas fa-chevron-circle-left"></i></button>'],
+                nextText: ['<button type= "button" class="btnCabin cabin-next" style="background-color: rgba(192,192,192,0.3);border:none;" ><i class="fas fa-chevron-circle-right"></i></button>']
+            });
+        })
+        var view = $('.CabinImg').find('li');
+        var slide = $('.listSlideCabinImg');
+        var current = 0;
+        var allImg = view.length - 1;
+        view.each(function () {
+            $(this).hide();
+            view.eq(current).show();
+        })
+        slide.each(function (i) {
+            $(this).click(function () {
+                view.eq(current).hide();
+                view.eq(i).fadeIn(100);
+                current = i;
+            })
+        })
+        function next() {
+            if (current < allImg) {
+                view.eq(current).hide();
+                view.eq(current + 1).fadeIn();
+                current += 1;
+            }
+        }
+        function prev() {
+            if (current > 0) {
+                view.eq(current).hide();
+                view.eq(current - 1).fadeIn();
+                current -= 1;
+            }
+        }
+        $('.cabin-next').on('click', next);
+        $('.cabin-prev').on('click', prev);
+
+
+       
+    }
+    function showmoreCabin(id) {
+        var element = listcabin.find(a => a.ID == id); 
+        $('.nameCabin').html(element.Name);
+        var Cabingallery = JSON.parse(element.Cabingallery);
+        var html = '';
+        var html2 = '';
+        var template = $('#template1').html();
+        var template2 = $('#template2').html();
+
+        $.each(Cabingallery, function (i, item) {
+            html += Mustache.render(template, {
+                Img: Cabingallery[i].NameImages 
+            })
+        })
+        $.each(Cabingallery, function (i, item) {
+            html2 += Mustache.render(template2, {
+                Img: Cabingallery[i].NameImages
+            })
+        })
+        $('.groupcabinImg').html(html);
+        var listSlidesCabin = '<div class="slide-carousel carousel" style="margin-left:40px;"><ul class="slides" ></ul ></div >';
+        $('.flexslider-carousel').html(listSlidesCabin)
+        $('.slide-carousel .slides').html(html2);
+        $('.cabinDescription').html(element.Description);
+    }
+</script>
+<script>
+
+    $(window).resize(function () {
+        var width = $(window).width();
+        var Divcollap = $('#collapse-Description');
+        var height = $(window).height();
+        if (width <= 768) {
+            Divcollap.attr("class", "collapse");
+        }
+    });
+    $(document).ready(function () {
+
+        $(".datepicker1").datepicker();
+
+
+    });
+
+    $(window).load(function () {
+
+        //Slide Cruise
+        $('#carousel').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: false,
+            slideshow: false,
+            itemWidth: 150,
+            itemMargin: 2,
+            asNavFor: '#slider',
+            prevText: ['<span class="fa fa-angle-left"></span>'],
+            nextText: ['<span class="fa fa-angle-right"></span>']
+        });
+
+        $('#slider').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: false,
+            slideshow: false,
+            sync: "#carousel",
+            prevText: ['<span class="fa fa-angle-left"></span>'],
+            nextText: ['<span class="fa fa-angle-right"></span>']
+        });
+
+       
+    });
+
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    $('.tablinks').first().trigger('click');
+
+</script>
+
+
+<script>
+    var listcabin = "";
+    $(document).ready(function () {
+        $.ajax({
+            type: 'GET',
+            url: "/BookingCruise/listcabinofcruise?id=@Model.Cruise.ID",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                listcabin = data.data;
+                console.log("lấy đc cabin");
+            },
+            error: function () {
+                console.log("Lỗi không lấy đc cabin");
+            }
+    });
+        
+        $("#ip-duration").click(function () {
+            $(".cd-sub-duration").fadeToggle();
+        });
+        $(".itemtabscruise").click(function (e) {
+            $(e.currentTarget.nextElementSibling).fadeToggle();
+        });
+        $("#item1").click(function () {
+            $("#viewitem1").fadeToggle();
+        });
+        $("#item2").click(function () {
+            $("#viewitem2").fadeToggle();
+        });
+        $("#item3").click(function () {
+            $("#viewitem3").fadeToggle();
+        });
+
+
+    });
+    // validate data
+    function checkshowratecabin() {
+        if ($("#ip-duration").val() == null || $("#ip-duration").val() == "") {
+            alert("Bạn phải nhập số ngày booking");
+        }
+        else if ($("#datebooking").val() == null || $("#datebooking").val() == "") {
+            alert("Bạn phải chọn số ngày bắt đầu");
+        }
+        else if ($("#adults").val() == null || $("#adults").val() == "") {
+            alert("Bạn phải nhập số người đi");
+        }
+        else if ($("#adults").val() <= 0) {
+            alert("Bạn phải nhập số người đi phải lớn hơn 0");
+        }
+        else {
+            showratecabin($("#ip-duration").val());
+        }
+    }
+
+    function showratecabin1(type) {
+        var html = '';
+        html += '<div class="col-md-12" style="overflow:hidden;padding:0;border-top: 1px solid #ddd;height: 60px;line-height: 39px;padding-top:10px;font-weight:bold">' +
+            '<div class="col-md-4 hidden-xs">Room Types</div>' +
+            '<div class="col-md-3 hidden-xs">Conditions</div>' +
+            '<div class="col-md-3 hidden-xs" class="text-right">Total</div>' +
+            '<div class="col-md-2"><div class="tb-book" style="padding:3px;height:60px;"><a  class="btn btn-style-2a btn-block"  onclick="loadpromotiondetail()">Book</a></div>' +
+            '</div>'+
+
+
+            '<div class="col-md-12">' +
+            '</div>';
+        for (let i = 0; i < listcabin.length; i++) {
+            var element = listcabin[i];
+            var elementPrice = null;
+            var elementPricesale = null;
+            if (element.Price != null && element.Price != "") {
+                var listprice = JSON.parse(element.Price);
+                if (listprice.find(a => a.NameTabCruise == type) != null) {
+                    elementPrice = listprice.find(a => a.NameTabCruise == type).Price;
+                    elementPricesale = listprice.find(a => a.NameTabCruise == type).Pricesale;
+                }
+            }
+            html += '<div class="row rowCabin">' +
+                '<div class="col-md-4">' +
+                '<div class="pull-left">' +
+                '<img class="img img-responsive"  src="' + element.Image + '" alt="Deluxe">' +
+                '</div>' +
+                '<div class="media-body">' +
+                '<h5 style="color:#144aa8" class="media-heading z_14 text-bold">' + element.Name + '</h5>' +
+                '<ul class="list-inline c6 z_11">' +
+                '<li><i class="fa fa-cube"></i> Size: ' + element.Size + ' sqm</li>' +
+                '<li><i class="fa fa-user"></i> Max Adults: ' + element.MaxAdults + '</li>' +
+                '<li><i class="fa fa-hotel"></i> Bed options: ' + element.Bed + ' Beds</li>' +
+                '</ul>' +
+                '<p class="c6 z_11">' +
+                '<strong>Extra beds available:</strong> <br>' +
+                '·Crib  <br>' +
+                '</p>' +
+                '<p class="show-room z_12" onclick="loadroomdetail(' + element.ID + ')"> <i class="fa fa-info-circle"></i> Show more</p>' +
+                '</div>' +
+                '</div>' +
+                '<div class="tb-per col-md-3">' +
+                '<div class="has-feedback" style="max-width:303px;color:#0ab21b">' +
+                    element.Content +
+                '</div>' +
+                '</div>' +
+                '<div class="tb-show-price col-md-3">';
+            if (elementPrice != null && elementPricesale != null) {
+                html += '<p class="reco" id="bookrom-' + element.ID + '" > Recommended for you booking 1 room</p>' +
+                    '<p class="f_hn npc lh24">';
+                if (elementPrice < elementPricesale) {
+                    html +=
+                        '<del class="inline-block z_18 c6">$<span id="pricecabin-' + element.ID + '" >' + elementPrice + '</span></del>' +
+                        '<span style="display:none" id="pricecabinhide-' + element.ID + '" >' + elementPrice + '</span>' +
+                        '<span id="pricesalecabinhide-' + element.ID + '" >' + elementPricesale + '</span>' +
+                         '<strong  style="display:none" class="inline-none z_24" id="k' + element.ID + '">$<span id="pricesalecabin-' + element.ID + '" >' + elementPricesale + '</span></strong>';
+
+                }
+
+                html += '</p>' +
+                    '<div class="has-feedback c2a z_12">' +
+                    'Includes Taxes &amp; Fees' +
+                    '<div class="cond-sup">' +
+                    '<p>Includes 5% service charge and 10% VAT</p>' +
+                    '<p>Note: Price Itinerary for ' + $("#ip-duration").val() +'</p>' +
+                    '</div>' +
+                    '</div>';
+
+            }
+            html +='</div>';
+            html +='<div class="bg-e1 tb-book col-md-2">';
+            if (elementPrice != null && elementPricesale != null) {
+                html += '<label class="control-label-sm">Room</label>' +
+                    '<select onchange="selectromchange(' + element.ID + ');" class="form-control form-control-angle-down cabinofcruise" name="children" id="cabinofcruise-' + element.ID + '" data-code=false>' +
+                    '<option value="0" selected="selected">0</option>' +
+                    '<option value="1">1</option>' +
+                    '<option value="2">2</option>' +
+                    '<option value="3">3</option>' +
+                    '<option value="4">4</option>' +
+                    '</select>';
+                // Ma Giam Gia
+                html += '<label class="control-label-sm">Promotion Code</label>'
+                   + '<input  class="form-control" id="txt_promotionCode_' + element.ID + '" type="text" />'
+                   + '<a class="btn btn-style-2a btn-block" onclick="insertPromotion(' + element.ID + ');" id="btnApplyPromotion-' + element.ID + '">Apply</a>';
+
+                //'<span class="form-control-feedback fa fa-chevron-down"></span>' +
+            }
+
+
+            html += '</div>' +
+            '</div></div>';
+        }
+        $("#result #tbodyresult").html(html);
+    }
+    function showratecabin(type){
+        var html = '<div class="col-md-12" style="padding:0;border-top: 1px solid #ddd;font-weight:bold">' +
+            '<div class="col-md-4 hidden-xs">Room Types</div>' +
+            '<div class="col-md-3 hidden-xs">Conditions</div>' +
+            '<div class="col-md-3 hidden-xs" class="text-right">Total</div>' +
+            '<div class="col-md-2"><div class="tb-book" style="padding:3px;"><a class="btn btn-style-2a btn-block" style="height: 40px;padding-top: 5px;font-weight: bold;font-size: 18px;  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);" onclick="loadpromotiondetail()">Book</a></div>' +
+            '</div>';
+        for (let i = 0; i < listcabin.length; i++) {
+            var element = listcabin[i];
+            var elementPrice = null;
+            var elementPricesale = null;
+            if (element.Price != null && element.Price != "") {
+                var listprice = JSON.parse(element.Price);
+                if (listprice.find(a => a.NameTabCruise == type) != null) {
+                    elementPrice = listprice.find(a => a.NameTabCruise == type).Price;
+                    elementPricesale = listprice.find(a => a.NameTabCruise == type).Pricesale;
+                }
+            }
+            html += '<div class="col-md-12" style="overflow:hidden;padding:10px 0;border-top: 1px solid #ddd;">'+
+                                '<div class="col-md-4">'+
+                                    '<img  class="img img-responsive" src="' + element.Image + '" alt="Deluxe Cabin" />'+
+                                '</div>'+
+                                 '<div class="col-md-3">'+
+                                     '<h5 class="media-heading z_14 text-bold" style="color:#144aa8">' + element.Name + '</h5>'+
+                                     '<ul class="list-inline c6 z_11">'+
+                                        ' <li><i class="fa fa-cube"></i> Size: ' + element.Size + ' m<sup>2</sup></li>'+
+                                         '<li><i class="fa fa-user"></i> Max Adults:' + element.MaxAdults + '</li>'+
+                                        '<li><i class="fa fa-hotel"></i> Bed options: ' + element.Bed + 'Bed</li>'+
+                                     '</ul>'+
+                                     '<p class="c6 z_11">'+
+                                        '<strong>Extra beds available:</strong> <br />'+
+                                        '<b>&bull;</b> Crib <br />'+
+                                     '</p>'+
+                                     '<p class="show-room z_12" onclick="loadroomdetail(' + element.ID + ')"> <i class="fa fa-info-circle"></i> Show more</p>'+
+
+                                '</div>';
+            html+='<div class="col-md-3">';
+            if (elementPrice != null && elementPricesale != null) {
+                html += '<p class="reco" id="bookrom-' + element.ID + '" > Recommended for you booking 1 room</p>' +
+                         '<p class="f_hn npc lh24">';
+                if (elementPrice > elementPricesale) {
+                    html +=
+                        '<del class="inline-block z_18 c6">$<span id="pricecabin-' + element.ID + '" >' + elementPrice + '</span></del>' +
+                        '<span style="display:none" id="pricecabinhide-' + element.ID + '" >' + elementPrice + '</span>' +
+                        '<span style="display:none" id="pricesalecabinhide-' + element.ID + '" >' + elementPricesale + '</span>' +
+                         '<strong  style="display:none" class="inline-none z_24" id="k' + element.ID + '">$<span id="pricesalecabin-' + element.ID + '" >' + elementPricesale + '</span></strong>';
+
+                }
+
+                html += '</p>' +
+                    '<div class="has-feedback c2a z_12">' +
+                    'Includes Taxes &amp; Fees' +
+                    '<div class="cond-sup">' +
+                    '<p>Includes 5% service charge and 10% VAT</p>' +
+                    '<p>Note: Price Itinerary for ' + $("#ip-duration").val() + '</p>' +
+                    '</div>' +
+                    '</div>';
+
+            }
+
+            html+='</div>';
+
+            html+='<div class="col-md-2">';
+                if (elementPrice != null && elementPricesale != null) {
+                    html += '<label class="control-label-sm">Room</label>' +
+                   '<select onchange="selectromchange(' + element.ID + ');" class="form-control form-control-angle-down cabinofcruise" name="children" id="cabinofcruise-' + element.ID + '" data-code=false>' +
+                   '<option value="0" selected="selected">0</option>' +
+                   '<option value="1">1</option>' +
+                   '<option value="2">2</option>' +
+                   '<option value="3">3</option>' +
+                   '<option value="4">4</option>' +
+                   '</select>';
+                    // Ma Giam Gia
+                    html += '<label class="control-label-sm">Promotion Code</label>'
+                    + '<input  class="form-control" id="txt_promotionCode_' + element.ID + '" type="text" />'
+                    + '<a class="btn btn-style-2a btn-block" onclick="insertPromotion(' + element.ID + ');" id="btnApplyPromotion-' + element.ID + '">Apply</a></div>';
+                }
+
+        }
+
+        $("#result #tbodyresult").html(html);
+    }
+    function loadpromotiondetail()
+    {
+        var listcabinbooking = new Array();// danh sach cac cabin da dat
+        var duration = $("#ip-duration").val();
+        var datebooking = $("#datebooking").val();
+        var adults = $("#adults").val();// so nguoi lon
+        var adultschild = $("#adultschild").val();// so tre con
+        var cabinbooking = $(".cabinofcruise");// danh sach cac phong da dc dat
+
+        for (let i = 0; i < cabinbooking.length; i ++ ){// lay het so phong va ma cabin
+            var element = cabinbooking[i];
+            if (element.value > 0){
+                listcabinbooking.push({
+                    IDCabin: element.id.replace("cabinofcruise-",""),
+                    CountRom: element.value,
+                    isPromotionCode: element.dataset.code,
+                });
+            }
+        }
+        var data = {
+            IDCruise: @Model.Cruise.ID,
+            Adult: adults,
+            Duration: duration,
+            Checkin: datebooking,
+            Child: adultschild,
+            listcabin: listcabinbooking
+        }
+        var model =  {
+            ds: data
+        }
+        var a = 0;
+        $(cabinbooking).each(function (i) {
+            a += Number($(this).val());
+        })
+   
+        if (a == 0) {
+            alert("Select quantity of rooms you want to book");
+        } else
+        {
+            $.ajax({
+                data: JSON.stringify(model),
+                type: 'POST',
+                url: "/BookingCruise/DetaiBookingCruise",
+                cache: false,
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+
+                    if (data.success) {
+                        window.location = "/BookingCruise/DetaiBookingCruise";
+
+                    }
+                    else {
+                        alert("Không thể chốt booking!");
+                    }
+
+                }
+            });
+        }
+        
+    }
+    function selectromchange(id) {
+        var coutroms = $("#cabinofcruise-" + id).val();
+        var price = $("#pricecabinhide-" + id).html();
+        if (price != null) {// tinh gia tien moi khi chon nhieu phong
+            $("#pricecabin-" + id).html((parseFloat(price) * parseFloat(coutroms)));
+            $("#pricecabin-" + id).removeClass('gach');
+            $("#k"+ id).css("display","none");
+        }
+        // khi chon phong khac thuoc tinh dataset-code phia chuyen ve flase ko sẽ vẫn tính theo giá tiền đc giảm
+        var codeGiamGia = document.getElementById('cabinofcruise-'+id);
+        codeGiamGia.dataset.code = false;
+        $("#bookrom-" + id).html("Recommended for you booking " + coutroms + " rom");
+    }
+    /* neu nhap ma giam gia
+        dislap  inline-none z_24'+element.ID+' = block
+    */
+    function insertPromotion(id){
+        var coutroms = $("#cabinofcruise-" + id).val();
+        var price = $("#pricecabinhide-" + id).html();
+        var pricesale = $("#pricesalecabinhide-" + id).html();
+        var promotionCode = $('#txt_promotionCode_'+id).val();// ma giam gia
+
+        var model = {
+            code: promotionCode,
+            IDCabin : id
+        }
+        $.ajax({
+            type: 'POST',
+            url: "/BookingCruise/CheckMa",
+            data: JSON.stringify(model),
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                if(data.Result=="OK"){
+                    // neu ma het
+                    if(data.Message=="1"){
+                        alert("Out of code!");
+                    }
+                    else{
+                        $("#pricecabin-" + id).html((parseFloat(price) * parseFloat(coutroms)));
+                        $("#pricecabin-" + id).addClass('gach');
+                        $("#pricesalecabin-" + id).html((parseFloat(pricesale) * parseFloat(coutroms)));
+                        $("#k"+ id).css("display","block");
+                        //kiem tra xem ma giam tra co ko neu co la true
+                        var codeGiamGia = document.getElementById('cabinofcruise-'+id);
+                        codeGiamGia.dataset.code =true;
+                    }
+
+                }
+                else if(data.Result=="ERROR"){
+                    alert("The code has expired or does not exist!!");
+                }
+
+            },
+            error: function () {
+                alert(data.Message);
+            }
+        });
+        $("#bookrom-" + id).html("Recommended for you booking " + coutroms + " rom");
+        var codeGiamGia = document.getElementById('cabinofcruise-'+id);
+    }
+</script>
+
+
+

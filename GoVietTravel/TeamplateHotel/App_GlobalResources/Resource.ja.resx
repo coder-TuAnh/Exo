@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutUs" xml:space="preserve">
+    <value>私たちに関しては</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>アドレス</value>
+  </data>
+  <data name="Adult" xml:space="preserve">
+    <value>Adult</value>
+  </data>
+  <data name="Adults" xml:space="preserve">
+    <value>大人</value>
+  </data>
+  <data name="ArrivalDate" xml:space="preserve">
+    <value>Arrival Date</value>
+  </data>
+  <data name="ArrivalTime" xml:space="preserve">
+    <value>Arrival Time</value>
+  </data>
+  <data name="ArrivalWithFlight" xml:space="preserve">
+    <value>Arrival With Flight</value>
+  </data>
+  <data name="BestPriceGuaranted" xml:space="preserve">
+    <value>Best Price Guaranted</value>
+  </data>
+  <data name="BookingTour" xml:space="preserve">
+    <value>Booking Tour</value>
+  </data>
+  <data name="BookNow" xml:space="preserve">
+    <value>今予約する</value>
+  </data>
+  <data name="BookTour" xml:space="preserve">
+    <value>予約情報</value>
+  </data>
+  <data name="CheckAvailability" xml:space="preserve">
+    <value>Check Availability</value>
+  </data>
+  <data name="CheckIn" xml:space="preserve">
+    <value>Check In</value>
+  </data>
+  <data name="CheckOut" xml:space="preserve">
+    <value>Check Out</value>
+  </data>
+  <data name="Child" xml:space="preserve">
+    <value>Child</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Clickhereformoredetails" xml:space="preserve">
+    <value>Click here for more details</value>
+  </data>
+  <data name="ClientFeedback" xml:space="preserve">
+    <value>ClientFeedback</value>
+  </data>
+  <data name="ContactDetails" xml:space="preserve">
+    <value>Contact Details</value>
+  </data>
+  <data name="ContactInfo" xml:space="preserve">
+    <value>Contact Info</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>コンテンツ</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>国</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value> USD / Day</value>
+  </data>
+  <data name="Departure" xml:space="preserve">
+    <value>Departure</value>
+  </data>
+  <data name="DepartureDate" xml:space="preserve">
+    <value>Departure Date</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>電子メール</value>
+  </data>
+  <data name="FollowUs" xml:space="preserve">
+    <value>Follow Us</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>フルネーム</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="Guilder" xml:space="preserve">
+    <value>Guilder</value>
+  </data>
+  <data name="HeadOffice" xml:space="preserve">
+    <value>本社</value>
+  </data>
+  <data name="HighlightTours" xml:space="preserve">
+    <value>ハイライトツアー</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="hotel" xml:space="preserve">
+    <value>Hotel</value>
+  </data>
+  <data name="Hotline" xml:space="preserve">
+    <value>ホットライン</value>
+  </data>
+  <data name="Igree" xml:space="preserve">
+    <value>I read and agree with the agreemens and conditions of the </value>
+  </data>
+  <data name="InfoRoom" xml:space="preserve">
+    <value>Info Room</value>
+  </data>
+  <data name="MakeAReservation" xml:space="preserve">
+    <value>Make A Reservation</value>
+  </data>
+  <data name="MaxPeople" xml:space="preserve">
+    <value>Max People</value>
+  </data>
+  <data name="Messages" xml:space="preserve">
+    <value>メッセージ</value>
+  </data>
+  <data name="Messeger" xml:space="preserve">
+    <value>Messeger</value>
+  </data>
+  <data name="Mr" xml:space="preserve">
+    <value>氏</value>
+  </data>
+  <data name="Mrs" xml:space="preserve">
+    <value>夫人</value>
+  </data>
+  <data name="Ms" xml:space="preserve">
+    <value>ミズ</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NameRooms" xml:space="preserve">
+    <value>Name Rooms</value>
+  </data>
+  <data name="OrtherRequest" xml:space="preserve">
+    <value>その他の情報</value>
+  </data>
+  <data name="OtherArticles" xml:space="preserve">
+    <value>Other Articles</value>
+  </data>
+  <data name="OtherRooms" xml:space="preserve">
+    <value>Other Rooms</value>
+  </data>
+  <data name="OtherServices" xml:space="preserve">
+    <value>Other Services</value>
+  </data>
+  <data name="OtherTours" xml:space="preserve">
+    <value>Other Tours</value>
+  </data>
+  <data name="OurEvents" xml:space="preserve">
+    <value>Our Events</value>
+  </data>
+  <data name="OurService" xml:space="preserve">
+    <value>Our Service</value>
+  </data>
+  <data name="OurSite" xml:space="preserve">
+    <value>私たちのサイト</value>
+  </data>
+  <data name="Partner" xml:space="preserve">
+    <value>Our Partner</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="PowerBy" xml:space="preserve">
+    <value>power by</value>
+  </data>
+  <data name="PriceNight" xml:space="preserve">
+    <value>Price Night</value>
+  </data>
+  <data name="ReadMore" xml:space="preserve">
+    <value>Read More</value>
+  </data>
+  <data name="RelatedArticle" xml:space="preserve">
+    <value>Related Article</value>
+  </data>
+  <data name="RequiredFields" xml:space="preserve">
+    <value>Required Fields</value>
+  </data>
+  <data name="room" xml:space="preserve">
+    <value>Room</value>
+  </data>
+  <data name="RoomArticle" xml:space="preserve">
+    <value>Room Article</value>
+  </data>
+  <data name="SearchAvailability" xml:space="preserve">
+    <value>Search Availability</value>
+  </data>
+  <data name="Seeallevent" xml:space="preserve">
+    <value>See all event</value>
+  </data>
+  <data name="Seeallnews" xml:space="preserve">
+    <value>See all news</value>
+  </data>
+  <data name="seemore" xml:space="preserve">
+    <value>もっと見る</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SelectCountry" xml:space="preserve">
+    <value>Select Country</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="SendUsAnEmail" xml:space="preserve">
+    <value>Send Us An Email</value>
+  </data>
+  <data name="Ser" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="Service" xml:space="preserve">
+    <value>Come to us you will receive the best services and incentives</value>
+  </data>
+  <data name="Service1" xml:space="preserve">
+    <value>Wake-up service</value>
+  </data>
+  <data name="Service10" xml:space="preserve">
+    <value>Meeting/Banquet Facilities(additional charge)</value>
+  </data>
+  <data name="Service11" xml:space="preserve">
+    <value>Bar/ Lobby</value>
+  </data>
+  <data name="Service12" xml:space="preserve">
+    <value>Spa &amp; Massage (additional charge)</value>
+  </data>
+  <data name="Service13" xml:space="preserve">
+    <value>Souvenir/Gift Shop</value>
+  </data>
+  <data name="Service14" xml:space="preserve">
+    <value>Room Service 24 hours / 24 hours security</value>
+  </data>
+  <data name="Service15" xml:space="preserve">
+    <value>Car Rental/Bicycle Rental (additional charge)</value>
+  </data>
+  <data name="Service16" xml:space="preserve">
+    <value>Airline; Train service (additional charge)</value>
+  </data>
+  <data name="Service17" xml:space="preserve">
+    <value>Laundry (additional charge)</value>
+  </data>
+  <data name="Service18" xml:space="preserve">
+    <value>Doctor on call (additional charge)</value>
+  </data>
+  <data name="Service2" xml:space="preserve">
+    <value>Handicapped service</value>
+  </data>
+  <data name="Service3" xml:space="preserve">
+    <value>Baby sitter?????/ Baby cots/ Baby chairs</value>
+  </data>
+  <data name="Service4" xml:space="preserve">
+    <value>Safety-box in room</value>
+  </data>
+  <data name="Service5" xml:space="preserve">
+    <value>Fitness centre</value>
+  </data>
+  <data name="Service6" xml:space="preserve">
+    <value>In door heated pool</value>
+  </data>
+  <data name="Service7" xml:space="preserve">
+    <value>Designated Smoking Area</value>
+  </data>
+  <data name="Service8" xml:space="preserve">
+    <value>Car parking</value>
+  </data>
+  <data name="Service9" xml:space="preserve">
+    <value>Restaurant (alacate &amp; Buffet)</value>
+  </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>もっと見せる</value>
+  </data>
+  <data name="Smoking" xml:space="preserve">
+    <value>Smoking</value>
+  </data>
+  <data name="SpecialPackage" xml:space="preserve">
+    <value>スペシャルパッケージ</value>
+  </data>
+  <data name="StartFrom" xml:space="preserve">
+    <value>Start From :</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>ur</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>件名</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>サポート</value>
+  </data>
+  <data name="TeamsConditions" xml:space="preserve">
+    <value>Teams &amp; Conditions</value>
+  </data>
+  <data name="Tel" xml:space="preserve">
+    <value>電話番号</value>
+  </data>
+  <data name="Tourrelated" xml:space="preserve">
+    <value>Tour Related</value>
+  </data>
+  <data name="tt" xml:space="preserve">
+    <value>OUR CURRENT PROJECTS</value>
+  </data>
+  <data name="tt1" xml:space="preserve">
+    <value>Enter your email address below to receive news and updates from VHG.</value>
+  </data>
+  <data name="tt2" xml:space="preserve">
+    <value>SIGN UP TO LEARN MORE</value>
+  </data>
+  <data name="Utilities" xml:space="preserve">
+    <value>Utilities</value>
+  </data>
+  <data name="VIEWRATES" xml:space="preserve">
+    <value>VIEW RATES FOR ALL ROOMS HERE</value>
+  </data>
+  <data name="Website" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="WeMakeHolidays" xml:space="preserve">
+    <value>私たちはあなたの休日を思い出深いものにします</value>
+  </data>
+  <data name="YourInformation" xml:space="preserve">
+    <value>Your Information</value>
+  </data>
+  <data name="GuestInformation" xml:space="preserve">
+    <value>ゲスト情報</value>
+  </data>
+  <data name="Itineraries" xml:space="preserve">
+    <value>旅程</value>
+  </data>
+  <data name="PaymentInformation" xml:space="preserve">
+    <value>支払情報</value>
+  </data>
+  <data name="Priceitinerary" xml:space="preserve">
+    <value>ツアー価格</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>開始日</value>
+  </data>
+  <data name="Totalitinerary" xml:space="preserve">
+    <value>合計金額</value>
+  </data>
+  <data name="Tour" xml:space="preserve">
+    <value>ツアー</value>
+  </data>
+  <data name="PromotionCode" xml:space="preserve">
+    <value>販売促進コード</value>
+  </data>
+  <data name="Promotionalcode" xml:space="preserve">
+    <value>プロモーションコード</value>
+  </data>
+  <data name="RoomType" xml:space="preserve">
+    <value>ルームタイプ</value>
+  </data>
+  <data name="Sendmessage" xml:space="preserve">
+    <value>メッセージを送る</value>
+  </data>
+  <data name="Concern" xml:space="preserve">
+    <value>YOU MAY ALSO LIKE</value>
+  </data>
+  <data name="Deposit" xml:space="preserve">
+    <value>保証金</value>
+  </data>
+  <data name="Paymentmethod" xml:space="preserve">
+    <value>支払方法</value>
+  </data>
+  <data name="PAYNOW" xml:space="preserve">
+    <value>今払う</value>
+  </data>
+  <data name="RequestTour" xml:space="preserve">
+    <value>リクエストツアー</value>
+  </data>
+  <data name="SelectOption" xml:space="preserve">
+    <value>選択肢を選択</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>バランス</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>適用</value>
+  </data>
+  <data name="Doubleroom" xml:space="preserve">
+    <value>ダブルルーム</value>
+  </data>
+  <data name="NoOfPax" xml:space="preserve">
+    <value>パックスなし</value>
+  </data>
+  <data name="PaymentNow" xml:space="preserve">
+    <value>入金額</value>
+  </data>
+  <data name="RequestedTour" xml:space="preserve">
+    <value>ツアータイトル</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>セーブ</value>
+  </data>
+  <data name="StarHotels" xml:space="preserve">
+    <value>スターホテル</value>
+  </data>
+  <data name="TourOption" xml:space="preserve">
+    <value>ツアーオプション</value>
+  </data>
+  <data name="Tripleroom" xml:space="preserve">
+    <value>トリプルルーム</value>
+  </data>
+  <data name="Twinroom" xml:space="preserve">
+    <value>ツインルーム</value>
+  </data>
+  <data name="Discount" xml:space="preserve">
+    <value>割引</value>
+  </data>
+</root>

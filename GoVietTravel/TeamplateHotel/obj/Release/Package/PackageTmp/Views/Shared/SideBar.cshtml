@@ -1,0 +1,36 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@{
+    /**/
+
+    List<Advertising> advertisings = CommentController.GetAdvertisings();
+    List<Tour> tours = CommentController.ShowTourSidebar(Request.Cookies["LanguageID"].Value);
+}
+<div id="sidebar">
+    @Html.Partial("Comment/CategoryLeft")
+    @*@Html.Partial("Advertising/Advertising-siderbar")*@
+    <div class="clearfix"></div>
+</div>
+@*@if (advertisings.Count > 0)
+{
+    foreach (var item in advertisings)
+    {
+        <div class="wrap-item-sidebar">
+            <a href="@item.Url" alt="@item.Title"><img src="@item.Image" width="279px" /></a>
+        </div>
+    }
+
+}
+@if (tours.Count > 0)
+{
+    <h2 class="title-h3">@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "Concern")</h2>
+    foreach (var item in tours)
+    {
+        <div class="tour-relates">
+            <img src="@item.Image" alt="@item.Title" class="img-border">
+            <h3><a href="/@item.MenuAlias/@item.ID/@item.Alias">@item.Title</a></h3>
+        </div>
+    }
+}*@
+

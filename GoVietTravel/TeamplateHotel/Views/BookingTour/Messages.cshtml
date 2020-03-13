@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.MetaTitle = "Messages";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<header class="business-header"></header>
+<div class="container">
+    <div class="row my-4">
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="col-md-12">
+            <h1 class="mt-4" style="font-size: 30px">
+                WE HAVE RECEIVED YOUR BOOKING
+            </h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/" class="text-success">Home</a>
+                </li>
+                <li class="breadcrumb-item active">Messages</li>
+            </ol>
+            <p>@Html.Raw(ViewBag.Messages)</p>
+        </div>
+    </div>
+</div>
+
+

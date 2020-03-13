@@ -1,0 +1,134 @@
+﻿@{
+
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+}
+@model ProjectLibrary.Database.Hotel
+@{
+
+    List<ProjectLibrary.Database.Menu> Menus = (List<ProjectLibrary.Database.Menu>)(ViewData["MenuTitile"]);
+}
+<style>
+    .az {
+        float: left;
+        margin: 5px 10px;
+    }
+</style>
+<div>
+    <div>
+
+        <div class="az">
+            NAME:
+            <input type="text" name="name" id="name">
+        </div>
+        <div class="az">
+            CRUISES:
+            <select id="toursId" name="toursId">
+                <option selected="selected" value="0">All cities</option>
+                @{
+                    foreach (ProjectLibrary.Database.Menu m in Menus)
+                    {
+                        <option value="@m.ID">@m.Title</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="az">
+            <button type="submit" class="btn btn-danger" id="LoadRecordsButton">Load records</button>
+
+        </div>
+
+    </div>
+    <div id="jtable-main-container"></div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#jtable-main-container').jtable({
+            title: '@ViewBag.Title',
+            paging: true, //Enable paging
+            pageSize: 30, //Set page size (default: 10)
+            sorting: true, //Enable sorting
+            defaultSorting: 'Name ASC', //Set default sorting
+            selecting: true, //Enable selecting
+            multiselect: true, //Allow multiple selecting
+            selectingCheckboxes: true, //Show checkboxes on first column
+            columnResizable: true, //Actually, no need to set true since it's default
+            columnSelectable: true, //Actually, no need to set true since it's default
+            saveUserPreferences: true, //Actually, no need to set true since it's default
+            toolbar: {
+                items: [{
+                    icon: '/Areas/Administrator/Content/img/add.png',
+                    text: 'Thêm mới',
+                    click: function () {
+                        window.location = '@Url.Action("AddCruise", "Cruise", new { id = 0 })';
+                    }
+                }]
+            },
+
+            actions: {
+                listAction: '@Url.Action("List", "Cruise")',
+                deleteAction: '@Url.Action("Delete", "Cruise")',
+
+            },
+            fields: {
+                ID: {
+                    key: true,
+                    create: false,
+                    edit: false,
+                    list: false
+                },
+                Name: {
+                    title: 'Tên chuyến đi',
+                    width: '20%',
+                    display: function (data) {
+                        return '<a href="/admin/Cruise/AddCruise/' + data.record.ID + '">' + data.record.Name + '</a>';
+                    }
+                },
+                Image: {
+                    title: 'Ảnh',
+                    width: '8%',
+                    display: function (data) {
+                        return '<img src="' + data.record.Image + '" width="60px" height="60px"/>';
+                    },
+                    inputClass: 'upload'
+                },
+                Price: {
+                    title: 'Giá',
+                    width: '13%',
+                },
+                Location: {
+                    title: 'Địa chỉ',
+                    width: '30%',
+                },
+                Star: {
+                    title: 'Chất lượng',
+                    width: '5%',
+                },
+                '':
+                    {
+                        title: '',
+                        width: '2%',
+                        sorting: false,
+                        display: function (data) {
+                            return '<button title="Edit" type="button" class="jtable-command-button jtable-edit-command-button" onclick="editRecord(' + data.record.ID + ')"><span>Edit</span></button>';
+                        }
+                    }
+            }
+        });
+        $('#jtable-main-container').jtable('load');
+    });
+    function editRecord(id) {
+        window.location = '/Admin/Cruise/Addcruise/' + id;
+    }
+    //Re-load records when user click 'load records' button.
+    $('#LoadRecordsButton').click(function (e) {
+        e.preventDefault();
+        $('#jtable-main-container').jtable('load', {
+            name: $('#name').val(),
+            menuID: $('#toursId').val()
+        });
+    });
+
+    //Load all records when page is first shown
+    $('#LoadRecordsButton').click();
+</script>

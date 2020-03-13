@@ -1,0 +1,15 @@
+﻿@using ProjectLibrary.Config
+@using ProjectLibrary.Database
+@using TeamplateTour.Controllers
+@{
+    Menu menu = ViewBag.Menu ?? new Menu();
+    List<Advertising> advertisings = CommentController.ListAdvertising(menu.HotelId).Where(a => a.PositionId == AdvPossition.Content).ToList();
+}
+
+    @foreach (var item in advertisings)
+    {
+        <div class="adv-index-content">
+            <a href="@item.Url" alt="@item.TitleAdv"><img src="@item.Image" width="100%"/></a>
+        </div>
+    }
+

@@ -1,0 +1,9 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateTour.Controllers
+@{
+    List<SocialNetwork> socialNetworks = CommentController.ListSocialNetwork();
+}
+@foreach(var item in socialNetworks)
+{
+    <a href="@item.LinkSocial" alt="@item.NameSocial"><img src="@item.IconSocial"/></a>
+}

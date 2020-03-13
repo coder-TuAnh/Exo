@@ -1,0 +1,82 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Models
+@model List<ShowObject>
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    Hotel company = CommentController.DetailHotel(Request.Cookies["LanguageID"].Value);
+}
+
+<link href="~/Plugins/Flipclock/flipclock.css" rel="stylesheet" />
+<script src="~/Plugins/Flipclock/flipclock.min.js"></script>
+
+<div class="sub-nav">
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <h1 class="h1-title-d">
+                    SPECIAL PACKAGE
+                </h1>
+            </div>
+            <!-- Sub Nav Links -->
+            @Html.Partial("Comment/social")
+        </div>
+    </div>
+</div>
+
+<section class="list-deals regular" style="padding-top: 4rem">
+    <div class="container ">
+        <div class="row">
+
+            <div class="col-lg-12">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <article class="card">
+                            <div class="wrap-time-line">
+                                <div class="time-line">
+                                    <div class="left-time clock" data-value="@item.TimeDeal"></div>
+                                </div>
+                            </div>
+                            <a href="/@menu.Alias/@item.ID/@item.Alias" class="featured-image">
+                                <div class="featured-img-inner"></div>
+                                <img src="@item.Image" />
+                            </a>
+                            <div class="card-details">
+                                <h4 class="card-title"><a href="/@menu.Alias/@item.ID/@item.Alias">@item.Title</a></h4>
+                                <div class="meta-details clearfix">
+                                    <ul class="hierarchy">
+                                        <li style="margin-top: 5px;"><strong style="text-decoration: line-through; color: red; margin-right: 10px;">$ @item.PriceSale</strong><span style="font-size: 1.4em; color:#0261A9">$ @item.PriceSale</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    var clock;
+
+    $(document).ready(function () {
+        $('.left-time').each(function () {
+            var clock;
+            clock = $(this).FlipClock({
+                clockFace: 'DailyCounter',
+                autoStart: false,
+                callbacks: {
+                    stop: function () {
+                        $('.message').html('The clock has stopped!');
+                    }
+                }
+            });
+            clock.setTime($(this).data("value"));
+            clock.setCountdown(true);
+            clock.start();
+        });
+    });
+</script>

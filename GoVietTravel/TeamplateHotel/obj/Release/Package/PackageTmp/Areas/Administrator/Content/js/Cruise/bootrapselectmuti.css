@@ -1,0 +1,76 @@
+﻿
+#Menucheckmutiselect .dropdown {
+    transform: translateY(-50%);
+}
+
+#Menucheckmutiselect a {
+    color: #fff;
+}
+
+#Menucheckmutiselect .dropdown dd,
+#Menucheckmutiselect .dropdown dt {
+    margin: 0px;
+    padding: 0px;
+}
+
+#Menucheckmutiselect .dropdown ul {
+    margin: -1px 0 0 0;
+}
+
+#Menucheckmutiselect .dropdown dd {
+    position: relative;
+}
+
+#Menucheckmutiselect .dropdown a,
+#Menucheckmutiselect .dropdown a:visited {
+    color: #fff;
+    text-decoration: none;
+    outline: none;
+    font-size: 12px;
+}
+
+#Menucheckmutiselect .dropdown dt a {
+    background-color: #4F6877;
+    display: block;
+    padding: 8px 20px 5px 10px;
+    min-height: 25px;
+    line-height: 24px;
+    overflow: hidden;
+    border: 0;
+    width: 272px;
+}
+
+    #Menucheckmutiselect .dropdown dt a span,
+    #Menucheckmutiselect .multiSel span {
+        cursor: pointer;
+        display: inline-block;
+        padding: 0 3px 2px 0;
+    }
+
+#Menucheckmutiselect .dropdown dd ul {
+    background-color: #4F6877;
+    border: 0;
+    color: #fff;
+    display: none;
+    left: 0px;
+    padding: 2px 15px 2px 5px;
+    position: absolute;
+    top: 2px;
+    width: 280px;
+    list-style: none;
+    height: 100px;
+    overflow: auto;
+}
+
+#Menucheckmutiselect .dropdown span.value {
+    display: none;
+}
+
+#Menucheckmutiselect .dropdown dd ul li a {
+    padding: 5px;
+    display: block;
+}
+
+    #Menucheckmutiselect .dropdown dd ul li a:hover {
+        background-color: #fff;
+    }

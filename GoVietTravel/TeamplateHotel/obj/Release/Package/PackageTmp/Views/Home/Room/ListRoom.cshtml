@@ -1,0 +1,40 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Handler
+@model IEnumerable<Room>
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    Article article = ViewBag.ArticleByRoomRate;
+}
+@Html.Partial("Slider/Slider")
+<div class="container " id="accommodation ">
+    <div class="room-list ">
+        <div class="row">
+
+
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-sm-6 item-room ">
+                    <div class="item-room-list thumbnail">
+                        <a href="#">
+                            <img src="@item.Image" alt="@item.Title" />
+                        </a>
+                        <div class="room-infomation">
+                            <a title="@item.Title" href="/@item.MenuAlias/@item.ID/@item.Alias">
+                                <span class="room-title">@item.Title</span>
+                            </a>
+                            <div class="room-description">@Html.Raw(item.Description)</div>
+
+                        </div>
+
+                        <div class="lower-box clearfix">
+                            <div class="price-day pull-left">@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "StartFrom") <span>@item.Price</span> @GetLanguage.Language(Request.Cookies["LanguageID"].Value, "Day") </div>
+                            <a href="/@item.MenuAlias/@item.ID/@item.Alias" class="book-now pull-right">@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "BookNow")</a>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>

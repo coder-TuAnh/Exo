@@ -1,0 +1,92 @@
+﻿@using TeamplateHotel.Areas.Administrator.EntityModel
+@using System;
+@model EPromotionCode
+@{
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+
+}
+<div class="span12">
+    <div class="widget ">
+        <div class="widget-header">
+            <i class="icon-plus-sign"></i>
+            <h3>@ViewBag.Title</h3>
+        </div> <!-- /widget-header -->
+
+        <div class="widget-content">
+            @Html.ValidationSummary(true)
+            @using (Html.BeginForm("Update", "PromotionCode", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+
+                <div class="control-group">
+                    @Html.LabelFor(c => c.Code, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Code, new { @class = "span4", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(c => c.Code)
+                    </div>
+                   
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="Title">Start date </label>
+                    <div class="controls">
+                        <input type="date" name="StartDay" value="@Model.StartDay.ToString("yyyy-MM-dd")" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Title">End date</label>
+                    <div class="controls">
+                        <input type="date" name="EndDay" value="@Model.EndDay.ToString("yyyy-MM-dd")" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Title">Percent discount(%)<span class="asterisk">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Rate, new { @class = "span4", @value = 0, @type = "number" })
+                        @Html.ValidationMessageFor(c => c.Rate)
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Title">Number<span class="asterisk">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Total, new { @class = "span4", @value = 0, @type = "number" })
+                        @Html.ValidationMessageFor(c => c.Total)
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Title">Used<span class="asterisk">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Used, new { @class = "span4",  @type = "number" })
+                        @Html.ValidationMessageFor(c => c.Used)
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Title">Status</label>
+                    <div class="controls">
+                        @Html.CheckBoxFor(c => c.Status, new { @checked = true })
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(c => c.Description, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextAreaFor(c => c.Description, new { @class = "span4" })
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                    <a href="@Url.Action("Index", "PromotionCode")" class="btn">Cancel</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<ul id='context-menu'>
+    <li>Delete</li>
+</ul>
+
+<style>
+    h4 {
+        margin: 10px 0px;
+    }
+</style>

@@ -1,0 +1,497 @@
+﻿.btn-primary {
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(33, 169, 236, 0)), color-stop(100%, rgba(1, 9, 13, 0.1)));
+    background-image: -webkit-linear-gradient(rgba(33, 169, 236, 0), rgba(1, 9, 13, 0.1));
+    background-image: -moz-linear-gradient(rgba(33, 169, 236, 0), rgba(1, 9, 13, 0.1));
+    background-image: -o-linear-gradient(rgba(33, 169, 236, 0), rgba(1, 9, 13, 0.1));
+    background-image: linear-gradient(rgba(33, 169, 236, 0), rgba(1, 9, 13, 0.1));
+    background-color: #21a9ec;
+    border-color: #1399dc #1399dc #0d6895;
+    border-color: rgba(0, 0, 0, 0.05) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.15);
+    color: white!important;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.15);
+}
+.btn {
+    /*-webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;*/
+    -webkit-box-shadow: inset rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.1) 0 1px 2px;
+    -moz-box-shadow: inset rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.1) 0 1px 2px;
+    box-shadow: inset rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.1) 0 1px 2px;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, rgba(128, 128, 128, 0.1)));
+    background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), rgba(128, 128, 128, 0.1));
+    background-image: -moz-linear-gradient(rgba(255, 255, 255, 0), rgba(128, 128, 128, 0.1));
+    background-image: -o-linear-gradient(rgba(255, 255, 255, 0), rgba(128, 128, 128, 0.1));
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(128, 128, 128, 0.1));
+    background-color: #1180AA;
+    border-color: whitesmoke whitesmoke #cfcfcf;
+    border-color: rgba(0, 0, 0, 0.05) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.15);
+    color: #333333;
+    font-size: 18px;
+    line-height: 22px;
+    -webkit-transition: background-color 0.2s;
+    -moz-transition: background-color 0.2s;
+    -o-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 0;
+    padding: 5px 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+h1.title-b {
+    margin-bottom: 5px;
+    font-size: 2em;
+    color: #28477B;
+    margin: 5px 0px 0px 0px;
+}
+p.b-add-hotel {
+    font-style: italic;
+    font-size: 0.9em;
+}
+.BEBreadcrumb {
+        text-transform: uppercase;
+        font-weight: bold;
+        border: 1px solid #E2E2E2;
+        border-width: 1px;
+        font-size: 11px;
+        padding: 0;
+        height: 23px;
+    }
+        .BEBreadcrumb ul {
+            background: #345489;
+            height: 23px;
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+        }
+        .BEBreadcrumb li {
+            display: block;
+            float: left;
+            background: none;
+            height: 23px;
+            padding: 0;
+            background-position: -12px -1041px;
+        }
+    .BEBreadcrumb .BEBreadOn {
+        position: relative;
+        display: block;
+        color: #32558E;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+        margin: 0;
+        padding: 0 28px 0 10px;
+        height: 23px;
+        line-height: 23px;
+        text-align: center;
+        top: 0;
+        background: url("/Content/System/Content/images/BEStepFwd-active-blue.png") no-repeat scroll right top #fff;
+    }
+    .BEBreadcrumb .BEBnofirst {
+        margin-left: -19px;
+    }
+    .BEBreadcrumb .BEBnofirst span {
+        padding-left: 19px;
+    }
+    .BEBreadcrumb .BEBnofirst span:after {
+        border-left: 11px solid rgb(52, 84, 137);
+        border-top: 11px solid #fff;
+        border-bottom: 12px solid #fff;
+        content: "";
+        position: absolute;
+        left: 0px;
+        width: 0;
+        height: 0;
+    }
+    .BEBreadcrumb .BEBreadFwd {
+        color: #ffffff;
+        padding: 0px 15px;
+        height: 23px;
+        top: -1px;
+        line-height: 23px;
+        padding: 0 27px 0 9px;
+        background: url("/Content/System/Content/images/BEStepFwd-blue.png") no-repeat scroll right top #345489;
+        display: block;
+    }
+.step-booking {
+    width: 100%;
+    height: 37px;
+    float: left;
+    margin: 20px 0px 10px;
+}
+    .step-booking h2 {
+        font-weight: normal;
+        font-size: 20px;
+        text-transform: uppercase;
+        width: 50%;float: left;
+        margin-top: 12px;
+        color: #28477B;
+    }
+    .step-booking input.btn {
+        float: right;
+        margin-top: 0px;
+    }
+
+    /*Select service*/
+    .wrap-info-checkAvailability {
+            width: 252px;
+            padding: 20px 20px;
+            -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+            -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+            box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+            margin: 20px 0;
+            background: #fff;
+            float: left;
+            color: #32558E;
+            font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif!important;
+            font-size: 14px;
+            border: 1px solid #83ABBB;
+        }
+        .wrap-info-checkAvailability  span, .wrap-info-checkAvailability h3, .wrap-info-checkAvailability strong, .wrap-info-checkAvailability h4 {
+            font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif!important;
+        }
+        div.wrap-days {
+            margin-top: 5px;
+        }
+        .wrap-info-checkAvailability div.wrap-b-info-check {
+            width: 100%;
+            float: left;
+        }
+        div.wrap-days div.wrap-b-arrive {
+            width: 79px;
+            float: left;
+            margin-right: 50px;
+        }
+        div.wrap-days div.wrap-b-arrive:last-child {
+            margin-right: 0px;
+        }
+        div.wrap-days div.wrap-b-arrive :last-child {
+            margin-right: 0px;
+            font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif!important;
+        }
+        div.wrap-days div.wrap-b-arrive span.wrap-b-ap {
+            display: block;
+            color: #32558E;
+            font-weight: bold;
+            text-align: center;
+        }
+        div.wrap-days div.wrap-b-arrive h4 {
+            font-size: 14px;
+            color: #fff;
+            background: #32558E;
+            text-align: center;
+            font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif!important;
+            padding: 2px 0px;
+            margin: 0px;
+        }
+        div.wrap-b-arrive div.wrap-b-info-ap {
+            box-shadow: rgb(241, 240, 240) 0px 0px 3px 0px;
+            background: #F6F6F6;
+            border: 1px solid #EDEDED;
+        }
+        div.wrap-b-info-ap div.wrap-b-day {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #32558E;
+            text-align: center;
+        }
+        div.wrap-b-info-ap span.wrap-b-th {
+            display: block;
+            text-align: center;
+            color: #32558E;
+        }
+        .wrap-info-checkAvailability div.wrap-b-numbernight {
+            width: 100%;font-weight: bold;
+            float: left;
+            margin: 14px 0px;
+        }
+        div.wrap-b-roomtype {
+            margin-bottom: 10px;
+        
+        }
+        div.wrap-b-roomtype div.b-roomtype-info-des {
+            position: relative;
+            margin-bottom: 2px;
+        }
+            div.wrap-b-roomtype div.b-roomtype-info {
+                min-width: 400px;
+                max-width: 460px;
+                padding: 10px 10px 20px;
+                display: none;
+                background: #F4F4F4;
+                border: 1px solid #D7D7D7;
+                position: absolute;
+                top: 20px;
+                z-index: 1000;
+                left: 0px;
+            }
+        div.wrap-b-roomtype div.b-roomtype-info h3 {
+            font-weight: normal;
+            font-size: 16px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 2px;
+        }
+        div.wrap-b-roomtype div.b-roomtype-info img {
+            float: right;
+            width: 150px;
+            height: 79px;
+        }
+        div.wrap-b-roomtype div.b-roomtype-info p {
+            margin-right: 155px;
+            color: rgb(34, 34, 34);
+        }
+
+        div.wrap-b-roomtype p {
+            margin: 2px 0px;
+        }
+        div.wrap-b-roomtype span.icon-info {
+            background: url(/Content/System/Content/images/v3_sprite.png) right 460px;
+            padding: 2px 11px;
+        }
+        div.wrap-b-roomtype span.icon-info:hover{
+            cursor: pointer;
+        }
+        .wrap-b-adult-child p span {
+            padding: 0px 30px 0px 0px;
+        }
+        .wrap-b-bill-left {
+            width: 62%;
+            float: left;
+            text-align: left;
+        }
+        .wrap-b-bill-right {
+            width: 38%;
+            float: right;
+            text-align: right;
+        }
+        .wrap-b-bill-right h3 ,.wrap-b-bill-left h3{
+            font-size: 16px;
+            margin: 5px 0px 2px;
+            color: #32558E;
+            font-weight: bold;
+        }
+        .wrap-b-bill-right span, .wrap-b-bill-left span {
+            display: block;
+        }
+        .wrap-booking h1,  .wrap-booking h2,  .wrap-booking h3, .wrap-booking h4,  .wrap-booking h5,  .wrap-booking h6,  .wrap-booking strong,  .wrap-booking b {
+        font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
+    }
+    .left-booking {
+        width: 284px;float: left;
+    }
+    .right-booking {
+        width: 815px;float: right;
+    }
+    .book-w-select-list-room {
+        background: #f4f4f4;
+        padding: 20px 20px;
+        float: left;
+    }
+    .book-w-select-list-room div.item-service {
+        width: 100%;
+        float: left;
+        border-bottom: 2px solid #fff;
+        padding-bottom: 25px;
+        margin-bottom: 25px;
+    }
+     .book-w-select-list-room div.item-service:last-child {
+         padding-bottom: 0px;
+         border-bottom: none;
+         margin-bottom: 0px;
+     }
+    .book-w-select-list-room div.item-service img.img-service-avata {
+        width: 190px;
+        height: 126px;
+        float: left;
+        margin-right: 20px;
+    }
+    .book-w-select-list-room div.item-service div.left-item-service {
+        width: 75%;float: left;
+    }
+    div.item-service div.left-item-service  h4 {
+        font-size: 16px;color: #333;font-weight: bold;
+        margin: 0px 0px 10px 0px;
+    }
+    div.item-service div.left-item-service p {
+        font-size: 14px;
+        color: #333;
+    }
+    div.item-service div.item-select-service {
+        width: 18%;float: right;
+    }
+    div.item-service div.item-select-service strong {
+        font-weight: normal;
+        font-size: 16px;
+        color: #333;
+    }
+    div.item-select-service div.check-select-service {
+        background: #32558E;
+        margin: 8px 0px;
+        padding: 5px 8px;
+        line-height: 28px;
+        color: #fff;
+        height: 20px;
+        font-size: 13px;
+        width: 85px;
+        line-height: 21px;
+    }
+        div.item-select-service div.check-select-service input[type=checkbox] {
+            width: 16px;
+            height: 16px;
+            display: block;
+            float: left;
+            margin: 2px 6px 0px 0px;
+        }
+.wrap-booking {
+    width: 100%;
+    float: left;
+    margin: 20px 0px;
+    font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif!important;
+}
+.btn-booking {
+    display: inline-block;
+    background: #088ABE ;
+    background: -moz-linear-gradient(top,#088ABE  0,#02658A  100%);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#088ABE ),color-stop(100%,#02658A ));
+    background: -webkit-linear-gradient(top,#088ABE  0,#02658A  100%);
+    background: -o-linear-gradient(top,#088ABE  0,#02658A  100%);
+    background: -ms-linear-gradient(top,#088ABE  0,#02658A  100%);
+    background: linear-gradient(to bottom,#088ABE  0,#02658A  100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1CA7DE', endColorstr='#02658A ', GradientType=0);
+    color: #fff;
+    cursor: pointer;
+    font: 13px/18px "Futura Book",Helvetica,Arial,sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 8px 25px;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 8px 0px;
+    letter-spacing: .05em;
+}
+
+
+/*Confirm Infomation RESERVATION*/
+ .wrap-confirm-booking {
+        width: 100%;
+        padding: 20px 0px;
+        background: #FFFFFF;
+        float: left;
+        color: #333;
+        border: 1px solid #83ABBB;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, .3);
+    }
+    /*Left*/
+    .wrap-confirm-booking div.left-wrap-confirm-booking {
+        width: 55%;float: left;
+        margin-left: 2%;
+         border-right: 1px solid #EAEAEA;
+    }
+    div.left-wrap-confirm-booking h2 {
+        background: transparent;
+        font-size: 20px;
+        font-weight: bold;
+        margin: 20px 0px; 
+    }
+    div.left-wrap-confirm-booking img#img-hotel {
+        width: 160px;height: auto;
+        float: left;
+        margin-right: 18px;
+    }
+    .wrap-confirm-booking div.confirm-info-hotel-reservation {
+        width: 340px;
+        float: left;
+    }
+    div.confirm-info-hotel-reservation div#c-info-hotel {
+        width: 100%;float: left;
+        margin-bottom: 20px;
+    }
+    div#c-info-hotel h4 {
+        font-size: 17px;
+        font-weight: normal;
+        margin: 0px 0px 5px 0px;
+    }
+    div#c-info-booking h5 {
+        margin: 8px 0px 3px 0px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+    div#c-info-booking p strong {
+        padding: 0px 10px;
+
+    }
+     .wrap-confirm-booking label {
+         display: block;
+         padding: 2px 0px;
+     }
+     div.confirm-info-hotel-reservation div.wrap-b-info-check {
+         width: 86%;float: left;
+     }
+
+     /*Right*/
+     div.wrap-confirm-booking div.right-wrap-confirm-booking {
+         width: 40%;float: right;
+         padding-left: 20px;
+         margin-top: 60px; 
+     }
+    div.right-wrap-confirm-booking h4 {
+        font-size: 17px;
+        font-weight: normal;
+        margin: 0px 0px 5px 0px;
+    }
+    div.right-wrap-confirm-booking div.info-personal-reservation {
+        margin: 15px 0px;
+    }
+#wraploadding {
+    background-color: #fff;
+    opacity: 0.8;
+    z-index: 5000;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: none;
+}
+    #wraploadding div#imgloadding {
+        width: 100px;
+        height: 100px;
+        margin: auto;
+        position: relative;
+    }
+#right-booking {
+    width: 850px;
+    float: right;
+}
+.content-booking {
+    width: 100%;
+    margin-top: 20px;
+    background: #f3f3f3;
+}
+.w-book {
+    margin: 0px 0px 50px;
+}
+    #wraploadding {
+        background-color: #fff;
+        opacity: 0.8;
+        z-index: 5000;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        display: none;
+    }
+    #wraploadding div#imgloadding {
+        width: 100px;
+        height: 100px;
+        margin: auto;
+        position: relative;
+    }
+

@@ -1,0 +1,10 @@
+﻿[*.cs]
+
+# CS0162: Unreachable code detected
+dotnet_diagnostic.CS0162.severity = none
+
+# CS0164: This label has not been referenced
+dotnet_diagnostic.CS0164.severity = none
+
+# IDE0055: Fix formatting
+dotnet_diagnostic.IDE0055.severity = none

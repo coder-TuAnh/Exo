@@ -1,0 +1,92 @@
+﻿@model  ProjectLibrary.Database.BookTour
+@{
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+}
+<div class="span12">
+    <div class="widget ">
+        <div class="widget-header">
+            <i class=" icon-info-sign"></i>
+            <h3>Chi tiết đặt tour</h3>
+            <a href="@Url.Action("Index","BookTour")" class="btn btn-primary" style="margin: 5px; float: right;">Quay lại</a>
+        </div> <!-- /widget-header --> 
+        <div class="widget-content">
+            <div id="detail-lh">
+                <div>
+                    <label>Code </label> <p>@Model.Code</p>
+                </div>
+                <div>
+                    <label>Info Booking</label> <p>@Model.InfoBooking</p>
+                </div>
+                <div>
+                    <label>Total price</label> <p>@Model.Total</p>
+                </div>
+                <div>
+                    <label>Payment now</label> <p>@Model.Deposit</p>
+                </div>
+                <div>
+                    <label>Balance</label> <p>@Model.Balance</p>
+                </div>
+                <div>
+                    <label>Gender</label> <p>@Model.Gender</p>
+                </div>
+
+                <div>
+                    <label>Full Name</label> <p>@Model.FullName</p>
+                </div>
+
+                <div>
+                    <label>Tel</label> <p>@Model.Tel</p>
+                </div>
+
+                <div>
+                    <label>Email </label> <p>@Model.Email</p>
+                </div>
+
+                <div>
+                    <label>Country</label> <p>@Model.Country</p>
+                </div>
+
+                <div>
+                    <label>Departure</label> <p>@Model.Departure</p>
+                </div>
+
+                <div>
+                    <label>Request</label> <p>@Model.Request</p>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
+
+<style>
+    #detail-lh div {
+        border: 1px solid #ddd;
+        margin: 0px;
+        border-bottom: none;
+        display: block;
+        width: 100%;
+        float: left;
+    }
+
+    #detail-lh div:last-child {
+        border-bottom: 1px solid #ddd;
+    }
+
+    #detail-lh div p {
+        width: 69%;
+        float: right;
+        border-left: 1px solid #ddd;
+        padding: 10px 10px;
+        margin: 0px;
+    }
+
+    #detail-lh div label {
+        width: 28%;
+        text-align: right;
+        height: 100%;
+        display: block;
+        float: left;
+        font-weight: bold;
+        line-height: 32px;
+    }
+</style>

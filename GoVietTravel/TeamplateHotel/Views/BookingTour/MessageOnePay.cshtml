@@ -1,0 +1,56 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    if(ViewBag.state==1)
+    {
+        ViewBag.Title = "Thank you! - Transaction was paid successful";
+    }else if(ViewBag.state == 2)
+    {
+        ViewBag.Title = "Thank you! - Transaction is pending";
+    }
+    else
+    {
+        ViewBag.Title = "Thank you! - Transaction was not paid successful";
+    }
+
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    var detailHotel = CommentController.DetailHotel(lan);
+}
+
+<div class="thank-body text-center">
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10 col-md-12">
+            <h1>
+               <span class="inline-block text-middle" style="font-size: 30px">Thank you!</span>
+            </h1>
+            <div class="caption z_16 lh24">
+                @if (ViewBag.state == 1)
+                {
+                    <div class="alert alert-success" >
+                        <strong>@ViewBag.Message</strong>
+                    </div>
+                }
+                else if (ViewBag.state == 2)
+                {
+                    <div class="alert alert-warning">
+                        <strong>@ViewBag.Message</strong>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger">
+                        <strong>@ViewBag.Message</strong>
+                    </div>
+                }
+               
+                <br>
+                <p class="">
+                   @Html.Raw(ViewBag.Messages)
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+

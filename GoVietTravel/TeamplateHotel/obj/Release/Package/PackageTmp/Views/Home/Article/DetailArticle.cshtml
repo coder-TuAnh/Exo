@@ -1,0 +1,67 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Handler
+@using TeamplateHotel.Controllers
+@model TeamplateHotel.Models.DetailArticle
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    var hotel = CommentController.DetailHotel(Request.Cookies["LanguageID"].Value);
+    Menu menu = ViewBag.Menu ?? new Menu();
+}
+
+<div class="sub-nav">
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <h1 class="h1-title-d">
+                    @Model.Article.Title
+                </h1>
+            </div>
+            <!-- Sub Nav Links -->
+            @Html.Partial("Comment/social")
+
+        </div>
+    </div>
+</div>
+
+<section class="regular" style="padding-top: 4rem">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="/" class="text-success">Home</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="/@menu.Alias" class="text-success">@menu.Title</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        @Model.Article.Title
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-9">
+                @Html.Raw(Model.Article.Content)
+                <br />
+                <div class="fb-comments" data-href="" data-width="100%" data-numposts="5" data-mobile="true"></div>
+                <br />
+                <div class="clearfix"></div>
+                @if (Model.Articles.Count > 0)
+                {
+                    <h2 class="title-h1">Other</h2>
+                    <ul class="other-objects">
+                        @foreach (var item in Model.Articles)
+                        {
+                            <li><a href="/@item.MenuAlias/@item.ID/@item.Alias"><i class="fa fa-caret-right"></i> @item.Title</a></li>
+                        }
+                    </ul>
+                }
+            </div>
+            <div class="col-lg-3">
+                @Html.Partial("SideBar")
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

@@ -1,0 +1,373 @@
+﻿@using ProjectLibrary.Database
+@using ProjectLibrary.Utility
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@using TeamplateHotel.Models
+@using ProjectLibrary.Config
+@model TeamplateHotel.Models.DetailTour
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    Hotel company = CommentController.DetailHotel(Request.Cookies["LanguageID"].Value);
+    List<ShowObject> tourRelates = ViewBag.ListTour ?? new List<ShowObject>();
+    int cout = 1;
+	 if(Model.Tour.PriceSale!=null && Model.Tour.Price != null)
+    {
+        double save = 100 - Math.Round((((double)Model.Tour.PriceSale / (double)Model.Tour.Price) * 100), 0);
+
+    }
+    //double save = 100 - Math.Round((((double)Model.Tour.PriceSale / (double)Model.Tour.Price) * 100), 0);
+    string lan = Request.Cookies["LanguageID"].Value;
+    string stringbook = "";
+    string namebook = "";
+    if(menu.Alias== "vietnam-tourist-visa" || menu.Alias == "vietnam-business-visa")
+    {
+        stringbook = "bookvisa";
+        namebook = "APPLY NOW";
+    }
+    else
+    {
+        if (menu.Type == SystemMenuType.Visa)
+        {
+            stringbook = "bookvisa";
+            namebook = "APPLY NOW";
+        }
+        else
+        {
+            stringbook = "BookTour";
+            namebook = "BookTour";
+        }
+    }
+
+}
+<!--- css tabtour --->
+<link href="~/Plugins/TabTour/Css/zozo.tabs.min.css" rel="stylesheet" />
+<link href="~/Plugins/TabTour/Css/zozo.examples.min.css" rel="stylesheet" />
+
+<!-- Css prettyphoto-master -->
+<link href="~/Plugins/prettyphoto-master/css/prettyPhoto.css" rel="stylesheet" />
+
+<!-- jquery tabtour -->
+<script src="~/Plugins/TabTour/Js/zozo.tabs.min.js"></script>
+
+<!-- Jquery prettyphoto-master -->
+<script src="~/Plugins/prettyphoto-master/js/jquery.prettyPhoto.js"></script>
+<div class="sub-nav">
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <h1 class="h1-title-d">
+                    @Model.Tour.Title
+                </h1>
+            </div>
+            <!-- Sub Nav Links -->
+            <nav class="navbar-collapse collapse" id="navbar-sub">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=http://goviettravel.com/@menu.Alias/@Model.Tour.ID/@Model.Tour.Alias"><i class="fa fa-facebook"></i><span class="hidden-md hidden-lg">Facebook</span></a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="http://twitter.com/share?url=http://goviettravel.com/@menu.Alias/@Model.Tour.ID/@Model.Tour.Alias"><i class="fa fa-twitter"></i><span class="hidden-md hidden-lg">Twitter</span></a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://plus.google.com/share?url=http://goviettravel.com/@menu.Alias/@Model.Tour.ID/@Model.Tour.Alias"><i class="fa fa-google-plus"></i><span class="hidden-md hidden-lg">Google +</span></a>
+                    </li>
+                    <li><a target="_blank" href="mailto:@company.Email"><i class="fa fa-envelope-o"></i> <span class="hidden-md hidden-lg">Email</span></a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+<section class="regular" style="padding-top: 4rem">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 content-article">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <img src="@Model.Tour.Image" alt="@Model.Tour.Title" />
+                    </div>
+                    <div class="col-lg-7">
+                        @Html.Raw(Model.Tour.Description)
+                    </div>
+                </div>
+                <br />
+                <div class="content-container-anchor overlay-container-anchor">
+                    @if (Model.TabTours.Count > 1 || Model.TourGalleries.Count > 0)
+                    {
+                        string defaultTab = Model.TabTours.Count > 0 ? Model.TabTours[0].TitleTab : "";
+                        defaultTab = StringHelper.ConvertToAlias(defaultTab);
+                        <div id="tabbed-nav">
+
+                            <!-- Tab Navigation Menu, to have seo friendly hashtags, add data-link attribute to each li tag and give it a unique id to apear in the url-->
+                            <ul>
+                                @foreach (var itemTab in Model.TabTours)
+                                {
+                                    <li data-link="@StringHelper.ConvertToAlias(itemTab.TitleTab)"><a>@itemTab.TitleTab</a></li>
+                                }
+                                @if (Model.TourGalleries.Count > 0)
+                                {
+                                    <li data-link="Gallery"><a>Gallery</a></li>
+                                }
+                            </ul>
+
+                            <!-- Content container -->
+                            <div>
+                                @foreach (var itemTab in Model.TabTours)
+                                {
+                                    <div>
+                                        @Html.Raw(itemTab.Content)
+                                    </div>
+                                }
+                                <div>
+                                    <ul class="gallery clearfix">
+                                        @foreach (var itemGallery in Model.TourGalleries)
+                                        {
+                                            string lastClass = "";
+                                            if (cout % 3 == 0)
+                                            {
+                                                lastClass = "lastcolumn";
+                                            }
+                                            <li class="@lastClass"><a href="@itemGallery.ImageThumb" rel="prettyPhoto[gallery1]"><img src="@itemGallery.ImageLage" alt="@itemGallery.TitleGallery" /></a></li>
+                                            cout++;
+                                        }
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            @{
+                                if (namebook == "APPLY NOW")
+                                {
+                                    <a href="http://visa.goviettravel.com/" style="margin-left: 0px; width: auto; margin: 0px 0px 20px; padding: 10px 20px;" class="btn btn-success">@namebook</a>
+                                }
+                                else
+                                {
+                                    <a href="/BookTour/@Model.Tour.ID/" style="margin-left: 0px; width: auto; margin: 0px 0px 20px; padding: 10px 20px;" class="btn btn-success">@namebook</a>
+                                }
+                            }
+
+                        </div>
+
+                        <script>
+                            jQuery(document).ready(function ($) {
+                                /* jQuery activation and setting options for the tabs, also setting the the following:
+                        - deeplinking: for deep-linking
+                        - defaultTab: change it to one the new tab id*/
+                                $("#tabbed-nav").zozoTabs({
+                                    theme: "silver",
+                                    position: "top-left",
+                                    orientation: "horizontal",
+                                    deeplinking: true,
+                                    defaultTab: '@defaultTab'
+                                });
+
+                                $(".gallery:first a[rel^='prettyPhoto']").prettyPhoto({ animation_speed: 'fast', slideshow: 10000, hideflash: true });
+                            });
+                        </script>
+                    }
+                    else if (Model.TabTours.Count == 1)
+                    {
+                        <div class="f-width">
+                            @Html.Raw(Model.TabTours[0].Content)
+                            <div class="clearfix"></div>
+                            <br />
+                            <div>
+                                @{
+                                        if (@namebook == "APPLY NOW")
+                                        {
+                                            <a href="http://visa.goviettravel.com" style="margin-left: 0px; width: auto; margin: 0px 0px 20px; padding: 10px 20px;" class="btn btn-success">@namebook</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="/BookTour/@Model.Tour.ID/" style="margin-left: 0px; width: auto; margin: 0px 0px 20px; padding: 10px 20px;" class="btn btn-success">@namebook</a>
+                                        }
+                                    }
+
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <h1>@Model.Tour.Title</h1>
+                    }
+                    <br />
+                    <div class="fb-comments" data-href="http://goviettravel.com/@menu.Alias/@Model.Tour.ID/@Model.Tour.Alias" data-width="100%" data-numposts="5" data-mobile="true"></div>
+                    <br />
+                    @if (Model.OtherTour.Count > 0)
+                    {
+                        <h2 class="title-h1">Other Tours</h2>
+                        <ul class="other-objects">
+                            @foreach (var item in Model.OtherTour)
+                            {
+                                <li><a href="/@menu.Alias/@item.ID/@item.Alias"><i class="fa fa-caret-right"></i> @item.Title</a></li>
+                            }
+                        </ul>
+                    }
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                @Html.Partial("SideBar")
+                @if (tourRelates.Count > 0)
+                {
+                    <h2 class="title-h3">You May Also Concern!</h2>
+                    foreach (var item in tourRelates)
+                    {
+                        <div class="tour-relates">
+                            @*<img src="@item.Image" alt="@item.Name" class="img-border" />
+                                <h3><a href="/@item.MenuAlias/@item.Id/@item.Alias">@item.Name</a></h3>*@
+                        </div>
+                    }
+                }
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function() {
+        $(".ng-scope").dialog(
+        {
+            autoOpen: false,
+            modal: true,
+            width: 800,
+            dialogClass: "show-option",
+            title: 'DEAL OPTIONS : @Model.Tour.Title'
+        });
+        $("#choise-hotel").click(function() {
+            $(".ng-scope").dialog("open");
+        });
+    });
+</script>
+
+<style>
+    .show-option {
+        border: 1px solid #E8E8E8;
+        border-radius: 4px !important;
+        background: #fff;
+        color: #333333;
+        padding: 0px;
+    }
+
+    .z-tabs {
+        font-family: 'Open Sans', sans-serif !important;
+    }
+
+    .ng-scope {
+        padding: 10px 0px !important;
+    }
+
+    .deal-options--link {
+        width: 769px;
+        margin: 0px auto;
+    }
+
+    .show-option .ui-widget-header {
+        border: none;
+        background: none;
+        color: #333;
+        font-weight: bold;
+    }
+
+    .show-option .ui-dialog-titlebar-close {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        background: url("/Plugins/jquery-ui/images/ui-icons_222222_256x240.png");
+        background-position: -95px -128px;
+    }
+
+    .desktop--deal-options {
+        width: 100%;
+        height: auto;
+        max-width: 800px;
+        max-height: 550px;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .deal-options--option {
+        position: relative;
+        display: block;
+        float: left;
+        width: 100%;
+        height: auto;
+        border-bottom: 1px solid #e0e0e0;
+        overflow: hidden;
+        transition: all .2s ease-in-out;
+        padding: 6px 5px;
+    }
+
+    .deal-options--title {
+        margin: 16px auto 8px;
+        font-size: 15px;
+        font-weight: 700;
+        color: #333;
+        width: 45%;
+        float: left;
+    }
+
+        .deal-options--title a {
+            font-weight: normal;
+            font-size: 14px;
+            color: #0c4da1;
+        }
+
+            .deal-options--title a:hover {
+                text-decoration: none;
+            }
+
+    .deal-options--details {
+        width: 30%;
+        clear: none;
+        padding: 25px 20px;
+        float: left;
+        font-size: 14px;
+    }
+
+        .deal-options--details li {
+            width: 50%;
+            margin: 0;
+            text-align: center;
+            float: left;
+        }
+
+    .deal-options--cost {
+        margin-top: 8px;
+        width: 180px;
+        right: 18px;
+        display: block;
+        float: right;
+        text-align: center;
+        height: 50px;
+        color: #fff;
+        border-bottom: 4px solid #0C4DA2;
+        font-size: 12px;
+        text-transform: uppercase;
+        background: #0C4DA2;
+        padding-top: 7px;
+        transition: all .12s ease-in-out;
+    }
+
+    .cost--price-string {
+        width: 100%;
+        float: left;
+        font-size: 18px;
+        color: #fff;
+        line-height: 20px;
+    }
+
+    .deal-options--cost:hover {
+        border-bottom: 4px solid #0C4DA2;
+    }
+
+    ul.deal-options--list li:last-child {
+        border: none;
+    }
+
+    .ui-widget-overlay {
+        background: rgba(0,0,0,.5);
+    }
+</style>

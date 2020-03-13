@@ -1,0 +1,115 @@
+﻿@using TeamplateTour.Models
+@{
+    ShowTourDeal showTourDeal = ViewBag.ShowTourDeal;
+    double second = (double) ((showTourDeal.Tour.TimeDeal*3600)- (DateTime.Now - showTourDeal.Tour.StartDeal).Value.TotalSeconds);
+}
+<link href="~/Plugins/Flipclock/flipclock.css" rel="stylesheet" />
+<script src="~/Plugins/Flipclock/flipclock.min.js"></script>
+@if (showTourDeal != null)
+{
+    <div class="f-width w-deal">
+        <div class="l-deal">
+            <div id="flexslider-deal-slider" class="flexslider">
+                <ul class="slides">
+                    @foreach (var item in showTourDeal.TourGalleries)
+                    {
+                        <li><img src="@item.ImageThumb" alt="@item.TitleGallery" width="678" /></li>
+                    }
+                </ul>
+            </div>
+            <div id="flexslider-deal-carousel" class="flexslider">
+                <ul class="slides">
+                    @foreach (var item in showTourDeal.TourGalleries)
+                    {
+                        <li><img src="@item.ImageLage" alt="@item.TitleGallery" /></li>
+                    }
+                </ul>
+            </div>
+            <div class="f-width" id="w-tour-deal">
+                <h3>Current Deal: @showTourDeal.Tour.TitleTour</h3>
+                <div class="w-bt-detail">
+                    <a href="/@showTourDeal.Tour.MenuAlias/@showTourDeal.Tour.TourID/@showTourDeal.Tour.AliasTour" class="btn btn-blue">VIEW DEAL</a>
+                    <strong>Was: $@showTourDeal.Tour.Price</strong>
+                    <strong class="was-color">Now: $@showTourDeal.Tour.PriceSale</strong>
+                    <strong>View: @showTourDeal.Tour.CoutView</strong>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="r-deal">
+            <h2 class="title-h2" style="text-align: center">Current Deal</h2>
+            <div id="time-countdown">
+                <div class="clock" style="margin: 2em;"></div>
+            </div>
+            <div id="w-price-deal">
+                <h2 id="price-deal">$@showTourDeal.Tour.PriceSale</h2>
+                <h3 class="h3-deal">was $@showTourDeal.Tour.Price save @(100 - Math.Round((showTourDeal.Tour.PriceSale / showTourDeal.Tour.Price)*100,0))%</h3>
+            </div>
+            <div id="datepature">
+                <h3 class="h3-deal">Select your travel date</h3>
+                <div id="deal-datepicker"></div>
+                <a href="/BookingTour/@showTourDeal.Tour.TourID" id="date-select" class="btn btn-blue">BOOK NOW</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+}
+<style>
+     #flexslider-deal-carousel ul.slides li {
+         margin-right: 5px;
+     }
+     #flexslider-deal-carousel ul.slides li.flex-active-slide img {
+         border: 2px solid #ff0000 !important;
+     } 
+     #flexslider-deal-carousel ul.slides li img {
+         border: 1px solid #ddd;
+     }
+</style>
+<script>
+    var clock;
+    $(document).ready(function () {
+        //$('.flexslider-deal').flexslider({
+        //    animation: "slide",
+        //    controlNav: "thumbnails",
+        //});
+
+        $('#flexslider-deal-slider').flexslider({
+            animation: "fade",
+            controlNav: false,
+            animationLoop: true,
+            slideshow: false,
+            nextText: "",
+            prevText: "",
+            sync: "#flexslider-deal-carousel"
+        });
+        $('#flexslider-deal-carousel').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: false,
+            slideshow: true,
+            itemWidth: 109,
+            nextText: "",
+            prevText: "",
+            itemMargin: 5,
+            asNavFor: '#flexslider-deal-slider'
+        });
+
+        var clock;
+
+        clock = $('.clock').FlipClock({
+            clockFace: 'DailyCounter',
+            autoStart: false,
+            callbacks: {
+                stop: function () {
+                    $('.message').html('The clock has stopped!');
+                }
+            }
+        });
+        $("#deal-datepicker").datepicker({
+            minDate: new Date()
+        });
+        clock.setTime('@second');
+        clock.setCountdown(true);
+        clock.start();
+    });
+</script>

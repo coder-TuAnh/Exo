@@ -1,0 +1,37 @@
+﻿@using ProjectLibrary.Database
+@*@using TeamplateTour.Controllers*@
+@using TeamplateHotel.Controllers
+@{
+    Menu menu = ViewBag.Menu ?? new Menu();
+    List<Menu> cateforyLeft = CommentController.CategoryLeft(menu.ID);
+}
+
+@if (cateforyLeft.Count > 1)
+{
+    <div class="wrap-category-left">
+       @* <h2 class="title-h3">@CommentController.TitleMenuPerant(menu.MenuId)</h2>*@
+        @foreach (var item in cateforyLeft)
+        {
+            //if (item.ParentID == 0)
+            //{
+                <h3><i class="fa fa-chevron-right"></i><a href="/@item.Alias" alt="@item.Title">@item.Title</a></h3>
+            @*}
+            else
+            {
+                <h3 class="sub-menu-left"><i class="fa fa-angle-double-right"></i><a href="/@item.Alias" alt="@item.Title">@item.Title</a></h3>
+            }*@
+        }
+    </div>
+}
+
+<style>
+    h4.sub-menu-left {
+        background: none;
+        font-size: 13px;
+    }
+
+        h4.sub-menu-left span {
+            margin-right: 5px;
+            color: #003580;
+        }
+</style>

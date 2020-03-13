@@ -1,0 +1,77 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Handler
+@using TeamplateHotel.Controllers
+@model TeamplateHotel.Models.DetailService
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    List<Menu> menus = CommentController.GetMainMenus(Request.Cookies["LanguageID"].Value);
+}
+@Html.Partial("Slider/Slider")
+<div class="backgroup-banner">
+    <div class="breadcrumb">
+        <a href="/">@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "Home")</a>
+        <span class="img-circle "><i class="fa fa-chevron-right " aria-hidden="true"></i></span>
+        <h1> @menu.Title </h1>
+    </div>
+</div>
+
+<div class="container portfolio-single Postfolio">
+    <div class="row" style="position:inherit">
+        <div class="" style="margin-top:50px;">
+            <div class="col-md-3 col-sm-3 ">
+                <aside class="widget stl-menu">
+                    <h3 class="widgettitle">
+                        <a> Menu </a>
+                    </h3>
+                    <ul>
+                        @foreach (var item in menus)
+                        {
+                            <li> <a href="/@item.Alias" target="_blank">@item.Title</a> <hr class="style" /></li>
+                        }
+                    </ul>
+
+
+                </aside>
+                <div class="bgr-about" style=" position: relative;overflow: hidden;">
+                    <div class="control-form">
+                        @Html.Partial("Comment/GetEmail")
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9 col-sm-9">
+                <div class="last">
+                    <h1 class="text-center title">@Model.Service.Title</h1>
+                    @Html.Raw(Model.Service.Content)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    @if (Model.Services.Count > 0)
+    {
+        <div class="container latest" id="slider-latest">
+            <div class="row">
+                <div class="col-md-12 col-ms-12">
+                    <div class="border-title">
+                        <h2>@GetLanguage.Language(Request.Cookies["LanguageID"].Value, "RelatedService")<span></span></h2>
+                    </div>
+                </div>
+                <div class="col-md-12 owl-carousel owl-theme slideshow" id="owl-demo1" style="position:relative">
+                    @foreach (Service item in Model.Services)
+                    {
+                        <div class="thumbnail item">
+                            <img src="@item.Image" alt="@item.Title" class="room" />
+                            <div class="caption cap-img">
+                                <a href="/@item.MenuAlias/@item.ID/@item.Alias"><h4>@item.Title</h4> </a>
+                                <p>@Html.Raw(item.Description) </p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

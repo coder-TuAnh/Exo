@@ -1,0 +1,281 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Handler
+@using PagedList.Mvc
+@model  PagedList.IPagedList<Cruise>
+@{
+    ViewBag.Title = "DetailSearch";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<link href="~/Content/Css/StyleSearch.css" rel="stylesheet" />
+
+<style>
+    .pagination {
+        margin: inherit;
+    }
+
+    .form-group .icon-calendar {
+        top: 32%;
+    }
+
+    .bootstrap-datetimepicker-widget table th.picker-switch {
+        width: 145px;
+        background: #144aa8;
+    }
+
+    .bootstrap-datetimepicker-widget table td.old, .bootstrap-datetimepicker-widget table td.new {
+        color: #fff !important;
+        background: #144aa8;
+    }
+
+    .bootstrap-datetimepicker-widget table td.day {
+        color: #000;
+    }
+
+    .media .fa-times-circle {
+        color: #bcbcbc;
+        position: absolute;
+        right: 5px;
+        top: 15px;
+        cursor: pointer;
+    }
+
+    .fa-times-circle:before {
+        content: "\f057";
+    }
+
+    .result-search {
+        border-bottom: 0.5px solid rgb(185, 111, 23);
+        padding-bottom: 30px;
+    }
+
+    .redirect-cruise {
+        border: 1px solid rgb(185, 111, 23);
+        border-radius: 4px;
+        width: 189px;
+        color: white;
+        margin-top: 10px;
+        background: #d28100;
+    }
+
+        .redirect-cruise:hover {
+            background: #a5560d;
+            color: white;
+        }
+
+    .list-check div i {
+        font-size: 14px;
+        padding-top: 5px;
+        color: rgb(185, 111, 23);
+    }
+
+    .list-check div strong {
+        color: rgb(185, 111, 23);
+    }
+</style>
+<div class="cd-main" style="margin-top:80px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="widget-aric widget-search-cruise ">
+                    <h2 class="text-normal">Search Cruises</h2>
+                    <form action="/BookingCruise/DetailSearch" method="post">
+                        <div class="form-group">
+                            <input id="namecruise" name="namecruise" type="text" value="@ViewBag.Namecruise" class="form-control" placeholder="Cruise name..." autocomplete="off" />
+                        </div>
+                        <div class="form-group">
+                            <input id="chekin" value="@ViewBag.Chekin" name="Chekin" type="text" class="form-control datetimepicker5" placeholder="Check-in">
+                        </div>
+                        <div class="form-group">
+                            @Html.DropDownList("catalorycruise", (IEnumerable<SelectListItem>)ViewBag.ListMenuID, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.DropDownList("duration", (IEnumerable<SelectListItem>)ViewBag.listDay, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.DropDownList("price", (IEnumerable<SelectListItem>)ViewBag.ListMenuPrice, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @*@Html.DropDownList("mostcruise", (IEnumerable<SelectListItem>)ViewBag.ListMostCruise, new { @class = "form-control" })*@
+                        </div>
+                        <button type="submit" class="btn btn-block btn-style-1 text-uppercase text-bold" style="background:#d28100;color:white">Search</button>
+
+                    </form>
+                </div>
+
+                <div class="widget-aric widget-viewed">
+                    <h4 class="widget-tit">Why book with us? <i class="fa fa-chevron-down"></i></h4>
+                    <div>
+                        <p style="padding:10px">There are at least 6 reasons why you should book Halong Bay cruise and tour on our website</p>
+                        <div class="row list-check">
+                            <div class="col-xs-2 ">
+                                <i class="fas fa-check-circle float-right icon"></i>
+                                <br />
+                            </div>
+                            <div class="col-xs-10 padding">
+                                <strong>Best Price Guaranteed</strong><br />
+                                Enjoy our lowest rate you can find online.
+                                <br /><br />
+                            </div>
+                            <div class="col-xs-2 ">
+                                <i class="fas fa-check-circle float-right"></i>
+                            </div>
+                            <div class="col-xs-10">
+                                <strong>No hidden fee</strong><br />
+                                No credit card charge. All taxes and service charges included.
+                                <br /><br />
+                            </div>
+                            <div class="col-xs-2 ">
+                                <i class="fas fa-check-circle float-right"></i>
+                            </div>
+                            <div class="col-xs-10">
+                                <strong>Verified cruise reviews</strong><br />
+                                Real sharing from real travelers.
+                                <br /><br />
+                            </div>
+                            <div class="col-xs-2 ">
+                                <i class="fas fa-check-circle float-right"></i>
+                                <br />
+                            </div>
+                            <div class="col-xs-10">
+                                <strong>Verified cruise reviews</strong><br />
+                                Real sharing from real travelers.
+                                <br /><br />
+                            </div>
+                            <div class="col-xs-2 ">
+                                <i class="fas fa-check-circle float-right icon"></i>
+                                <br />
+                            </div>
+                            <div class="col-xs-10 padding">
+                                <strong>Easy change/cancellation</strong><br />
+                                Minimal fee for change/ Cancellation with great flexibility.
+                                <br /><br />
+                            </div>
+                            <div class="col-xs-2 ">
+                                <i class="fas fa-check-circle float-right icon"></i>
+                                <br />
+                            </div>
+                            <div class="col-xs-10 padding">
+                                <strong>Special promotions and deals</strong><br />
+                                We have what others have not.
+                                <br /><br />
+                            </div>
+                            <div class="col-xs-2 ">
+                                <i class="fas fa-check-circle float-right icon"></i>
+                                <br />
+                            </div>
+                            <div class="col-xs-10 padding">
+                                <strong>Cruise quality guaranteed</strong><br />
+                                We only select the best cruises for your best experience!
+                                <br /><br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class="widget-aric widget-customer">
+                        <h4 class="text-center">What Our Guests Say</h4>
+                        <div class="widget-hide-mb">
+                            <div class="widget-body text-center">
+                                <div id="widget-owl" class="owl-carousel">
+                                    <div class="item">
+                                        <img src="~/Content/Img/652016826616787676-mmmain.jpg" alt="" class="img-circle" width="100%" />
+
+                                        <p>
+                                            <em>
+                                                Both the cruise tour and the city tour went great. Could not recommend more about this trip.
+                                                ...
+                                            </em>
+                                        </p>
+                                        <strong class="cus-cm z_14 inline-block">Emily, Canada</strong>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="widget-footer text-center">
+                                <a href="">SEE ALL TESTIMONIALS <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>*@
+            </div>
+            <div class="col-md-9">
+                <div class="matched">
+                    <div class="box-hidden">
+                        <ul class="list-inline pull-left"></ul>
+                        <div id='Paging' style="text-align: right">
+                            <div style="float:left">
+                                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                            </div>
+                            <div style="float:right">
+                                @Html.PagedListPager(Model, page => Url.Action("DetailSearch", new { page, namecruise = ViewBag.Namecruise, chekin = ViewBag.Chekin, catalorycruise = ViewBag.Catalorycruise, duration = ViewBag.Duration, price = ViewBag.Price }))
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="media-cruises">
+                    @foreach (var item in Model)
+                    {
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-md-12 result-search">
+                                    <h3><a href="/cruise-detail/@item.Alias-@item.ID" style="color:rgb(185, 111, 23)">@item.Name</a></h3><br />
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <img src="@item.Image" class="img-thumbnail" alt="Cinque Terre">
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="place">
+                                                <strong><i class="fas fa-map-marker-alt"></i> Destinations:</strong>
+                                                @item.Location<br>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="box-hidden">
+                                                <div class="pull-right text-left">
+                                                    Price <br>
+                                                    <b class="z_18 f_hn" style="font-weight:bold">$@item.Price</b>
+                                                </div>
+                                                <div class="included">
+
+                                                </div>
+                                                <a href="/cruise-detail/@item.Alias-@item.ID" class="btn btn-default redirect-cruise">View More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#chekin').datepicker({
+            orientation: "bottom auto",
+            todayHighlight: true,
+            dateFormat: "dd/mm/yy"
+        });
+        $(".datepicker1").datepicker();
+        $("#widget-owl").owlCarousel({
+            loop: true,
+            margin: 10,
+            responsiveClass: true,
+            autoplay: true,
+            items: 1, //10 items above 1000px browser width
+            dots: true,
+            nav: true,
+            navText: ['<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>'],
+
+        });
+
+       
+
+    });
+
+</script>
+
+

@@ -1,0 +1,886 @@
+﻿@{
+    ViewBag.Title = "AddCruise";
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+}
+@model TeamplateHotel.Areas.Administrator.EntityModel.ECruise
+@using ProjectLibrary.Config
+@{
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+    int flag = 0;
+    int count = 0;
+
+}
+<link href="~/Areas/Administrator/Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<style>
+    .fileContainer {
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+    }
+
+        .fileContainer [type=file] {
+            cursor: inherit;
+            display: block;
+            font-size: 999px;
+            filter: alpha(opacity=0);
+            min-height: 100%;
+            min-width: 100%;
+            opacity: 0;
+            position: absolute;
+            right: 0;
+            text-align: right;
+            top: 0;
+        }
+
+    .cabinstyle {
+        width: 200px;
+        border: 1px solid #c9c2ff;
+        margin: 10px;
+        padding: 5px;
+        border-radius: 5px;
+        float: left;
+    }
+
+    .gallerystyle {
+        width: 100px;
+        margin: 10px;
+        float: left;
+    }
+
+    #listCruisegallery {
+        width: 100%;
+        float: left;
+    }
+
+    #listcabin {
+        width: 100%;
+        float: left;
+    }
+
+    .img-link button[type="button"] {
+        margin-bottom: 10px;
+    }
+
+    .controls button[type="button"] {
+        margin-bottom: 10px;
+    }
+
+    .imgthumb button[type="button"] {
+        margin-bottom: 10px;
+    }
+
+    .ratefrom {
+        width: 170px;
+        float: left;
+    }
+</style>
+<link href="~/Areas/Administrator/Content/Selecterbootrap/bootstrap-multiselect.css" rel="stylesheet" />
+<script src="~/Areas/Administrator/Content/Selecterbootrap/bootstrap-multiselect.min.js"></script>
+<script src="~/Areas/Administrator/Content/Selecterbootrap/prettify.js"></script>
+<div class="span12">
+    <div class="widget ">
+        <div class="widget-header">
+            <i class="icon-plus-sign"></i>
+            <h3>@(ViewBag.cmd == "Create" ? "Tạo chuyến đi" : "Sửa Chuyến đi")</h3>
+
+        </div> <!-- /widget-header -->
+        <form id="cruisefrom">
+            <div class="widget-content">
+                @Html.ValidationSummary(true)
+                <div class="control-group">
+                    @if (ViewBag.cmd != "Create")
+                    {
+                        DateTime UpdateTime = (DateTime)ViewBag.UpdateTime;
+                        <p class="text-right">Ngày chỉnh sửa: <b style="color:red">@UpdateTime</b></p>
+                    }
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label" for="Name">Tên Tàu<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Name, new { @class = "span4" })
+                        @Html.ValidationMessageFor(c => c.Name)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(c => c.Alias, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Alias, new { @class = "span4" })
+                        @Html.ValidationMessageFor(c => c.Alias)
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Image">Ảnh đại diện <span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls img-link">
+                        @Html.TextBoxFor(c => c.Image, new { @class = "span4 inputbox upload" })
+                        @Html.ValidationMessageFor(c => c.Image)
+                        <p class="help-img">Nên chọn ảnh có kích thước @ConfigImage.InfoImageRoom</p>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="Tel">Địa điểm <span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Location, new { @class = "span4" })
+                        @Html.ValidationMessageFor(c => c.Location)
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="Tel">Hoạt động</label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Action, new { @class = "span4" })
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Tel">Star</label>
+                    <div class="controls">
+                        <select class="span4" id="Star" name="Star" style="width: 300px;display: inline;">
+                            @if (ViewBag.cmd == "Create")
+                            {
+                                <option selected="selected" value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            }
+                            else
+                            {
+                                for (var i = 1; i < 6; i++)
+                                {
+                                    if (i == Model.Star)
+                                    {
+                                        <option selected="selected" value="@i">@i</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Email">Miến phí dịch vụ<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Freeservic, new { @class = "span4" })
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Email">Giá niêm yết<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Price, new { @class = "span4" })
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="Address">Giá khuyến mãi <span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.PriceSale, new { @class = "span4" })
+                        @Html.ValidationMessageFor(c => c.PriceSale)
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Address">Đánh giá(best or not best)<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls">
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="BestCruise" id="BestCruise" value="@(ViewBag.cmd != "Create" ? Model.BestCruise.ToString() : "false")">Best</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="CodeBooking">Thời gian<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls">
+                        @Html.DropDownListFor(m => m.Duration, (IEnumerable<SelectListItem>)ViewBag.listDay, new { @class = "span4", style = "width: 300px;display: inline;" })
+                        @*@Html.TextBoxFor(c => c.Duration, new { @class = "span4" })*@
+                        @Html.ValidationMessageFor(c => c.Duration)
+                    </div>
+                </div>
+                @*MenuID*@
+                <div class="control-group">
+                    <label class="control-label" for="CodeBooking">MenuID<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls">
+                        @if (ViewBag.cmd == "Create")
+                        {
+                            @Html.DropDownListFor(m => m.MenuID, (IEnumerable<SelectListItem>)ViewBag.ListMenuID, new { @class = "span4", style = "width: 300px;display: inline;", multiple = "multiple" })
+                        }
+                        else
+                        {
+                            <span class="multiselect-native-select">
+                                <select class="span4" id="MenuID" multiple="multiple" name="MenuID" style="width: 300px;display: inline;">
+                                    @foreach (var i in ViewBag.ListMenuID.Items)
+                                    {
+                                        if (Model.MenuID != null)
+                                        {
+                                            if (Model.MenuID.FirstOrDefault(a => a == i.Value) != null)
+                                            {
+                                                <option selected value="@i.Value">@i.Text</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@i.Value">@i.Text</option>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <option value="@i.Value">@i.Text</option>
+                                        }
+
+                                    }
+                                </select>
+
+                            </span>
+                        }
+                    </div>
+                </div>
+                @*<div class="control-group">
+                        <label class="control-label" for="Website">Ngày khởi hành<span class="asterisk" style="display: inline; float: none">*</span></label>
+                        <div class="controls">
+                            <div class="form-group">
+                                <div class='input-group date' id='Datetime'>
+                                    <input type='text' class="form-control" id="Departure" name="Departure" value="@(ViewBag.cmd != "Create" ? Model.Departure : "")" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+
+                <div class="control-group">
+                    <label class="control-label" for="About">Những điều về Tàu <span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls">
+                        @Html.TextAreaFor(c => c.About, new { @class = "span4" })
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="Condition">Ghi chú<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="control-group">
+                        @Html.TextAreaFor(c => c.Description, new { @class = "full-ckeditor" })
+                    </div>
+                </div>
+                <div class="control-group" style="display:none">
+                    <label class="control-label" for="CodeBooking">Đánh giá<span class="asterisk" style="display: inline; float: none">*</span></label>
+                    <div class="controls" style="float:left;width:100%">
+                        <div class="ratefrom">
+                            <label>Chất lượng hành trình:</label>
+                            <input id="Cruisequality" name="Cruisequality" class="form-control" style="width:100px;">
+                        </div>
+                        <div class="ratefrom">
+                            <label>Đồ ăn thức uống:</label>
+                            <input id="FoodDrink" name="FoodDrink" class="form-control" style="width:100px;">
+                        </div>
+                        <div class="ratefrom">
+                            <label>Chất lượng Cabin:</label>
+                            <input id="Cabinquality" name="Cabinquality" class="form-control" style="width:100px;">
+                        </div>
+                        <div class="ratefrom">
+                            <label>Chất lượng nhân viên:</label>
+                            <input id="Staffquality" name="Staffquality" class="form-control" style="width:100px;">
+                        </div>
+                        <div class="ratefrom">
+                            <label>Giải trí:</label>
+                            <input id="Entertainment" name="Entertainment" class="form-control" style="width:100px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+
+                    <div class="controls">
+                        <div class="clr"></div>
+                        <h3 class="mg-h">Khởi tạo Tab Chuyến tàu</h3>
+                        @if (Model.Cruitabs != null)
+                        {
+                            <select id="ListName" style="width: 122px;">
+                                @if (Model.Cruitabs != null)
+                                {
+                                    foreach (var tab in Model.Cruitabs)
+                                    {
+                                        <option value="@count">@tab.Name</option>
+                                        count++;
+                                    }
+                                }
+
+                            </select>
+                        }
+                        else
+                        {
+                            <select id="ListName" style="width: 122px;display:none"></select>
+                        }
+                        <input style="display:none" type="text" id="countContenttab" name="countContenttab" />
+                        <button id="changeName" type="button" style="display: none" class="btn btn-primary">Cập nhật</button>
+                        <input type="text" id="tabName" style="min-width: 1px; width: 122px" />
+                        <button id="saveName" type="button" style="display: none" class="btn btn-primary">Lưu</button>
+                        <button id="delName" type="button" style="display: none" class="btn btn-primary">Xoá</button>
+                        <button type="button" id="addTab" class="btn btn-primary">Thêm </button>
+                        <div class="clr"></div>
+                        <div style="width: 100%; height: auto; clear: both" class="" id="Display-Tabs">
+                            @{
+                                count = 0;
+                                if (Model.Cruitabs != null)
+                                {
+                                    foreach (var tab in Model.Cruitabs)
+                                    {
+                                        <h4 id="Content_@(count)" style="@(count > 0 ? "display: none" : "")">Content Tab Tour : @tab.Name</h4>
+                                        <input style="display:none" class="tabcruise-id" type="text" id="TabTours_@(count)__id" name="TabTours[@count].id" value="@tab.ID" />
+                                        <div style="width:100%;clear: both">
+                                            <label class="tabcruise-pricename" id="NamePrice_@(count)" style="@(count > 0 ? "display: none" : "")">Giá Tab:</label><input style="@(count > 0 ? "display: none" : "")" class="tabcruise-price" type="number" id="TabTours_@(count)__price" name="TabTours[@count].price" value="@(tab.Price != null ? tab.Price : 0)" />
+                                        </div>
+                                        <div style="clear: both">
+                                            <textarea id="TabTours_@(count)__Content" style="@(count > 0 ? "display: none" : "")" name="TabTours[@count].Content" rows="20" class="full-ckeditor">@tab.Content</textarea>
+                                            <input type="hidden" class="tabcruise-title" id="TabTours_@(count)__TitleTab" name="TabTours[@count].TitleTab" value="@tab.Name" />
+                                        </div>
+                                        count++;
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                @*Toi uu hoa SEO*@
+                <div class="control-seo">
+                    <h3 class="mg-h">Tối ưu hoá công cụ tìm kiếm(Seo)</h3>
+                    <div class="control-group">
+                        @Html.LabelFor(c => c.MetaDescription)
+                        @Html.TextBoxFor(c => c.MetaDescription, new { @class = "span4" })
+                        @Html.ValidationMessageFor(p => p.MetaDescription)
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(c => c.MetaKeywords)
+                        <div class="jtable-input jtable-text-input">
+                            @Html.TextAreaFor(c => c.MetaKeywords, new { @class = "span4 meta-seo" })
+                            @Html.ValidationMessageFor(p => p.MetaKeywords)
+                        </div>
+                    </div>
+                </div>
+                @if (ViewBag.cmd != "Create")
+                {
+                    @Html.TextBoxFor(c => c.ID, new { @class = "span4", style = "display:none" })
+                    <div class="control-group">
+                        <div class="controls">
+                            <h3 class="mg-h">Thêm hình ảnh cho bộ sưu tập</h3>
+                            <ul class="adminformlist">
+                                <li class="imgthumb">
+                                    <label>Hình ảnh </label>
+                                    <input type="text" id="img-thumb" style="min-width: 190px" class="upload" />
+                                    <button type="button" id="add" class="btn btn-primary">Insert</button>
+                                    <p class="help-img">Nên chọn hình ảnh có kích thước lớn hơn 600px</p>
+                                </li>
+                                <li>
+                                    <ul style="clear: both; height: auto; width: 100%;" class="allImage" id="listCruisegallery">
+                                        @*@if (Model.EGalleryITems != null)
+                                            {
+                                                foreach (EGalleryITem gallery in Model.EGalleryITems)
+                                                {
+                                                    <li>
+                                                        <input id="EGalleryITems_@(flag)__Image" name="EGalleryITems[@(flag)].Image" type="hidden" value="@(gallery.Image)" />
+                                                        <img src="@(gallery.Image)" width="100" />
+                                                    </li>
+                                                    flag++;
+                                                }
+                                            }*@
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="col-md-12">
+                            <div class="col-md-4" style="width:300px;"><h3 class="mg-h">Các Cabin của tàu</h3></div>
+                            <div class="col-md-8"><a href="@Url.Action("AddCabin","Cabin" ,new {id = 0 , idcruise = Model.ID})" title="Thêm Cabin" class="btn btn-success addCabin">Thêm CaBin</a></div>
+
+                        </div>
+
+                        <div class="col-md-12" id="listcabin">
+
+                        </div>
+                    </div>
+                }
+                <div class="form-actions" style="width:100%;float:left">
+                    @if (ViewBag.cmd == "Create")
+                    {
+                        <input type="button" value="Create" id="create" class="btn btn-primary" />
+                    }
+                    else
+                    {
+                        <input type="button" value="Save" id="update" class="btn btn-primary" />
+                    }
+                    <a href="@Url.Action("Index", "Cruise")" class="btn">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<ul id='context-menu'>
+    <li>Delete</li>
+</ul>
+<div class="modal fade" style="margin-top:50px;top:0px;width:1000px;margin-left:-500px"
+     id="myModal_cabin"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- empty -->
+    </div>
+</div>
+<div class="modal fade" style="margin-top:50px;top:0px;width:950px;margin-left:-500px"
+     id="myModal_cabinedit"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- empty -->
+    </div>
+</div>
+@if (ViewBag.cmd != "Create")
+{
+    <script>
+        $(document).ready(function () {
+            loadlistcabin(@Model.ID);
+            loadlistgallery(@Model.ID);
+        })
+    </script>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        var counts = 0;
+        var count = @count;
+        bindUl();
+        AutoAlias("Name", "Alias");
+        desployCkeditor();
+        CreateCkEditor();
+
+        $('#MenuID').multiselect();
+
+        bindRightClick();
+        var checkcruitab = "@Model.Cruitabs";
+        if (checkcruitab != "") {
+            changeNameTag();
+        }
+        $('#countContenttab').val(count)
+        sapxepListName();
+        sapxepTab();
+
+        $('html').click(function (e) {
+            $('#context-menu').hide();
+        });
+        $('#context-menu').click(function (e) {
+            e.stopPropagation();
+            var imagname = $(curentImg).children("input").val();
+            deletegallery(imagname);
+            $(curentImg).remove();
+            sapxep();
+            $('#context-menu').hide(100);
+        });
+        $(window).resize(function () {
+            $('#context-menu').hide();
+        });
+
+        var countimg = 0;
+
+
+        $('#Departure').datepicker({
+            orientation: "bottom auto",
+            todayHighlight: true,
+            dateFormat: "dd/mm/yy"
+        });
+        var checkokpm = $('#BestCruise');
+        if ($('#BestCruise').val().toLowerCase() == "true") {
+            $('#BestCruise')[0].checked = true;
+        } else {
+            $('#BestCruise')[0].checked = false;
+        }
+        //Thêm ảnh
+        $('#add').click(function () {
+            if ($('#img').val() == "") {
+                alert("Please select image");
+            } else {
+                var data = '';
+                while (true) {
+                    if ($('#EGalleryITems_0__Image').length == 0) {
+                        data = loadHtmlForImage(0);
+                        countimg = 1;
+                    } else {
+                        data = loadHtmlForImage(countimg++);
+                    }
+                    break;
+                }
+                $('.allImage').append(data);
+                addgallerycruise($('#img-thumb').val());
+                sapxep();
+                bindRightClick();
+                $('#img-title').val('');
+                $('#img-thumb').val('');
+                $('#img').val('');
+            }
+
+        });
+
+        $('.addCabin').click(function (e) {
+
+            /*
+            * hủy liên kết
+            *
+            * việc này quan trọng
+            * nếu không hủy liên kết, modal sẽ không được load đúng cách
+            * vì action sẽ trả về 1 trang html trống với partialview
+            *
+            * cách tương tự return false; cách này thực hiện ở cuối method
+            */
+            e.preventDefault();
+            console.log("da vao menthod them cbin");
+            var $modal = $('#myModal_cabin');
+            var $modalDialog = $modal.find('.modal-dialog');
+            var href = $(this).prop('href');
+
+            // không cho phép tắt modal khi click bên ngoài modal
+            var option = { backdrop: 'static' };
+
+            // kiểm tra (logic, điều kiện...)
+
+            // load modal
+            $modalDialog.load(href, function () {
+                $modal.modal(option, 'show');
+                CreateCkEditor();
+
+            });
+
+        });
+        $('#myModal_cabin').on('hidden.bs.modal', function () {
+            window.location.reload();
+        })
+        $('#myModal_cabinedit').on('hidden.bs.modal', function () {
+            window.location.reload();
+        })
+        function changeNameTag() {
+            $('#ListName').unbind();
+            $('#changeName').unbind();
+            $('#saveName').unbind();
+            $('#delName').unbind();
+
+            if ($('#ListName').val() != "") {
+                $('#changeName').show();
+            }
+
+            $('#changeName').click(function () {
+                $('#tabName').val($('#ListName').find(":selected").text());
+                $('#addTab').hide();
+                $('#saveName').show();
+                $('#delName').show();
+
+            });
+            $('#saveName').click(function () {
+                $('#ListName').find(":selected").text($('#tabName').val());
+                $('#saveName').hide();
+                $('#delName').hide();
+                $('#addTab').show();
+                //change value
+
+                $('#TabTours_' + $('#ListName').val() + '__TitleTab').val($('#tabName').val());
+                $('#Content_' + $('#ListName').val()).text('Nội dung lịch trình :' + $('#tabName').val());
+
+                //
+                $('#tabName').val("");
+            });
+            $('#delName').click(function () {
+                if (confirm("Are you sure?")) {
+                    // your deletion code
+                    //TabTours_[0]__Name
+                    $('#TabTours_' + $('#ListName').val() + '__Content').parent().remove();
+                    $('#TabTours_' + $('#ListName').val() + '__TitleTab').remove();
+                    $('#Content_' + $('#ListName').val() + ' ').remove();
+                    $('#NamePrice_' + $('#ListName').val() + ' ').remove();
+                    $('#TabTours_' + $('#ListName').val() + '__id').remove();
+                    $('#TabTours_' + $('#ListName').val() + '__price').remove();
+                    $('#cke_TabTours_' + $('#ListName').val() + '__Content').remove();
+
+                    //
+                    $('#ListName').find(":selected").remove();
+                    sapxepListName();
+                    sapxepTab();
+                    count--;
+                    $('#tabName').val("");
+                    $('#countContenttab').val(count);
+                    //
+                    if ($('#ListName').val() != null) {
+                        CKEDITOR.replace('TabTours_' + $('#ListName').val() + '__Content', {
+                            height: '400px',
+                            toolbar: [
+                                { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates'] },
+                                { name: 'clipboard', groups: ['clipboard', 'undo'], items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                                { name: 'editing', groups: ['find', 'selection', 'spellchecker'], items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt'] },
+                                { name: 'forms', items: ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'] },
+                                '/',
+                                { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                                { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language'] },
+                                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                                { name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'] },
+                                '/',
+                                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
+                                { name: 'colors', items: ['TextColor', 'BGColor'] },
+                                { name: 'tools', items: ['Maximize', 'ShowBlocks'] },
+                                { name: 'others', items: ['-'] },
+                                { name: 'about', items: ['About'] }
+                            ]
+                        });
+                        $('#NamePrice_' + $('#ListName').val() + ' ').show();
+                        $('#TabTours_' + $('#ListName').val() + '__price').show();
+                        $('#Content_' + $('#ListName').val() + ' ').show();
+                    }
+                    //
+                    $('#saveName').hide();
+                    $('#delName').hide();
+                    $('#addTab').show();
+
+                    //CreateCkEditor();
+                }
+                return false;
+            });
+
+            $('#ListName').change(function () {
+                desployCkeditor();
+                var item = $('#ListName').val();
+                console.log(item);
+                $('#Display-Tabs').find('h4').each(function () {
+                    //$('#cke_' + this.attr('id')).hide();
+                    $(this).hide();
+                });
+                $('#Display-Tabs').find('.tabcruise-pricename').each(function () {
+                    //$('#cke_' + this.attr('id')).hide();
+                    $(this).hide();
+                });
+                $('#Display-Tabs').find('.tabcruise-price').each(function () {
+                    //$('#cke_' + this.attr('id')).hide();
+                    $(this).hide();
+                });
+                $('#Content_' + item + ' ').show();
+                $('#NamePrice_' + item + ' ').show();
+                $('#' + 'TabTours_' + item + '__price').show();
+                $('#' + 'TabTours_' + item + '__Content').show();
+                CKEDITOR.replace('TabTours_' + item + '__Content', {
+                    height: '600px',
+                    toolbar: [
+                        { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates'] },
+                        { name: 'clipboard', groups: ['clipboard', 'undo'], items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                        { name: 'editing', groups: ['find', 'selection', 'spellchecker'], items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt'] },
+                        { name: 'forms', items: ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'] },
+                        '/',
+                        { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                        { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language'] },
+                        { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                        { name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'] },
+                        '/',
+                        { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
+                        { name: 'colors', items: ['TextColor', 'BGColor'] },
+                        { name: 'tools', items: ['Maximize', 'ShowBlocks'] },
+                        { name: 'others', items: ['-'] },
+                        { name: 'about', items: ['About'] }
+                    ]
+                });
+
+            });
+        }
+        function desployCkeditor() {
+            var editors = $("textarea");
+            if (editors.length) {
+                editors.each(function () {
+                    var instance = CKEDITOR.instances[$(this).attr("id")];
+                    if (instance && $(this).attr("id") != 'Description') {
+                        instance.destroy(true);
+                        $(this).val(instance.getData());
+                        $(this).hide();
+                    }
+                });
+            }
+        }
+        function sapxepListName() {
+            var temp = 0;
+            $("#ListName option").each(function () {
+                var value = $(this).attr("value");
+                var valuereplace = value.replace(value, temp);
+                $(this).attr("value", valuereplace);
+                temp++;
+            });
+        }
+        function sapxepTab() {
+
+            var temp = 0;
+            $("#Display-Tabs .tabcruise-price").each(function () {
+                var id = $(this).attr("id");
+                var name = $(this).attr("name");
+
+                var abc = name.substring(name.indexOf('[') + 1, name.indexOf(']'));
+                var idreplace = id.replace(abc, temp);
+                var namereplace = name.replace(abc, temp);
+                $(this).attr("id", idreplace);
+                $(this).attr("name", namereplace);
+
+
+                temp++;
+            });
+            var temp = 0;
+            $("#Display-Tabs .tabcruise-pricename").each(function () {
+                var id = $(this).attr("id");
+                var name = $(this).attr("name");
+                var abc = id.substring(id.indexOf('_') + 1, id.length);
+                var idreplace = id.replace(abc, temp);
+                $(this).attr("id", idreplace);
+                temp++;
+            });
+            var temp = 0;
+            $("#Display-Tabs .tabcruise-id").each(function () {
+                var id = $(this).attr("id");
+                var name = $(this).attr("name");
+
+                var abc = name.substring(name.indexOf('[') + 1, name.indexOf(']'));
+                var idreplace = id.replace(abc, temp);
+                var namereplace = name.replace(abc, temp);
+                $(this).attr("id", idreplace);
+                $(this).attr("name", namereplace);
+                temp++;
+            });
+            var temp = 0;
+            $("#Display-Tabs label").each(function () {
+                var id = $(this).attr("id");
+                var abc = id.substring(id.indexOf('_') + 1, id.length);
+                var idreplace = id.replace(abc, temp);
+                $(this).attr("id", idreplace);
+                temp++;
+            });
+            temp = 0;
+            $("#Display-Tabs textarea").each(function () {
+                var id = $(this).attr("id");
+                var name = $(this).attr("name");
+                var abc = name.substring(name.indexOf('[') + 1, name.indexOf(']'));
+                //console.log('name: ' + name + ' and : ' + abc);
+                var idreplace = id.replace(abc, temp);
+                var namereplace = name.replace(abc, temp);
+                $(this).attr("id", idreplace);
+                $(this).attr("name", namereplace);
+                temp++;
+            });
+            temp = 0;
+            $("#Display-Tabs .tabcruise-title").each(function () {
+                var id = $(this).attr("id");
+                var name = $(this).attr("name");
+                var abc = name.substring(name.indexOf('[') + 1, name.indexOf(']'));
+                //console.log('name: ' + name + ' and : ' + abc);
+                var idreplace = id.replace(abc, temp);
+                var namereplace = name.replace(abc, temp);
+                $(this).attr("id", idreplace);
+                $(this).attr("name", namereplace);
+
+                temp++;
+            });
+            temp = 0;
+
+        }
+        $('#addTab').click(function () {
+            changeNameTag();
+            if ($('#tabName').val() == "") {
+                alert('Vui lòng nhập tên lịch trình');
+                $('#tabName').focus();
+            } else if (checkValidate($('#tabName').val())) {
+                alert("Tên lịch trình không tồn tại");
+            } else {
+                var label = '<h4 id="Content_' + counts + '">Nội dung lịch trình : ' + $('#tabName').val() + '</h4>';
+                var pricetab = '<div style="width:100%"><label class="tabcruise-pricename" id="NamePrice_' + counts + '">Giá Tab:</label><input class="tabcruise-price" type="number" id="TabTours_' + counts + '__price" name="TabTours[' + counts + '].price" value="0" /></div>'
+                var idcruise = '<input style="display:none" class="tabcruise-id" type="text" id="TabTours_' + counts + '__id" name="TabTours[' + counts + '].id" value="None" />';
+                var textarea = '  <div style="clear: both"><textarea id="TabTours_' + counts + '__Content" name="TabTours[' + counts + '].Content" rows="20" class="full-ckeditor"></textarea>' +
+                    '<input type="hidden" class="tabcruise-title" id="TabTours_' + counts + '__TitleTab" name="TabTours[' + counts + '].TitleTab" value="' + $('#tabName').val() + '"/></div>';
+                var html = '<option  value="' + counts + '">' + $('#tabName').val() + ' </option>';
+                $('#ListName').append(html);
+                $('#ListName').show();
+                $('#ListName').val(counts);
+                desployCkeditor();
+                $('#Display-Tabs').find('h4').each(function () {
+                    //$('#cke_' + this.attr('id')).hide();
+                    $(this).hide();
+                });
+                $('#Display-Tabs').find('.tabcruise-pricename').each(function () {
+                    //$('#cke_' + this.attr('id')).hide();
+                    $(this).hide();
+                });
+                $('#Display-Tabs').find('.tabcruise-price').each(function () {
+                    //$('#cke_' + this.attr('id')).hide();
+                    $(this).hide();
+                });
+                $('#Display-Tabs').append(label + pricetab + idcruise + textarea);
+
+                counts++;
+                count++;
+                $('#tabName').val("");
+                $('#countContenttab').val(count)
+                sapxepListName();
+                sapxepTab();
+                var value = $("#ListName option").last().attr("value");
+                CKEDITOR.replace('TabTours_' + value + '__Content', {
+                    height: '400px',
+                    toolbar: [
+                        { name: 'document', items: ['Source'] },
+                        { name: 'editing', groups: ['find', 'selection', 'spellchecker'], items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt'] },
+                        { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                        { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language'] },
+                        { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                        { name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'] },
+                        { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
+                        { name: 'colors', items: ['TextColor', 'BGColor'] },
+                        { name: 'tools', items: ['Maximize', 'ShowBlocks'] },
+                        { name: 'others', items: ['-'] },
+                        { name: 'about', items: ['About'] }
+                    ]
+                });
+            }
+        });
+
+        function checkValidate(value) {
+            var f = false;
+            $('#Display-Tabs').find('input').each(function () {
+                if ($(this).val() == value) {
+                    f = true;
+                }
+            });
+            return f;
+        }
+    });
+    function deleteItem(id) {
+        var resp = confirm("Do you want to delete this item???");
+        if (resp == true) {
+            var model = {
+                id: id,
+            }
+            $.ajax({
+                type: 'POST',
+                url: "/admin/Cabin/DeleteCabin",
+                data: JSON.stringify(model),
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    alert("Cảm ơn");
+                    $("#cabincruise-" + id).remove();
+                },
+                error: function () {
+                    alert("Lỗi!");
+                }
+
+            });
+        }
+        else {
+            alert("Cảm ơn");
+        }
+    }
+    $('#BestCruise').mousedown(function () {
+        if (!$(this).is(':checked')) {
+            $('#BestCruise').val("true")
+        } else {
+            $('#BestCruise').val("false")
+        }
+    });
+</script>
+<script src="~/Areas/Administrator/Content/js/bootbox.min.js"></script>
+<script src="~/Areas/Administrator/Content/js/Cruise/cruise.js"></script>

@@ -1,0 +1,66 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Handler
+@model IEnumerable<Cruise>
+
+@{
+    ViewBag.Title = "ListCruise";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+}
+@Html.Partial("Slider/Slider")
+
+<link href="~/Areas/Administrator/Content/js/Cruise/Cruise.css" rel="stylesheet" />
+<div class="container">
+    <div class="col-md-12 bgr-tour">
+        <h1 class="tieudecategory uppercase">@menu.Title</h1>
+    </div>
+    <div class="clearfix"></div>
+    @{
+        foreach (var item in Model)
+        {
+            <div class="list-cruise">
+                <div class="list-cruis-5">
+                    <div class="hovereffect">
+                        <img  class="img-responsive img-thumbnail" src="@item.Image" alt="">
+                        <div class="overlay">
+                            <p>
+                                <br />
+                                <a id="myImg" href="/cruise-detail/@item.Alias-@item.ID" style="text-transform:uppercase; font-size:24px;text-decoration:none;">@item.Name</a>
+                            </p>
+                            <p style="font-size:16px;">@item.Location</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-cruis-7">
+                    <h2 class="tit-content" ><a href="/cruise-detail/@item.Alias-@item.ID">@item.Name</a></h2>
+                    <div style="text-align: justify">
+                        <ul class="details">
+                            <li>
+                                <strong>
+                                    <i class="fas fa-map-marker-alt"> Destinations:</i>
+                                    <span style="color:#0074D9"> @item.Location</span>
+                                </strong>
+                            </li>
+                            <li>
+                                <strong>
+                                    <i class="fa fa-location-arrow"> Activities: </i>
+                                    <span style="color:#0074D9"> @item.Action</span>
+                                </strong>
+
+                            </li>
+                            <li>
+                                <strong><i class="fas fa-dollar-sign" style="color:#FF4136">Price: </i></strong><span>@item.Price  <i>USD</i></span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <a class="btn-viewmore" href="/cruise-detail/@item.Alias-@item.ID"><span>View more </span></a>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+        }
+    }
+
+</div>

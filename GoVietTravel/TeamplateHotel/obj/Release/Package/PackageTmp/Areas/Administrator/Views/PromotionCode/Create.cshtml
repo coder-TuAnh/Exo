@@ -1,0 +1,103 @@
+﻿@using TeamplateHotel.Areas.Administrator.EntityModel
+@model EPromotionCode
+
+@{
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+    ViewBag.Title = "Create";
+}
+
+<div class="span12">
+    <div class="widget ">
+        <div class="widget-header">
+            <i class="icon-plus-sign"></i>
+            <h3>@ViewBag.Title</h3>
+        </div> <!-- /widget-header -->
+
+        <div class="widget-content">
+            @Html.ValidationSummary(true)
+            @using (Html.BeginForm("Create", "PromotionCode", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+
+                <div class="control-group">
+                    @Html.LabelFor(c => c.Code, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Code, new { @class = "span4" })
+                        @Html.ValidationMessageFor(c => c.Code)
+                    </div>
+                    <div class="controls">
+                        <button type="button" class="btn btn-success" id="GenCode" autocomplete="off">GenerateCode</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="Title">Start date </label>
+                    <div class="controls">
+                        <input type="date" name="StartDay" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Title">End Date</label>
+                    <div class="controls">
+                        <input type="date" name="EndDay" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Title">Percent discount(%)<span class="asterisk">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Rate, new { @class = "span4", @value = 0, @type = "number" })
+                        @Html.ValidationMessageFor(c => c.Rate)
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Title">Number<span class="asterisk">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Total, new { @class = "span4", @value = 0, @type = "number" })
+                        @Html.ValidationMessageFor(c => c.Total)
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Title">Used<span class="asterisk">*</span></label>
+                    <div class="controls">
+                        @Html.TextBoxFor(c => c.Used, new { @class = "span4", @value = 0, @type = "number" })
+                        @Html.ValidationMessageFor(c => c.Used)
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Title">Status</label>
+                    <div class="controls">
+                        @Html.CheckBoxFor(c => c.Status, new { @checked = true })
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(c => c.Description, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextAreaFor(c => c.Description, new { @class = "span4" })
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                    <a href="@Url.Action("Index", "Tour")" class="btn">Cancel</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#GenCode").on("click", function () {
+
+        $.ajax({
+            type: 'GET',
+            url: "GenerateCode",
+
+            success: function (data) {
+                if (data.Result == "OK") {
+                    $("#Code").val(data.code);
+                }
+            },
+            error: function () {
+                CreateMessage("Err");
+            }
+        });
+    });
+</script>

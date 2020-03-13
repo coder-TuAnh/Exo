@@ -1,0 +1,156 @@
+﻿@using ProjectLibrary.Database;
+@{
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+}
+@{
+    var detail = ViewBag.BookVisaDetail;
+    var lstDetailBookVisa = ViewBag.lstDetailBookVisa;
+}
+
+<div class="span12">
+    <div class="widget ">
+        <div class="widget-header">
+            <i class="icon-info-sign"></i>
+            <h3>Book Visa</h3>
+            <a href="@Url.Action("Index","ManageVisa")" class="btn btn-primary" style="margin: 5px; float: right;">Quay lại</a>
+        </div> <!-- /widget-header -->
+        <div class="widget-content">
+            <div id="detail-lh">
+                <div class="header">
+                    Thông tin book Visa
+                </div>
+                <div>
+                    <label>Ngày đến </label> <p>@detail.DateOfArrival</p>
+                </div>
+
+                <div>
+                    <label>Sân bay đến: </label> <p>@detail.ArrivalAirport</p>
+                </div>
+
+                <div>
+                    <label>Thời gian xử lý: </label> <p>@detail.ProcessingTime</p>
+                </div>
+                <div>
+                    <label>FullName: </label> <p>@detail.FullName</p>
+                </div>
+                <div>
+                    @if (@detail.Gender == true)
+                    {
+                        <label>Giới tính: </label> <p>Nam</p>
+                    }
+                    else
+                    {
+                        <label>Giới tính: </label> <p>Nữ</p>
+                    }
+
+
+                </div>
+                <div>
+                    <label>Email: </label> <p>@detail.Email</p>
+                </div>
+                <div>
+                    <label>Country: </label> <p>@detail.Country</p>
+                </div>
+                <div>
+                    <label>Thành phố: </label> <p>@detail.City</p>
+                </div>
+                <div>
+                    <label>Số điện thoại: </label> <p>@detail.PhoneNumber</p>
+                </div>
+                <div>
+                    <label>Truyền thông xã hội: </label> <p>@detail.SpecialRequests</p>
+                </div>
+                <div>
+                    <label>Yêu cầu đặc biệt: </label> <p>@detail.SpecialRequests</p>
+                </div>
+
+                <div>
+                    <label>Tổng giá: </label>
+                    <p>@detail.TotalPrice</p>
+                </div>
+                <div class="header">
+                    Chi tiết Order
+                </div>
+                <div class="table table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>BookVisaID</th>
+                                <th>Giới Tính</th>
+                                <th>Họ Tên</th>
+                                <th>Ngày Sinh</th>
+                                <th>Quốc Gia</th>
+                                <th>Số hộ chiếu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DetailBookVisa dt in lstDetailBookVisa)
+                            {
+                                <tr>
+                                    <td>@dt.BookVisaID</td>
+                                    @if (@detail.Gender == true)
+                                    {
+                                        <td>Nam</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Nữ</td>
+                                    }
+
+                                    <td>@dt.FullName</td>
+                                    <td>@dt.DateOfBirth</td>
+                                    <td>@dt.Nationality</td>
+                                    <td>@dt.PassportNumber</td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .header {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        height: 50px;
+        padding-top: 35px;
+    }
+
+    #detail-lh div {
+        border: 1px solid #ddd;
+        margin: 0px;
+        border-bottom: none;
+        display: block;
+        width: 100%;
+        float: left;
+    }
+
+        #detail-lh div:last-child {
+            border-bottom: 1px solid #ddd;
+        }
+
+        #detail-lh div p {
+            width: 66%;
+            float: right;
+            border-left: 1px solid #ddd;
+            padding: 10px 10px;
+            margin: 0px;
+        }
+
+        #detail-lh div label {
+            width: 27%;
+            text-align: right;
+            height: 100%;
+            display: block;
+            float: left;
+            font-weight: bold;
+            line-height: 32px;
+        }
+</style>

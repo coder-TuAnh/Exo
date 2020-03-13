@@ -1,0 +1,15 @@
+@media(max-width: 768px){
+	.want-read form {
+	    display: block;
+	}
+	.want-read .form-gup {
+		margin:0;
+		margin-bottom: 25px
+	}
+	.wrap_control .prev {
+		text-align: left
+	}
+	.content_detail .flex-md-gro img {
+		width: 100%
+	}
+}

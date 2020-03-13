@@ -1,0 +1,708 @@
+﻿@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@using TeamplateHotel.Models
+@using ProjectLibrary.Database
+@using ProjectLibrary.Config
+@using ProjectLibrary.Security
+@{
+    ViewBag.HomePage = true;
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    string lang = Request.Cookies["LanguageID"].Value;
+
+    List<ShowObject> listTourDeal = CommentController.TourDeal(lang);
+    List<ShowObject> tourAll = CommentController.TourAll(lang);
+    List<Article> blog = CommentController.GetArticles(104);
+    //List<ShowObject> listHightLightTours = CommentController.Tourhots(lang);
+    List<string> listVideos = new List<string>();
+    listVideos.Add("0LY7izWSQPM");
+    listVideos.Add("Lf-57LdCyxg");
+
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    //Article articleShowHome = ViewBag.ArticleShowHome ?? new Article();
+    //List<Tour> tourShowHomes = ViewBag.TourShowHome ?? new List<Tour>();
+    //List<Tour> highlightTours = ViewBag.HighlightTour ?? new List<Tour>();
+    //List<Video> listVideos = ViewBag.Videos ?? new List<Video>();
+    //List<UseFullLink> useFullLinks = ViewBag.UsfullLink ?? new List<UseFullLink>();
+    List<UseFullLink> useFullLinks = CommentController.Usefulllink();
+    List<ShowObject> travelTipVietNam = CommentController.TravelTipVietNam(lang);
+    List<ShowObject> travelTipLao = CommentController.TravelTipLao(lang);
+    //List<ShowObject> travelTipCambodia = CommentController.TravelTipCambodia(lang);
+    int count = 1;
+
+}
+<link href="~/Plugins/OWL-slider/owl.carousel.css" rel="stylesheet" />
+<style>
+    section.regular.blog-posts {
+        padding: 0px;
+    }
+    .widSSPComponent .widSSPReviews {
+        display: none !important;
+    }
+</style>
+
+<section class="featured-destinations">
+    <div class="container">
+        <div class="cards overlap">
+            <div class="title-row">
+                <h3 class="title-entry"> SPECIAL DEALS </h3>
+                <a href="/vietnam-tour-package-deals" class="btn btn-primary btn-xs">See more &nbsp; <i class="fa fa-angle-right"></i></a>
+            </div>
+            <div class="row">
+                <div id="owl-special-offer" class="owl-carousel owl-list">
+                    @foreach (var item in listTourDeal)
+                    {
+                        if (item.MenuID==87)
+                        {
+                        <div class="item">
+                            <article class="card">
+                                <a href="/@item.MenuAlias/@item.ID/@item.Alias" class="featured-image" style="background-image: url('@item.Image')">
+                                    <div class="featured-img-inner"></div>
+                                </a>
+                                <div class="card-details">
+                                    <h4 class="card-title"><a href="/@item.MenuAlias/@item.ID//@item.Alias">@item.Title</a></h4>
+                                    <div class="meta-details clearfix">
+                                        <ul class="hierarchy">
+                                            <li style="margin-top: 5px;"><strong style="text-decoration: line-through; color: red; margin-right: 10px;">$ @item.Price.ToString("N")</strong><span style="font-size: 1.4em; color:#0261A9">$ @item.PriceSale.ToString("N") <i style="font-size:12px; "> Per person twin share</i></span></li>
+                                          
+                                           
+                                        </ul>
+                                        <p style="font-size:13px;margin-top:10px">  <i class="fa fa-map-marker"></i> @item.Address</p>
+                                      
+                                    </div>
+                                    <a href="/@item.MenuAlias/@item.ID/@item.Alias" style="float:right;margin:0.6em 0 1em 0" class="btn btn-primary btn-xs">View &nbsp; <i class="fa fa-angle-right"></i></a>
+
+                                </div>
+                            </article>
+                        </div>
+                        }
+                    }
+                </div><!--/.row-->
+            </div>
+        </div>
+    </div>
+</section>
+<section class="featured-destinations" style="background-color:#ffffff; margin-top: 110px;">
+    <div class="container">
+        <div class="cards overlap">
+            <div class="title-row">
+                <h3 class="title-entry" style="color:#363c48;text-shadow:none"> BEST VIETNAM TOUR PACKAGES   </h3>
+                <a href="/best-vietnam-tour-packages" class="btn btn-primary btn-xs">See more &nbsp; <i class="fa fa-angle-right"></i></a>
+            </div>
+            <div class="row">
+                <div id="owl-special-offer1" class="owl-carousel owl-list">
+                    @foreach (var item in tourAll)
+                    {
+                        if (item.MenuID == 78)
+                        {
+                            <div class="item">
+                                <article class="card">
+                                    <a href="/@item.MenuAlias/@item.ID/@item.Alias" class="featured-image" style="background-image: url('@item.Image')">
+                                        <div class="featured-img-inner"></div>
+                                    </a>
+                                    <div class="card-details">
+                                        <h4 class="card-title"><a href="/@item.MenuAlias/@item.ID/@item.Alias">@item.Title</a></h4>
+                                        <div class="meta-details clearfix">
+                                            <ul class="hierarchy">
+                                                <li style="margin-top: 5px;"><strong style="text-decoration: line-through; color: red; margin-right: 10px;">$ @item.Price</strong><span style="font-size: 1.4em; color:#0261A9">$ @item.PriceSale PP</span></li>
+                                            </ul>
+                                            <p style="font-size:13px">  <i class="fa fa-map-marker"></i> @item.Address</p>
+
+                                        </div>
+                                        <a href="/@item.MenuAlias/@item.ID/@item.Alias" style="float:right;margin:0.6em 0 1em 0" class="btn btn-primary btn-xs">View &nbsp; <i class="fa fa-angle-right"></i></a>
+
+                                    </div>
+                                </article>
+                            </div>
+                        }
+
+                    }
+
+                </div><!--/.row-->
+            </div>
+        </div>
+    </div>
+</section>
+<section class="featured-destinations" style="background-color:#ffffff; margin-top: 110px;">
+    <div class="container">
+        <div class="cards overlap">
+            <div class="title-row">
+                <h3 class="title-entry" style="color:#363c48;text-shadow:none"> BEST INDOCHINA COMBINED PACKAGES    </h3>
+                <a href="/indochina-combined-packages" class="btn btn-primary btn-xs">See more &nbsp; <i class="fa fa-angle-right"></i></a>
+            </div>
+            <div class="row">
+                <div id="owl-special-offer2" class="owl-carousel owl-list">
+                    @foreach (var item in tourAll)
+                    {
+                        if (item.MenuID == 6)
+                        {
+                            <div class="item">
+                                <article class="card">
+                                    <a href="/@item.MenuAlias/@item.ID/@item.Alias" class="featured-image" style="background-image: url('@item.Image')">
+                                        <div class="featured-img-inner"></div>
+                                    </a>
+                                    <div class="card-details">
+                                        <h4 class="card-title"><a href="/@item.MenuAlias/@item.ID/@item.Alias">@item.Title</a></h4>
+                                        <div class="meta-details clearfix">
+                                            <ul class="hierarchy">
+                                                <li style="margin-top: 5px;"><strong style="text-decoration: line-through; color: red; margin-right: 10px;">$ @item.Price</strong><span style="font-size: 1.4em; color:#0261A9">$ @item.PriceSale  PP</span></li>
+                                            </ul>
+                                            <p style="font-size:13px">  <i class="fa fa-map-marker"></i> @item.Address</p>
+
+                                        </div>
+                                        <a href="/@item.MenuAlias/@item.ID/@item.Alias" style="float:right;margin:0.6em 0 1em 0" class="btn btn-primary btn-xs">View &nbsp; <i class="fa fa-angle-right"></i></a>
+
+                                    </div>
+                                </article>
+                            </div>
+                        }
+
+                    }
+
+                </div><!--/.row-->
+            </div>
+        </div>
+    </div>
+</section>
+@*<section class="regular background">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-lg-4">
+                    <article class="card accordion-card">
+
+                        <header>
+                            <h3 class="section-title">@GetLanguage.Language(lang, "Title1")</h3>
+                            <p></p>
+                        </header>
+                        <div class="accordion-panel">
+                            <div class="panel-group" id="accordion-1" role="tablist" aria-multiselectable="true">
+                                @{ count = 1; }
+                                @foreach (var item in useFullLinks.Where(a => a.Location == 1).ToList())
+                                {
+                                    if (count == 1)
+                                    {
+                                        <div class="panel panel-default" style="background-image: url('@item.Image');">
+                                            <div id="collapse1-1" class="collapse in" role="tabpanel" aria-labelledby="heading1-1">
+                                                <div class="panel-body">
+                                                    <div class="read-more">@GetLanguage.Language(lang, "Detail")<i class="fa fa-arrow-right"></i></div>
+                                                    <a href="@item.Url"><div class="spacer"></div></a>
+                                                </div>
+                                            </div>
+                                            <a data-toggle="collapse" data-parent="#accordion-1" href="#collapse1-1" aria-expanded="true" aria-controls="collapse1-1">
+                                                <div class="panel-heading" role="tab" id="heading1-1">
+                                                    <h4 class="panel-title">@item.Name</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="panel panel-default" style="background-image: url('@item.Image');">
+                                            <div id="collapse@(count)-1" class="panel-collapse collapse " role="tabpanel" aria-labelledby="heading@(count)-1">
+                                                <div class="panel-body">
+                                                    <div class="read-more">@GetLanguage.Language(lang, "Detail") <i class="fa fa-arrow-right"></i></div>
+                                                    <a href="/du-lich-phap"><div class="spacer"></div></a>
+                                                </div>
+                                            </div>
+                                            <a data-toggle="collapse" data-parent="#accordion-1" href="#collapse@(count)-1" aria-expanded="true" aria-controls="collapse@(count)-1">
+                                                <div class="panel-heading" role="tab" id="heading@(count)-1">
+                                                    <h4 class="panel-title">@item.Name</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                    count++;
+                                }
+
+
+                            </div>
+                        </div>
+                        <footer></footer>
+                    </article>
+                </div>
+
+                <div class="col-md-4 col-lg-4">
+                    <article class="card accordion-card">
+
+                        <header>
+                            <h3 class="section-title"> @GetLanguage.Language(lang, "Title2")</h3>
+                            <p></p>
+                        </header>
+                        <div class="accordion-panel">
+                            <div class="panel-group" id="accordion-2" role="tablist" aria-multiselectable="true">
+                                @{ count = 1; }
+                                @foreach (var item in useFullLinks.Where(a => a.Location == 2).ToList())
+                                {
+                                    if (count == 1)
+                                    {
+                                        <div class="panel panel-default" style="background-image: url('@item.Image');">
+                                            <div id="collapse1-2" class="collapse in" role="tabpanel" aria-labelledby="heading1-2">
+                                                <div class="panel-body">
+                                                    <div class="read-more">@GetLanguage.Language(lang, "Detail")<i class="fa fa-arrow-right"></i></div>
+                                                    <a href="@item.Url"><div class="spacer"></div></a>
+                                                </div>
+                                            </div>
+                                            <a data-toggle="collapse" data-parent="#accordion-2" href="#collapse1-2" aria-expanded="true" aria-controls="collapse1-2">
+                                                <div class="panel-heading" role="tab" id="heading1-2">
+                                                    <h4 class="panel-title">@item.Name</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="panel panel-default" style="background-image: url('@item.Image');">
+                                            <div id="collapse@(count)-2" class="panel-collapse collapse " role="tabpanel" aria-labelledby="heading@(count)-2">
+                                                <div class="panel-body">
+                                                    <div class="read-more">@GetLanguage.Language(lang, "Detail") <i class="fa fa-arrow-right"></i></div>
+                                                    <a href="/du-lich-phap"><div class="spacer"></div></a>
+                                                </div>
+                                            </div>
+                                            <a data-toggle="collapse" data-parent="#accordion-2" href="#collapse@(count)-2" aria-expanded="true" aria-controls="collapse@(count)-2">
+                                                <div class="panel-heading" role="tab" id="heading@(count)-2">
+                                                    <h4 class="panel-title">@item.Name</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                    count++;
+                                }
+
+                            </div>
+                        </div>
+                        <footer></footer>
+                    </article>
+                </div>
+
+                <div class="col-md-4 col-lg-4">
+                    <article class="card accordion-card">
+
+                        <header>
+                            <h3 class="section-title">@GetLanguage.Language(lang, "Title3")</h3>
+                            <p></p>
+                        </header>
+                        <div class="accordion-panel">
+                            <div class="panel-group" id="accordion-3" role="tablist" aria-multiselectable="true">
+                                @{ count = 1; }
+                                @foreach (var item in useFullLinks.Where(a => a.Location == 3).ToList())
+                                {
+                                    if (count == 1)
+                                    {
+                                        <div class="panel panel-default" style="background-image: url('@item.Image');">
+                                            <div id="collapse1-3" class="collapse in" role="tabpanel" aria-labelledby="heading1-3">
+                                                <div class="panel-body">
+                                                    <div class="read-more">@GetLanguage.Language(lang, "Detail")<i class="fa fa-arrow-right"></i></div>
+                                                    <a href="@item.Url"><div class="spacer"></div></a>
+                                                </div>
+                                            </div>
+                                            <a data-toggle="collapse" data-parent="#accordion-3" href="#collapse1-3" aria-expanded="true" aria-controls="collapse1-3">
+                                                <div class="panel-heading" role="tab" id="heading1-3">
+                                                    <h4 class="panel-title">@item.Name</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="panel panel-default" style="background-image: url('@item.Image');">
+                                            <div id="collapse@(count)-3" class="panel-collapse collapse " role="tabpanel" aria-labelledby="heading@(count)-3">
+                                                <div class="panel-body">
+                                                    <div class="read-more">@GetLanguage.Language(lang, "Detail") <i class="fa fa-arrow-right"></i></div>
+                                                    <a href="/du-lich-phap"><div class="spacer"></div></a>
+                                                </div>
+                                            </div>
+                                            <a data-toggle="collapse" data-parent="#accordion-3" href="#collapse@(count)-3" aria-expanded="true" aria-controls="collapse@(count)-3">
+                                                <div class="panel-heading" role="tab" id="heading@(count)-3">
+                                                    <h4 class="panel-title">@item.Name</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                    count++;
+                                }
+
+                            </div>
+                        </div>
+                        <footer></footer>
+                    </article>
+                </div>
+
+            </div>
+        </div>
+    </section>*@
+
+@*<section class="featured-destinations" style="background-color:#ffffff; margin-top: 70px;">
+        <div class="container cards overlap">
+            <div class="title-row">
+                <h3 class="title-entry" style="color: #363c48; text-shadow: none;">BEST GOLF COURSES IN VIETNAM</h3>
+            </div>
+            <div class="row">
+                <div id="our-popular-tour" class="owl-carousel owl-list">
+                    @foreach (var item in listHightLightTours)
+                    {
+                        <div class="item">
+                            <article class="card">
+                                <a href="/@item.MenuAlias/@item.ID/@item.Alias" class="featured-image" style="background-image: url('@item.Image')">
+                                    <div class="featured-img-inner"></div>
+                                </a>
+                                <div class="card-details">
+                                    <h4 class="card-title"><a href="/@item.MenuAlias/@item.ID//@item.Alias">@item.Title</a></h4>
+                                    <div class="meta-details clearfix">
+                                        <ul class="hierarchy">
+                                            <li style="margin-top: 5px;"><strong style="text-decoration: line-through; color: red; margin-right: 10px;">$ @item.Price.ToString("N")</strong><span style="font-size: 1.4em; color:#0261A9">$ @item.PriceSale.ToString("N")</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </section>*@
+
+@*<section class="regular blog-posts" style="background-color:#ffffff;">
+        <div class="container">
+            <div class="title-row">
+                <h3 class="title-entry">@GetLanguage.Language(lang, "Title4")</h3>
+            </div>
+            <div class="row">
+                <div id="owl-des-vietnam" class="owl-carousel owl-list">
+                    @foreach (var travelTip in travelTipVietNam)
+                    {
+                        <div class="item">
+                            <article id="post-636" class="post hentry ">
+                                <div class="card">
+                                    <header class="entry-header">
+                                        <a href="/@travelTip.MenuAlias/@travelTip.ID/@travelTip.Alias" rel="bookmark">
+                                            <div class="entry-thumbnail" style="background-image: url(@travelTip.Image)">
+                                                <img width="600" height="800" title="" alt="" src="@travelTip.Image">
+                                            </div>
+                                            <h2 class="entry-title">@travelTip.Title</h2>
+                                        </a>
+                                    </header>
+                                </div>
+                            </article>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </section>*@
+
+    @*<section class="regular blog-posts" style="background-color:#ffffff;">
+        <div class="container">
+            <div class="title-row">
+                <h3 class="title-entry">@GetLanguage.Language(lang, "Title5")</h3>
+            </div>
+            <div class="row">
+                <div id="owl-des-lao" class="owl-carousel owl-list">
+                    @foreach (var travelTip in travelTipLao)
+                    {
+                        <div class="item">
+                            <article id="post-636" class="post hentry ">
+                                <div class="card">
+                                    <header class="entry-header">
+                                        <a href="/@travelTip.MenuAlias/@travelTip.ID/@travelTip.Alias" rel="bookmark">
+                                            <div class="entry-thumbnail" style="background-image: url(@travelTip.Image)">
+                                                <img width="600" height="800" title="" alt="" src="@travelTip.Image">
+                                            </div>
+                                            <h2 class="entry-title">@travelTip.Title</h2>
+                                        </a>
+                                    </header>
+                                </div>
+                            </article>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>*@
+
+@*<section class="regular blog-posts" style="background-color:#ffffff;">
+        <div class="container">
+            <div class="title-row">
+                <h3 class="title-entry">TOP DESTINATIONS IN CAMBODIA</h3>
+            </div>
+            <div class="row">
+                <div id="owl-des-cambodia" class="owl-carousel owl-list">
+                    @foreach (var travelTip in travelTipCambodia)
+                    {
+                        <div class="item">
+                            <article id="post-636" class="post hentry ">
+                                <div class="card">
+                                    <header class="entry-header">
+                                        <a href="/@travelTip.MenuAlias/@travelTip.ID/@travelTip.Alias" rel="bookmark">
+                                            <div class="entry-thumbnail" style="background-image: url(@travelTip.Image)">
+                                                <img width="600" height="800" title="" alt="" src="@travelTip.Image">
+                                            </div>
+                                            <h2 class="entry-title">@travelTip.Title</h2>
+                                        </a>
+                                    </header>
+                                </div>
+                            </article>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>*@
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="title-row">
+                <h3 class="title-entry">Reasons to book with Go Viet Travel: </h3>
+            </div>
+            <ul class="iconCheck">
+                <li><i class="fa fa-check" aria-hidden="true" style="padding-right: 3px;"></i> Local knowledge</li>
+                <li><i class="fa fa-check" aria-hidden="true" style="padding-right: 3px;"></i> Flexible</li>
+                <li><i class="fa fa-check" aria-hidden="true" style="padding-right: 3px;"></i>   Best price guarantee</li>
+                <li><i class="fa fa-check" aria-hidden="true" style="padding-right: 3px;"></i>  Authentic experiences</li>
+                <li><i class="fa fa-check" aria-hidden="true" style="padding-right: 3px;"></i> Reliable - Outstanding value for money</li>
+                <li><i class="fa fa-check" aria-hidden="true" style="padding-right: 3px;"></i>  Hassle free traveling</li>
+                <li><i class="fa fa-check" aria-hidden="true" style="padding-right: 3px;"></i> 24/7 expert support by phone, email & online chat</li>
+                <li><i class="fa fa-check" aria-hidden="true" style="padding-right: 3px;"></i> Money back guarantee</li>
+
+            </ul>
+            <a href="/about-us" class="btn btn-primary btn-xs">Read more &nbsp; <i class="fa fa-angle-right"></i></a>
+
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="title-row">
+                <h3 class="title-entry">Read our 5/5 TripAdvisor reviews </h3>
+            </div>
+            <div id="TA_selfserveprop901" class="TA_selfserveprop"><ul id="d3Jel4" class="TA_links 31nKcaX3C7"><li id="pdbc3VnB" class="F5BrYm0aHM"><a target="_blank" href="https://www.tripadvisor.com/"><img src="https://www.tripadvisor.com/img/cdsi/img2/branding/150_logo-11900-2.png" alt="TripAdvisor" /></a></li></ul></div>
+            <script async src="https://www.jscache.com/wejs?wtype=selfserveprop&amp;uniq=901&amp;locationId=12162429&amp;lang=en_US&amp;rating=true&amp;nreviews=4&amp;writereviewlink=true&amp;popIdx=false&amp;iswide=true&amp;border=true&amp;display_version=2" data-loadtrk onload="this.loadtrk=true"></script>
+
+
+
+        </div>
+
+    </div>
+</div>
+<section class="regular blog-posts" style="background-color:#ffffff;">
+    <div class="container">
+        <div class="title-row">
+            <h3 class="title-entry">Blog</h3>
+            <a href="/vietnam-travel-blog" class="btn btn-primary btn-xs">See more &nbsp; <i class="fa fa-angle-right"></i></a>
+        </div>
+        <div class="row">
+            <div id="owl-des-vietnam" class="owl-carousel owl-list">
+                @foreach (var item in blog)
+                {
+                    <div class="item">
+                        <article id="post-636" class="post hentry ">
+                            <div class="card">
+                                <header class="entry-header">
+                                    <a href="/vietnam-travel-blog/@item.ID/@item.Alias" rel="bookmark">
+                                        <div class="entry-thumbnail" style="background-image: url(..@item.Image)">
+                                            <img width="600" height="800" title="" alt="" src="@item.Image">
+                                        </div>
+                                        <h2 class="entry-title">@item.Title</h2>
+                                    </a>
+                                </header>
+                            </div>
+                        </article>
+                    </div>
+                }
+            </div>
+
+
+        </div>
+    </div>
+
+</section>
+<section class="regular blog-posts" style="background-color:#ffffff;">
+    <div class="container">
+        <div class="title-row">
+            <h3 class="title-entry" style="text-align: center">Make your travel planning easy and fun and your travel stress-free. </h3>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12">
+                <article id="post-636" class="post hentry ">
+                    <div class="card text-center" style="padding: 10px;">
+                        Design your own adventure, choose your own path, decide how and when to travel, the level of service and the hotel standard. Pack in as many activities and locations as possible, or incorporate some relaxation and free time to explore on your own terms. Our experts will  give advice and assist you to craft the ideal trip.
+                        Click the link below to submit a Free & Tailor-made Inquiry:
+
+                        <p style="text-align: center">
+                            <a href="http://ENQUIRY.goviettravel.com">
+                                <img src="~/Content/images/free-here.jpg" />
+                            </a>
+                        </p>
+
+                        This short inquiry is FREE and NOT a commitment for booking.
+
+                    </div>
+                </article>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<div class="clearfix"></div>
+<style>
+    #TA_selfserveprop901 #CDSWIDSSP {
+        width: 100% !important;
+    }
+    .iconCheck {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+        .iconCheck i {
+            color: red;
+        }
+
+        .iconCheck li {
+            font-size: 18px;
+        }
+
+    .usfull-div {
+        margin-bottom: 5px;
+    }
+
+    .accordion-card .accordion-panel .panel:before {
+        left: 0px;
+    }
+</style>
+
+<script src="~/Plugins/OWL-slider/owl.carousel.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#owl-special-offer").owlCarousel({
+            loop: true,
+            responsiveClass: true,
+            autoplay: true,
+            items: 3, //10 items above 1000px browser width
+            navigation: true,
+            navigationText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 3
+                }
+            }
+        });
+
+        $("#owl-special-offer1").owlCarousel({
+            loop: true,
+            responsiveClass: true,
+            autoplay: true,
+            items: 3, //10 items above 1000px browser width
+            navigation: true,
+            navigationText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 3
+                }
+            }
+        });
+
+        $("#owl-special-offer2").owlCarousel({
+            loop: true,
+            responsiveClass: true,
+            autoplay: true,
+            items: 3, //10 items above 1000px browser width
+            navigation: true,
+            navigationText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 3
+                }
+            }
+        });
+
+        $("#owl-des-vietnam").owlCarousel({
+            loop: true,
+            responsiveClass: true,
+            autoplay: true,
+            items: 3, //10 items above 1000px browser width
+            navigation: true,
+            navigationText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 3
+                }
+            }
+        });
+        $("#our-popular-tour").owlCarousel({
+            loop: true,
+            responsiveClass: true,
+            autoplay: true,
+            items: 3, //10 items above 1000px browser width
+            navigation: true,
+            navigationText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 3
+                }
+            }
+        });
+
+    });
+</script>
+@*<script>
+        function isValidEmailAddress(emailAddress) {
+            var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
+            return pattern.test(emailAddress);
+        };
+        $(document).ready(function () {
+            $("#btn-get-email").click(function () {
+                var email = $("#emailmarketing");
+                if (email.val() == "" || isValidEmailAddress(email.val()) == false) {
+                    alert("Please enter email");
+                } else {
+                    $.ajax({
+                        url: 'EmailMarketing/SaveEmail',
+                        type: 'Post',
+                        dataType: 'Json',
+                        data: { emailMarketing: $("#emailmarketing").val() },
+                        success: function (data) {
+                            if (data.result == "ok") {
+                                alert("Thanks for subscribing to our newsletter");
+                            } else {
+                                alert(data.message);
+                            }
+                        },
+                    });
+                }
+
+            });
+        });
+    </script>*@

@@ -1,0 +1,124 @@
+﻿@{
+    ViewBag.Title = "Mã Giảm Giá Cabin";
+    Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
+    }
+@model ProjectLibrary.Database.PromotionCodeCabin
+<style>
+    .az {
+        float: left;
+        margin: 5px 10px;
+    }
+</style>
+
+<div id="jtable-main-container"></div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#jtable-main-container').jtable({
+            title: '@ViewBag.Title',
+            paging: true, //Enable paging
+            pageSize: 30, //Set page size (default: 10)
+            sorting: true, //Enable sorting
+            defaultSorting: 'Name ASC', //Set default sorting
+            selecting: true, //Enable selecting
+            multiselect: true, //Allow multiple selecting
+            selectingCheckboxes: true, //Show checkboxes on first column
+            columnResizable: true, //Actually, no need to set true since it's default
+            columnSelectable: true, //Actually, no need to set true since it's default
+            saveUserPreferences: true, //Actually, no need to set true since it's default
+            toolbar: {
+                items: [{
+                    icon: '/Areas/Administrator/Content/img/add.png',
+                    text: 'Thêm mới',
+                    click: function () {
+                        window.location = '@Url.Action("AddPromotion", "PromotionCodeCabin")';
+                    }
+                }]
+            },
+
+            actions: {
+                listAction: '@Url.Action("List", "PromotionCodeCabin")',
+                deleteAction: '@Url.Action("Delete", "PromotionCodeCabin")'
+
+            },
+            fields: {
+                ID: {
+                    key: true,
+                    create: false,
+                    edit: false,
+                    list: false
+                },
+                Code: {
+                    title: 'Code',
+                    width: '5%',
+                    display: function (data) {
+                        return '<a href="/admin/PromotionCodeCabin/Edit?id=' + data.record.ID + '">' + data.record.Code + '</a>';
+                    }
+                },
+                NgayBatDau: {
+                    title: 'Ngày Bắt Đầu',
+                    width: '5%',
+                    type: 'date',
+                    displayFormat: 'mm/dd/yy',
+
+                },
+                NgayKetThuc: {
+                    title: 'Hết Hạn',
+                    width: '5%',
+                    type: 'date',
+                    displayFormat: 'dd/mm/yy',
+                    create: true,
+                    edit: true
+
+                },
+                SL: {
+                    title: 'Số lượng',
+                    width: '5%',
+                },
+                DaDung: {
+                    title: 'Đã Dùng',
+                    width: '5%',
+                },
+                IDCabin:{
+                    title: 'Mã Cabin',
+                    width: '3%',
+                },
+                Name: {
+                    title: 'Tên Cabin',
+                    width: '15%',
+                },
+                TrangThai: {
+                    title: 'Trạng Thái',
+                    width: '3%',
+                },
+                '':
+                    {
+                        title: '',
+                        width: '2%',
+                        sorting: false,
+                        display: function (data) {
+                            return '<button title="Edit" type="button" class="jtable-command-button jtable-edit-command-button" onclick="editRecord(' + data.record.ID + ')"><span>Edit</span></button>';
+                        }
+                    }
+            }
+        });
+        $('#jtable-main-container').jtable('load');
+    });
+    function editRecord(id) {
+        window.location = '/admin/PromotionCodeCabin/Edit?id=' + id;
+    }
+    //Re-load records when user click 'load records' button.
+    //$('#LoadRecordsButton').click(function (e) {
+    //    e.preventDefault();
+    //    $('#jtable-main-container').jtable('load', {
+    //        name: $('#name').val(),
+    //        menuID: $('#toursId').val()
+    //    });
+    //});
+
+    ////Load all records when page is first shown
+    //$('#LoadRecordsButton').click();
+</script>
+
+@{
+    Session["Trungma"] = "";
+}
